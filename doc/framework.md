@@ -10,12 +10,19 @@
 	1. 用户接口:
 
 		1. 添加用户
-			`PUT /api/user/register`
+
+			`PUT /api/user/reg`
 			{
 				"username":string
 				"password":string  //两次输入密码在前端校验
 				"email":string
 			}
+		2. 用户登陆
+
+			`POST /api/user/login`
+
+		3. `GET /api/user`
+
 
 
 
