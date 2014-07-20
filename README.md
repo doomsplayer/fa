@@ -1,3 +1,3 @@
 #badmintonhom
 
-1. afa
+1. af
