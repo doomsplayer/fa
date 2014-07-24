@@ -29,7 +29,7 @@
 			}
             </pre>
 		2. 获取验证码
-
+            <pre>
 			`GET /api/vfcode`
 
 			req:
@@ -40,9 +40,9 @@
 				"token":string,
 				"imgurl":string,
 			}
-
+            </pre>
 		2. 用户登陆
-
+            <pre>
 			`POST /api/user/login`
 
 			req:
@@ -56,8 +56,9 @@
 				"userid":int,
 				"errmsg":string, // 如果不ok
 			}
+            </pre>
 		3. 获取用户资料
-
+            <pre>
 			`GET /api/user`
 
 			req:
@@ -65,11 +66,11 @@
 
 			resp:
 			{}
-
+            </pre>
 		4. 更新用户信息 
-
+            <pre>
 			`PUT /api/user`
-
+            </pre>
 		4. 删除用户
 			
 			`DELETE /api/user`
@@ -83,7 +84,7 @@
 		1. 通用接口
 
 			1. 获取主页菜单栏
-
+                <pre>
 				`GET /api/mainBar`
 
 				req:
@@ -103,9 +104,9 @@
 							]
 					}
 				]
-
+                </pre>
 			2. 上传文件接口
-
+                <pre>
 				`PUT /api/upload`
 
 				req:
@@ -120,9 +121,9 @@
 					"errmsg":string //if error
 					"fileId":string //if not error
 				}
-
+                </pre>
 			3. 删除文件接口
-
+                <pre>
 				`DELETE /api/upload`
 
 				req:
@@ -133,7 +134,7 @@
 					"ok":bool,
 					"errmsg":string, //if not ok
 				}
-				
+				</pre>
 		2. 主页接口
 
 			1. 主页滚动公告接口
