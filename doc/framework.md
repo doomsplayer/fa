@@ -11,7 +11,7 @@
 
 		1. 添加用户
             <pre>
-			`PUT /api/user/reg`
+			PUT /api/user/reg
 
 			req:
 			{
@@ -30,7 +30,7 @@
             </pre>
 		2. 获取验证码
             <pre>
-			`GET /api/vfcode`
+			GET /api/vfcode
 
 			req:
 			{}
@@ -43,7 +43,7 @@
             </pre>
 		2. 用户登陆
             <pre>
-			`POST /api/user/login`
+			POST /api/user/login
 
 			req:
 			{
@@ -59,7 +59,7 @@
             </pre>
 		3. 获取用户资料
             <pre>
-			`GET /api/user`
+			GET /api/user
 
 			req:
 			{}
@@ -69,7 +69,7 @@
             </pre>
 		4. 更新用户信息 
             <pre>
-			`PUT /api/user`
+			PUT /api/user
             </pre>
 		4. 删除用户
 			
@@ -85,7 +85,7 @@
 
 			1. 获取主页菜单栏
                 <pre>
-				`GET /api/mainBar`
+				GET /api/mainBar
 
 				req:
 				{}
@@ -107,7 +107,7 @@
                 </pre>
 			2. 上传文件接口
                 <pre>
-				`PUT /api/upload`
+				PUT /api/upload
 
 				req:
 				{
@@ -124,7 +124,7 @@
                 </pre>
 			3. 删除文件接口
                 <pre>
-				`DELETE /api/upload`
+				DELETE /api/upload
 
 				req:
 				{}
