@@ -10,7 +10,7 @@
 	1. 用户接口:  //用户先不做,api没写完
 
 		1. 添加用户
-
+            <pre>
 			`PUT /api/user/reg`
 
 			req:
@@ -23,10 +23,11 @@
 			}
 
 			resp:
-			    {
-				    "ok":bool,
-				    "errmsg":string, //如果不ok
-			    }
+			{
+		        "ok":bool,
+				"errmsg":string, //如果不ok
+			}
+            </pre>
 		2. 获取验证码
 
 			`GET /api/vfcode`
