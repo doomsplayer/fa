@@ -23,10 +23,10 @@
 			}
 
 			resp:
-			`{
-				"ok":bool,
-				"errmsg":string, //如果不ok
-			}`
+			    {
+				    "ok":bool,
+				    "errmsg":string, //如果不ok
+			    }
 		2. 获取验证码
 
 			`GET /api/vfcode`
