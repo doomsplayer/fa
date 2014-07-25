@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>羽毛球之家</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi" />
+		<meta name="description" content="" />
+		<meta name="author" content="CNSSUESTC.org" />
+		<link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../static/css/style_menu.css" />
+		<link rel="stylesheet" href="../static/css/style_eislideshow.css" />
+		<link rel="stylesheet" href="../static/css/layout.css" />
+		<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../static/js/angular.min.js"></script>
+		<script type="text/javascript" src="../static/js/angular-route.js"></script>
+		<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../static/js/script.js"></script>
+		<script type="text/javascript" src="../static/js/jquery.mnmenu.js"></script>
+		<script type="text/javascript">
+				$(document).ready(function() {
+					$('#idmenu').mnmenu();
+					$('#idmenu').addClass('style_menu');
+				});
+		</script>
+        <script type="text/javascript" src="../static/js/jquery.eislideshow.js"></script>
+        <script type="text/javascript" src="../static/js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#ei-slider').eislideshow({
+					animation			: 'center',
+					autoplay			: true,
+					slideshow_interval	: 5000,
+					titlesFactor		: 0
+                });
+            });
+        </script>
+        <script type="text/javascript" src="../static/js/jquery.backstretch.min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+			  $(".backstretch").backstretch("../static/img/head_bg.jpg");
+			});
+		</script>
+        <script type="text/javascript" src="../static/js/isotope.pkgd.min.js"></script>
+        <script type="text/javascript">
+        	$(function() {
+				//init Isotope
+				var $container = $('.isotope').isotope({
+						itemSelector: '.element-item',
+						layoutMode: 'fitRows'
+					});
+					
+
+					function getColumnNumber() { 
+						var winWidth = $(window).width(), 
+						columnNumber = 1;
+					
+						if (winWidth > 1200) {
+							columnNumber = 5;
+						} else if (winWidth > 950) {
+							columnNumber = 4;
+						} else if (winWidth > 600) {
+							columnNumber = 3;
+						} else if (winWidth > 400) {
+							columnNumber = 2;
+						} else if (winWidth > 250) {
+							columnNumber = 1;
+						}
+							return columnNumber;
+						}       
+						
+						function setColumns() {
+							var winWidth = $(window).width(), 
+							columnNumber = getColumnNumber(), 
+							itemWidth = Math.floor(winWidth / columnNumber);
+							
+							$container.find('.element-item').each(function() { 
+								$(this).css( { 
+								width : itemWidth + 'px' 
+							});
+						});
+					}
+					
+					function setPortfolio() { 
+						setColumns();
+						
+					}
+						
+					// $container.imagesLoaded(function () { 
+					// 	setPortfolio();
+					// });
+					
+					$(window).on('resize', function () { 
+					setPortfolio();          
+				});
+        	});
+        </script>
+		<script type="text/javascript">
+			$(window).scroll(function() {
+				var _nav = $('#container');
+				var _logo = $('#logo');
+				var winHeight = $(window).height();
+				if($(window).scrollTop() >= winHeight) {
+					_nav.addClass('stuck');
+					_logo.attr('src','../static/img/logo_sm.png');
+				} else {
+					_nav.removeClass('stuck');
+					_logo.attr('src','../static/img/logo.png');
+				}
+			})
+
+		</script>
+		
+		<!-- Support for HTML5 -->
+		<!--[if lt IE 9]>
+			<script src="../static/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<!-- Enable media queries on older browsers -->
+		<!--[if lt IE 9]>
+			<script src="../static/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		
+		<div class="container" id="container">
+			<div class="x-container container">
+				<div class="row">
+					<div class="col-md-2 col-md-offset-1">
+						<img src="../static/img/logo.png" id="logo" alt="logo" />
+					</div>
+					<div class="col-md-5 col-md-offset-3">
+						<ul id="idmenu">
+				            <li><a href="#"><span class="glyphicon glyphicon-search"></span></a>
+								<ul>
+									<span>
+										<li>
+											<div class="input-group input-group-sm">
+												<input type="search" class="search form-control" />
+												<span class="input-group-addon">搜索</span>
+											</div>
+										</li>
+									</span>
+								</ul>
+				            </li>
+				            <li><a href="#"><span>促销信息</span></a></li>
+				            <li><a href="#"><span>学打羽毛球</span></a>
+				                <ul>
+				                    <span>
+				                        <li><a href="#"><span>大话羽球</span></a></li>
+				                        <li><a href="#"><span>羽球知识</span></a></li>
+				                        <li><a href="#"><span>羽球技术</span></a></li>
+				                        <li><a href="#"><span>羽球战术</span></a></li>
+				                        <li><a href="#"><span>伤病防护</span></a></li>
+				                    </span>
+				                </ul>
+				            </li>
+				            <li><a href="#"><span>视频库</span></a>
+				                <ul>
+				                    <li><a href="#"><span>国际大赛专辑</span></a></li>
+				                    <li><a href="#"><span>经典对战专辑</span></a></li>
+				                    <li><a href="#"><span>玩转羽球</span></a></li>
+				                </ul>
+				            </li>
+				            <li><a href="#">联系我们</a></li>
+				            <li>
+				            	<a href="#" id="login"><span>登陆</span></a>
+				            </li>
+				        </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+				            	
+				            	
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog login_box">
+		    <div class="modal-content login_container">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		      
+		      <div class="modal-body">
+		      	<div class="btn_row">
+		        	<button class="x-btn weibo"></button>
+		      	</div>
+		      	<div class="btn_row">
+			        <button class="x-btn qq"></button>
+		      	</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="slider_container">
+			<div id="ei-slider" class="ei-slider">
+                <ul class="ei-slider-large">
+                    <li>
+                        <img src="../static/img/img0.jpg" alt="image01" />
+                        <div class="ei-title">
+                            <h2>欢迎来到羽球之家</h2>
+                            <h3>简介简介简介</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../static/img/img1.jpg" alt="image02" />
+                        <div class="ei-title">
+                            <h2>欢迎来到羽球之家</h2>
+                            <h3>Devil</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../static/img/img0.jpg" alt="image03"/>
+                        <div class="ei-title">
+                            <h2>欢迎来到羽球之家</h2>
+                            <h3>Compatriot</h3>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="../static/img/img1.jpg" alt="image04"/>
+                        <div class="ei-title">
+                            <h2>欢迎来到羽球之家</h2>
+                            <h3>Hussler</h3>
+                        </div>
+                    </li>
+                </ul><!-- ei-slider-large -->
+                <ul class="ei-slider-thumbs">
+                    <li class="ei-slider-element">Current</li>
+                    <li><a href="#">Slide 1</a><img src="../static/img/img0.jpg" alt="thumb01" /></li>
+                    <li><a href="#">Slide 2</a><img src="../static/img/img1.jpg" alt="thumb02" /></li>
+                    <li><a href="#">Slide 3</a><img src="../static/img/img0.jpg" alt="thumb03" /></li>
+                    <li><a href="#">Slide 4</a><img src="../static/img/img1.jpg" alt="thumb04" /></li>
+                </ul><!-- ei-slider-thumbs -->
+            </div><!-- ei-slider -->
+		</div>
+		<div class="background backstretch" data-background-image="../static/img/head_bg.jpg"></div>
+		<div id="content">
+			<div class="learn">
+			    <ul id="learn_Tab" class="nav nav-tabs" role="tablist">
+			        <li class="x-tab active"><a href="#yq_01" class="title" role="tab" data-toggle="tab">大话羽球</a></li>
+			        <li class="x-tab"><a href="#yq_02" class="title" role="tab" data-toggle="tab">羽球知识</a></li>
+			        <li class="x-tab"><a href="#yq_03" class="title" role="tab" data-toggle="tab">羽球技术</a></li>
+			        <li class="x-tab"><a href="#yq_04" class="title" role="tab" data-toggle="tab">羽球战术</a></li>
+			        <li class="x-tab"><a href="#yq_05" class="title" role="tab" data-toggle="tab">伤病防护</a></li>
+			        <li class="x-tab"><a href="#" class="last">学打羽毛球></a></li>
+			    </ul>
+
+			    <div id="learn_TabContent" class="tab-content">
+			        <div class="tab-pane fade active in" id="yq_01">
+			        	<div class="news_wrapper">
+			        		<div class="pic_news">
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="pic_news_container">
+				        				<img src="../static/img/img_test1.jpg" alt="" />
+				        				<p class="pic_intro">澳洲赛：林丹逆转夺冠女双演横扫...</p>
+				        				<div class="mask more"><p>MORE</p></div>
+			        				</div>
+			        			</div>
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="pic_news_container">
+				        				<img src="../static/img/img_test1.jpg" alt="" />
+				        				<p class="pic_intro">澳洲赛：林丹逆转夺冠女双演横扫...</p>
+				        				<div class="mask more"><p>MORE</p></div>
+			        				</div>
+			        			</div>
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="pic_news_container">
+				        				<img src="../static/img/img_test1.jpg" alt="" />
+				        				<p class="pic_intro">澳洲赛：林丹逆转夺冠女双演横扫...</p>
+				        				<div class="mask more"><p>MORE</p></div>
+			        				</div>
+			        			</div>
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="pic_news_container">
+				        				<img src="../static/img/img_test1.jpg" alt="" />
+				        				<p class="pic_intro">澳洲赛：林丹逆转夺冠女双演横扫...</p>
+				        				<div class="mask more"><p>MORE</p></div>
+			        				</div>
+			        			</div>
+			        		</div>
+			        		<div class="pic_news">
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="pic_news_container">
+				        				<img src="../static/img/img_test1.jpg" alt="" />
+				        				<p class="pic_intro">澳洲赛：林丹逆转夺冠女双演横扫...</p>
+				        				<div class="mask more"><p>MORE</p></div>
+			        				</div>
+			        			</div>
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="pic_news_container">
+				        				<img src="../static/img/img_test1.jpg" alt="" />
+				        				<p class="pic_intro">澳洲赛：林丹逆转夺冠女双演横扫...</p>
+				        				<div class="mask more"><p>MORE</p></div>
+			        				</div>
+			        			</div>
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="pic_news_container">
+				        				<img src="../static/img/img_test1.jpg" alt="" />
+				        				<p class="pic_intro">澳洲赛：林丹逆转夺冠女双演横扫...</p>
+				        				<div class="mask more"><p>MORE</p></div>
+			        				</div>
+			        			</div>
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="pic_news_container">
+				        				<img src="../static/img/img_test1.jpg" alt="" />
+				        				<p class="pic_intro">澳洲赛：林丹逆转夺冠女双演横扫...</p>
+				        				<div class="mask more"><p>MORE</p></div>
+			        				</div>
+			        			</div>
+			        		</div>
+			        		<div class="text_news">
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="text_news_container">
+			        					<ul>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        					</ul>
+			        				</div>
+			        			</div>
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="text_news_container">
+			        					<ul>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        					</ul>
+			        				</div>
+			        			</div>
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="text_news_container">
+			        					<ul>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        					</ul>
+			        				</div>
+			        			</div>
+			        			<div class="col-lg-3 col-md-3 col-sm-6">
+			        				<div class="text_news_container">
+			        					<ul>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        						<li><a href="#">澳洲赛：林丹逆转夺冠女双演横扫...</a></li>
+			        					</ul>
+			        				</div>
+			        			</div>
+			        		</div>
+			        	</div>
+			        </div>
+			        <div class="tab-pane fade" id="yq_02">
+			        	<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+			        </div>
+			    </div>
+			</div>
+			<div class="sale">
+				<div class="item_classify">
+					<div class="pic_bg">
+						<img src="../static/img/item_classify_bg.png" alt="" />
+					</div>
+					<div class="button_list filters">
+						<ul>
+							<li><button type="button" class="btn btn-default xx-btn is-checked" data-filter:"*">所有商品分类</button></li>
+							<li><button type="button" class="btn btn-default xx-btn">球拍</button></li>
+							<li><button type="button" class="btn btn-default xx-btn">球鞋</button></li>
+							<li><button type="button" class="btn btn-default xx-btn">其他</button></li>
+							<li><button type="button" class="btn btn-default xx-btn">其他</button></li>
+						</ul>
+					</div>
+				</div>
+				<div class="item_pic">
+					<div class="isotope">
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div>
+						</div>
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<!-- <div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div> -->
+						</div>
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<!-- <div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div> -->
+						</div>
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<!-- <div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div> -->
+						</div>
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<!-- <div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div> -->
+						</div>
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<!-- <div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div> -->
+						</div>
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<!-- <div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div> -->
+						</div>
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<!-- <div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div> -->
+						</div>
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<!-- <div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div> -->
+						</div>
+						<div class="element-item" data-category="shoes">
+							<img src="../static/img/img_test2.jpg" alt="" />
+							<!-- <div class="mask">
+								<p>产品名称</p>
+								<p>价格：1000</p>
+								<p>MORE</p>
+							</div> -->
+						</div>
+					</div>
+				</div>
+				<div class="item_more">
+					<button class="btn btn-primary">更多促销信息</button>
+				</div>
+			</div>
+			<div class="oneword">
+				<div class="avatar"></div>
+				<img src="../static/img/oneword.png" alt="" />
+			</div>
+			<div class="video">
+			    <ul id="video" class="nav nav-tabs" role="tablist">
+			        <li class="x-tab active"><a href="#vd_01" class="title" role="tab" data-toggle="tab">国际大赛专辑</a></li>
+			        <li class="x-tab"><a href="#vd_02" class="title" role="tab" data-toggle="tab">经典对战专辑</a></li>
+			        <li class="x-tab"><a href="#vd_03" class="title" role="tab" data-toggle="tab">玩转羽球</a></li>
+			        <li class="x-tab"><a href="#" class="last">视频库></a></li>
+			    </ul>
+
+			    <div id="video_TabContent" class="tab-content">
+			        <div class="tab-pane fade active in" id="vd_01">
+			        	<div class="news_wrapper">
+			        		<div class="news_row col-lg-12 col-md-12">
+			        			<div class="img_wrapper col-lg-3 col-md-3 col-sm-12">
+			        				<img src="../static/img/img_test3.jpg" alt="" />
+			        			</div>
+			        			<div class="text_wrapper col-lg-9 col-md-9 col-sm-12">
+			        				<h4><a href="#">苏迪曼杯这些年——盘点苏杯经典大战20场</a></h4>
+			        				<p>苏迪曼杯，又称世界羽毛球混合团体锦标赛，是羽毛球三大世界性团体赛之一。1989年首届苏迪曼杯在雅加达举办，至今近30年，其中涌现的经典对决不计其数，小编在此为您准备了20场经典巅峰对决，带您一起走进苏迪曼杯这些年。</p>
+			        			</div>
+			        		</div>
+			        		<div class="news_row col-lg-12 col-md-12">
+			        			<div class="img_wrapper col-lg-3 col-md-3 col-sm-12">
+			        				<img src="../static/img/img_test3.jpg" alt="" />
+			        			</div>
+			        			<div class="text_wrapper col-lg-9 col-md-9 col-sm-12">
+			        				<h4>苏迪曼杯这些年——盘点苏杯经典大战20场</h4>
+			        				<p>苏迪曼杯，又称世界羽毛球混合团体锦标赛，是羽毛球三大世界性团体赛之一。1989年首届苏迪曼杯在雅加达举办，至今近30年，其中涌现的经典对决不计其数，小编在此为您准备了20场经典巅峰对决，带您一起走进苏迪曼杯这些年。</p>
+			        			</div>
+			        		</div>
+			        		<div class="news_row col-lg-12 col-md-12">
+			        			<div class="img_wrapper col-lg-3 col-md-3 col-sm-12">
+			        				<img src="../static/img/img_test3.jpg" alt="" />
+			        			</div>
+			        			<div class="text_wrapper col-lg-9 col-md-9 col-sm-12">
+			        				<h4>苏迪曼杯这些年——盘点苏杯经典大战20场</h4>
+			        				<p>苏迪曼杯，又称世界羽毛球混合团体锦标赛，是羽毛球三大世界性团体赛之一。1989年首届苏迪曼杯在雅加达举办，至今近30年，其中涌现的经典对决不计其数，小编在此为您准备了20场经典巅峰对决，带您一起走进苏迪曼杯这些年。</p>
+			        			</div>
+			        		</div>
+			        	</div>
+			        </div>
+			        <div class="tab-pane fade" id="vd_02">
+			        	<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+			        </div>
+			    </div>
+			</div>
+		</div>		
+		
+		<div class="footer">
+			<div class="container">
+				<div class="col-lg-3 col-md-3 col-sm-12">
+					<h4 class="title">关于我们</h4>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s.. <span><a href="#">more</a></span></p>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12">
+					<h4 class="title">联系我们</h4>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12">
+					<h4 class="title">联系我们</h4>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12">
+					<h4 class="title">联系我们</h4>
+				</div>
+			</div>
+			<div class="copyright">
+				<div class="container">
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<p>Copyright&copy;2014-All Rights Reserved.Designed by CNSSUESTC.org</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
