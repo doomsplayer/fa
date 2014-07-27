@@ -118,7 +118,7 @@ p.pic_intro {
 	opacity: 0.8;
 	top:0;
 	display: none;
-	padding-top: 60px;
+	padding-top: 100px;
 }
 .mask p {
 	text-align: center;
@@ -182,7 +182,7 @@ p.pic_intro {
 	border-color: #000;
 	transition: all 0.3s ease-in-out;
 }
-.button_list .xx-btn:hover {
+.button_list .xx-btn:hover, .button_list .xx-btn.active {
 	background-color: #fff;
 	color: #1ebcb9;
 	border-color: #1ebcb9;
@@ -194,11 +194,12 @@ p.pic_intro {
 .element-item {
 	position: relative;
 	float: left;
-	/*width: 211px;*/
+	width: 269px;
+	height: 269px;
 }
 .element-item img {
 	width: 100%;
-	height: 200px;
+	height: 100%;
 }
 .element-item:hover .mask {
 	display: block;
