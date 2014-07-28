@@ -1,0 +1,25 @@
+<ul id="idmenu">
+    <li><a href="#"><span class="glyphicon glyphicon-search"></span></a>
+        <ul>
+            <span>
+                <li>
+                    <div class="input-group input-group-sm">
+                        <input type="search" class="search form-control" />
+                        <span class="input-group-addon">搜索</span>
+                    </div>
+                </li>
+            </span>
+        </ul>
+    </li>
+    <li ng-repeat="title in titles">
+        <a ng-href="{{title.url}}"><span>{{title.title}}</span></a>
+        <ul ng-if="title.subtitle">
+            <span>
+                <li ng-repeat="sub in title.subtitle"><a ng-href="sub.url"><span>{{sub.title}}</span></a></li>
+            </span>
+        </ul>
+    </li>
+    <li>
+        <a href="#" id="login"><span>登陆</span></a>
+    </li>
+</ul>
