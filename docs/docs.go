@@ -8,14 +8,14 @@ import (
 	"github.com/astaxie/beego/swagger"
 )
 
-var rootinfo string = `{"apiVersion":"1.0.0","swaggerVersion":"1.2","apis":null,"info":{"title":"badminton API","description":"羽球网。","contact":"doomsplayer@gmail.com"}}`
+var rootinfo string = `{"apiVersion":"1.0.0","swaggerVersion":"1.2","apis":[{"path":"/api","description":""}],"info":{"title":"badminton API","description":"羽球网。","contact":"doomsplayer@gmail.com"}}`
 var subapi string = `{"/api":{"apiVersion":"1.0.0","swaggerVersion":"1.2","basePath":"","resourcePath":"/api","produces":["application/json","application/xml","text/plain","text/html"],"apis":[{"path":"/mainBar","description":"","operations":[{"httpMethod":"GET","nickname":"mainBar","type":"","summary":"获得首页目录","responseMessages":[{"code":200,"message":"目录json","responseModel":""},{"code":404,"message":"Not found","responseModel":""}]}]}]}}`
 var rootapi swagger.ResourceListing
 
 var apilist map[string]*swagger.ApiDeclaration
 
 func init() {
-	basepath := "/api"
+	basepath := "v1"
 	err := json.Unmarshal([]byte(rootinfo), &rootapi)
 	if err != nil {
 		beego.Error(err)
