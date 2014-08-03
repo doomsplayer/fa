@@ -4,21 +4,21 @@
     app.directive('badmintonLearn', function() {
         return {
             restrict: 'E',
-            templateUrl: '../static/tpl/badminton-learn.html'
+            templateUrl: 'static/tpl/badminton-learn.html'
 
         }
     });
     // app.directive('badmintonSale', function() {
     //     return {
     //         restrict: 'E',
-    //         templateUrl: '../static/tpl/badminton-sale.html'
+    //         templateUrl: 'static/tpl/badminton-sale.html'
 
     //     }
     // });
     app.directive('badmintonVideo', function() {
         return {
             restrict: 'E',
-            templateUrl: '../static/tpl/badminton-video.html'
+            templateUrl: 'static/tpl/badminton-video.html'
 
         }
     });
@@ -37,7 +37,7 @@
             }],
             // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
             restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
-            templateUrl: '../static/tpl/mainBar.html',
+            templateUrl: 'static/tpl/mainBar.html',
             replace: true,
             // transclude: true,
             // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
