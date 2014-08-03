@@ -1,3 +1,5 @@
-#badmintonhom
+#羽球之家Site
 
-1. sadfasdfas
+后端采用go+beego框架，前台采用angularjs
+
+
