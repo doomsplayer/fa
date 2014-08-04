@@ -11,4 +11,5 @@ type MainController struct {
 func (this *MainController) Get() {
 
 	this.TplNames = "layout.html"
+	this.Render()
 }
