@@ -844,7 +844,6 @@ var Request = function(options) {
   this.encoding = options.encoding;
   this.logCurl = options.logCurl;
   processOptions(this,options||{});
-
   createRequest(this);
 };
 
@@ -864,7 +863,6 @@ Object.defineProperties(Request.prototype, {
           this.scheme, this.host, this.port,
           (this.proxy ? "/" : this.path) +
           (this.query ? ("?" + this.query) : ""));
-      console.log(this)
     },
     set: function(_url) {
       _url = parseUri(_url);
@@ -1319,6 +1317,7 @@ function parseUri (str) {
   uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
     if ($1) uri[o.q.name][$1] = $2;
   });
+
   return uri;
 };
 
@@ -2551,7 +2550,6 @@ var Response = require('./response');
 var isSafeHeader = require('./isSafeHeader');
 
 var Request = module.exports = function (xhr, params) {
-  console.log(params);
     var self = this;
     self.xhr = xhr;
     self.body = '';
