@@ -13,7 +13,11 @@ import (
 func init() {
 	beego.Router("/", &controllers.MainController{})
 
-	ApiNS := beego.NewNamespace("v1",beego.NSNamespace("/api", beego.NSInclude(&api.MainMenu{})))
+	ApiNS := beego.NewNamespace("v1",
+		beego.NSNamespace("/api",
+			beego.NSInclude(&api.MainMenuApi{}),
+		),
+	)
 	beego.AddNamespace(ApiNS)
 
 }

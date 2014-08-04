@@ -6,7 +6,7 @@ import (
 
 func init() {
 	
-	beego.GlobalControllerRouter["badmintonhome/controllers/api:MainMenu"] = append(beego.GlobalControllerRouter["badmintonhome/controllers/api:MainMenu"],
+	beego.GlobalControllerRouter["badmintonhome/controllers/api:MainMenuApi"] = append(beego.GlobalControllerRouter["badmintonhome/controllers/api:MainMenuApi"],
 		beego.ControllerComments{
 			"Menu",
 			"/mainBar",
