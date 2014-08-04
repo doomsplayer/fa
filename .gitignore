@@ -26,4 +26,4 @@ nohup.out
 
 *.log
 lastupdate.tmp
-swagger/index.html
+!swagger/index.html
