@@ -135,6 +135,19 @@
 					"errmsg":string, //if not ok
 				}
 				</pre>
+			4. 获得文件接口
+				<pre>
+				GET /v1/api/upload?id=xxxx
+
+				req:{}
+				resp:
+				{
+					"ok":bool,
+					"errmsg":string //if not ok,
+					"fileid":int ,
+					"filepath": string,
+					"filename":string
+				}
 		2. 主页接口
 
 			1. 主页滚动公告接口

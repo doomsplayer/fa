@@ -4,6 +4,7 @@ import (
 	. "badmintonhome/lib"
 	"crypto/md5"
 	"crypto/sha1"
+	"fmt"
 	"os"
 	"path/filepath"
 	"time"
@@ -43,8 +44,8 @@ func (f *File) SaveToFile(name string, identity string, data []byte) (err error)
 
 	ext := filepath.Ext(name)
 	name = filepath.Base(name)
-	mdt := md5.Sum([]byte(time.Now().String()))
-	fnameb := sha1.Sum([]byte(name + string(mdt[:])))
+	mdt := fmt.Sprintf("%x", md5.Sum([]byte(time.Now().String())))
+	fnameb := fmt.Sprintf("%x", sha1.Sum([]byte(name+string(mdt[:]))))
 	fname := string(fnameb[:])
 	fname += identity + ext
 
@@ -54,6 +55,7 @@ func (f *File) SaveToFile(name string, identity string, data []byte) (err error)
 	} else {
 		folder += ext[1:] + `/`
 	}
+	os.MkdirAll(folder, 0755)
 
 	fb, err := os.Create(folder + fname)
 	E(err)
@@ -69,13 +71,16 @@ func (f *File) SaveToFile(name string, identity string, data []byte) (err error)
 	return
 }
 
-func (f *File) GetFileById(id int64) (err error) {
+func (f *File) Get() (err error) {
 	defer func() {
 		if e := recover(); e != nil {
 			err = e.(error)
 		}
 	}()
-	err = Engine.Id(id).Find(f)
+	has, err := Engine.Get(f)
+	if !has {
+		panic(fmt.Errorf("not exist"))
+	}
 	return
 }
 
@@ -85,6 +90,14 @@ func (f *File) Delete() (err error) {
 			err = e.(error)
 		}
 	}()
+	has, err := Engine.Id(f.Id).Get(f)
+	E(err)
+	if has != true {
+		panic(fmt.Errorf("file not existed"))
+	}
+	err = os.Remove(f.Path)
+	E(err)
 	_, err = Engine.Id(f.Id).Delete(f)
+	E(err)
 	return
 }
