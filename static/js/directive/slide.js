@@ -23,10 +23,21 @@
 			}],
 			restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
 			templateUrl: 'static/tpl/slide.html',
-			replace: true,
-			link: function($scope, iElm, iAttrs, controller) {
-
-			}
+			replace: true
+		};
+	});
+	app.directive('backstretch', function(){
+		return {
+			scope: {},
+			controller: ['$scope','$element',function($scope, $element) {
+				$scope.pic_url = 'static/img/head_bg.jpg' // FIXME 是否与服务器同步 ？
+				setTimeout(function(){
+					angular.element($element[0]).backstretch($scope.pic_url)
+				},0)
+			}],
+			restrict: 'AE',
+			template: '<div class="background backstretch" data-background-image="{{pic_url}}"></div>',
+			replace: true
 		};
 	});
 })();
