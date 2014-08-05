@@ -1,5 +1,5 @@
 (function() {
-    var app = angular.module('badmintonhome', ['ng-isotope']);
+    var app = angular.module('badmintonhome',['ngResource']);
     app.directive('badmintonLearn', function() {
         return {
             restrict: 'E',
@@ -24,13 +24,15 @@
     app.directive('mainBar', function(){
         return {
             scope: {},
-            controller: ['$scope',function($scope){
+            controller: ['$scope','$resource',function($scope,$resource){
                 // FIXME 使用$resource 替代
-                $scope.titles = [{title:'促销信息',url:'#'},{title:'学打羽毛球',url:'#',subtitle:[{'url': '#', 'title': '大话羽球'}, {'url': '#', 'title': '羽球知识'}, {'url': '#', 'title': '羽球技术'}, {'url': '#', 'title': '羽球战术'}, {'url': '#', 'title': '伤病防护'}]},{'title':'视频库','url':'#','subtitle':[{'url': '#', 'title': '国际大赛专辑'}, {'url': '#', 'title': '经典对战专辑'}, {'url': '#', 'title': '玩转羽球'}]},{'url':'#','title':'联系我们'}]
-                setTimeout(function(){
+                var menu = $resource('/v1/api/mainBar',{})
+                $scope.titles = menu.get({},function(){
                     $('#idmenu').mnmenu();
                     $('#idmenu').addClass('style_menu');
-                },0)
+                })
+                // [{title:'促销信息',url:'#'},{title:'学打羽毛球',url:'#',subtitle:[{'url': '#', 'title': '大话羽球'}, {'url': '#', 'title': '羽球知识'}, {'url': '#', 'title': '羽球技术'}, {'url': '#', 'title': '羽球战术'}, {'url': '#', 'title': '伤病防护'}]},{'title':'视频库','url':'#','subtitle':[{'url': '#', 'title': '国际大赛专辑'}, {'url': '#', 'title': '经典对战专辑'}, {'url': '#', 'title': '玩转羽球'}]},{'url':'#','title':'联系我们'}]
+
                 // workaround ...
             }],
             restrict: 'E',
@@ -38,4 +40,7 @@
             replace: true,
         };
     });
+    app.controller('PortfolioItem', ['$scope', function($scope){
+        $scope.items = []
+    }])
 })();
