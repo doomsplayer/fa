@@ -16,7 +16,7 @@ type File struct {
 	Path string
 }
 
-func (f *File) Save() (err error) {
+func (f *File) Put() (err error) {
 	defer func() {
 		if e := recover(); e != nil {
 			err = e.(error)
@@ -67,7 +67,7 @@ func (f *File) SaveToFile(name string, identity string, data []byte) (err error)
 
 	f.Name = name
 	f.Path = folder + fname
-	f.Save()
+	f.Put()
 	return
 }
 

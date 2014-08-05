@@ -31,7 +31,7 @@
         return {
             scope: {},
             controller: ['$scope','$http',function($scope,$http){
-                $http.get('/v1/api/mainBar').success(function(data,status,headers,config){
+                $http.get('/api/common/mainBar').success(function(data,status,headers,config){
                     $scope.titles = data;
                     setTimeout(function(){
                         $('#idmenu').mnmenu();

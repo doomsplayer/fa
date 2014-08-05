@@ -20,7 +20,7 @@ func init() {
 		time.Sleep(200 * time.Millisecond)
 		os.Exit(1)
 	}
-	err = Engine.Sync2(new(File))
+	err = Engine.Sync2(new(File), new(Promotion), new(Carousel))
 	if err != nil {
 		beego.Critical("cannot sync model:", err)
 		time.Sleep(200 * time.Millisecond)

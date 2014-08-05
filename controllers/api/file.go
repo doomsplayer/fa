@@ -13,7 +13,6 @@ type FileApi struct {
 // @Title Upload File
 // @Description 上传文件
 // @Param file form file true 上传的文件
-// @Param type form string true 上传文件的类型
 // @Success 200 {string} 文件Id的json
 // @Failure 404 Not found errmsg
 // @Failure 401 Need Permmision errmsg

@@ -27,4 +27,5 @@ nohup.out
 *.log
 lastupdate.tmp
 !swagger/index.html
-static/upload
+static/upload/pdf
+!static/upload

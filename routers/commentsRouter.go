@@ -6,6 +6,13 @@ import (
 
 func init() {
 	
+	beego.GlobalControllerRouter["badmintonhome/controllers/api:CarouselApi"] = append(beego.GlobalControllerRouter["badmintonhome/controllers/api:CarouselApi"],
+		beego.ControllerComments{
+			"List",
+			"/carousel",
+			[]string{"get"},
+			nil})
+
 	beego.GlobalControllerRouter["badmintonhome/controllers/api:FileApi"] = append(beego.GlobalControllerRouter["badmintonhome/controllers/api:FileApi"],
 		beego.ControllerComments{
 			"UploadFile",
@@ -31,13 +38,6 @@ func init() {
 		beego.ControllerComments{
 			"Menu",
 			"/mainBar",
-			[]string{"get"},
-			nil})
-
-	beego.GlobalControllerRouter["badmintonhome/controllers/api:MainMenuApi"] = append(beego.GlobalControllerRouter["badmintonhome/controllers/api:MainMenuApi"],
-		beego.ControllerComments{
-			"Carousel",
-			"/mainMenu/carousel",
 			[]string{"get"},
 			nil})
 

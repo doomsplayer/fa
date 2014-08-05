@@ -85,7 +85,7 @@
 
 			1. 获取主页菜单栏
                 <pre>
-				GET /api/mainBar
+				GET /api/common/mainBar
 
 				req:
 				{}
@@ -107,7 +107,7 @@
                 </pre>
 			2. 上传文件接口
                 <pre>
-				PUT /api/upload
+				PUT /api/common/upload
 
 				req:
 				{
@@ -124,7 +124,7 @@
                 </pre>
 			3. 删除文件接口
                 <pre>
-				DELETE /api/upload
+				DELETE /api/common/upload
 
 				req:
 				{}
@@ -137,7 +137,7 @@
 				</pre>
 			4. 获得文件接口
 				<pre>
-				GET /v1/api/upload?id=xxxx
+				GET /api/common/upload?id=xxxx
 
 				req:{}
 				resp:
@@ -150,9 +150,10 @@
 				}
 		2. 主页接口
 
-			1. 主页滚动公告接口
-
-				`GET /api/mainMenu/carousel`
+			1. 获得主页滚动公告接口
+				<pre>
+				GET /api/common/carousel?num=xxx
+				</pre>
 
 		3. 学打羽毛球接口
 

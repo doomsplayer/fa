@@ -6,6 +6,7 @@ package routers
 
 import (
 	"badmintonhome/controllers"
+	"badmintonhome/controllers/adminapi"
 	"badmintonhome/controllers/api"
 	"github.com/astaxie/beego"
 )
@@ -13,9 +14,12 @@ import (
 func init() {
 	beego.Router("/", &controllers.MainController{})
 
-	ApiNS := beego.NewNamespace("v1",
-		beego.NSNamespace("/api",
-			beego.NSInclude(&api.MainMenuApi{}, &api.FileApi{}),
+	ApiNS := beego.NewNamespace("/api",
+		beego.NSNamespace("/admin",
+			beego.NSInclude(&adminapi.CarouselApi{}),
+		),
+		beego.NSNamespace("/common",
+			beego.NSInclude(&api.MainMenuApi{}, &api.FileApi{}, &api.CarouselApi{}),
 		),
 	)
 	beego.AddNamespace(ApiNS)

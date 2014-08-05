@@ -64,12 +64,3 @@ func (m *Menu) AddSub(title string, url string) {
 			Url   string
 		}{title, url})
 }
-
-// @Title Carousel
-// @Description 获得首页滚动栏
-// @Success 200 {string} img的fileid的array
-// @Failure 404 Not found
-// @router /mainMenu/carousel [get]
-func (m *MainMenuApi) Carousel() {
-
-}
