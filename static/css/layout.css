@@ -328,3 +328,33 @@ button.close:hover {
 	margin-top: 15px;
 	transition: all 0.3s ease-in-out;
 }
+
+
+/*///////////////////////////////////about-us//////////////////////////////////////*/
+.block { text-align: center; }
+.block_1, .block_4 {
+	background-color: #fff;
+}
+.block_2 {
+	background-color: #1ebcb9;
+}
+.block_3 {
+	background-color: #282828;
+}
+.block_2, .block_3, .block_2 a, .block_3 a {
+	color: #fff;
+}
+.block::before, .block::after {
+	content: ' ';
+	width: 2px;
+	height: 180px;
+	display: block;
+	margin: 0 auto;
+	background-color: #fff;
+}
+.block_1::before, .block_4::before, .block_1::after, .block_4::after {
+	background-color: #1ebcb9;
+}
+.block_1::before, .block_1::after {
+	height: 150px;
+}
