@@ -26,7 +26,7 @@
             scope: {},
             controller: ['$scope','$http',function($scope,$http){
                 $http.get('/v1/api/mainBar').success(function(data,status,headers,config){
-                    $scope.menu = data;
+                    $scope.titles = data;
                     $('#idmenu').mnmenu();
                     $('#idmenu').addClass('style_menu');
                 })
