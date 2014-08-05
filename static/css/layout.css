@@ -1,5 +1,5 @@
 .x-container {
-	margin: 40px 0;
+	margin: 40px auto;
 }
 ul.ei-slider-large {
 	margin-bottom: 0px;
@@ -327,6 +327,13 @@ button.close:hover {
 .stuck:hover .x-container {
 	margin-top: 15px;
 	transition: all 0.3s ease-in-out;
+}
+.stuck:hover ul.style_menu{
+	margin-top: 0px;
+}
+.imstuck{
+	width:100%;
+	background-color:#282828;
 }
 
 

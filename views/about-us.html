@@ -30,12 +30,6 @@
                 });
             });
         </script>
-        <script type="text/javascript" src="static/js/jquery.backstretch.min.js"></script>
-		<script type="text/javascript">
-			$(function() {
-			  $(".backstretch").backstretch("static/img/head_bg.jpg");
-			});
-		</script>
         <script type="text/javascript" src="static/js/isotope.pkgd.min.js"></script>
         <script type="text/javascript">
 			$(function(){
@@ -89,10 +83,10 @@
 				var winHeight = $(window).height();
 				if($(window).scrollTop() >= winHeight) {
 					_nav.addClass('stuck');
-					_logo.attr('src','static/img/logo_sm.png');
+					_nav.removeClass('imstuck');
 				} else {
 					_nav.removeClass('stuck');
-					_logo.attr('src','static/img/logo.png');
+					_nav.addClass('imstuck')
 				}
 			})
 
@@ -110,7 +104,7 @@
 	</head>
 	<body>
 		
-		<div class="container" id="container">
+		<div class="container imstuck" id="container">
 			<div class="x-container container">
 				<div class="row">
 					<div class="col-md-2 col-md-offset-1">
