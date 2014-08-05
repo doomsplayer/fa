@@ -27,8 +27,11 @@
             controller: ['$scope','$http',function($scope,$http){
                 $http.get('/v1/api/mainBar').success(function(data,status,headers,config){
                     $scope.titles = data;
-                    $('#idmenu').mnmenu();
-                    $('#idmenu').addClass('style_menu');
+                    setTimeout(function(){
+                        $('#idmenu').mnmenu();
+                        $('#idmenu').addClass('style_menu');
+                    },2)
+
                 })
             }],
             restrict: 'E',
