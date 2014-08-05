@@ -18,20 +18,12 @@
 		<script type="text/javascript" src="static/js/angular-resource.min.js"></script>
 		<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="static/js/ng-isotope.js"></script>
-		<script type="text/javascript" src="static/js/script.js"></script>
 		<script type="text/javascript" src="static/js/jquery.mnmenu.js"></script>
         <script type="text/javascript" src="static/js/jquery.eislideshow.js"></script>
         <script type="text/javascript" src="static/js/jquery.easing.1.3.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                $('#ei-slider').eislideshow({
-					animation			: 'center',
-					autoplay			: true,
-					slideshow_interval	: 5000,
-					titlesFactor		: 0
-                });
-            });
-        </script>
+        <!-- Custom logic -->
+		<script type="text/javascript" src="static/js/script.js"></script>
+        <script type="text/javascript" src='static/js/directive/slide.js'></script>
         <script type="text/javascript" src="static/js/jquery.backstretch.min.js"></script>
 		<script type="text/javascript">
 			$(function() {
@@ -94,7 +86,7 @@
 					_logo.attr('src','static/img/logo_sm.png');
 				} else {
 					_nav.removeClass('stuck');
-					_logo.attr('src','static/img/logo.png');
+				_logo.attr('src','static/img/logo.png');
 				}
 			})
 
@@ -143,161 +135,9 @@
 		    </div>
 		  </div>
 		</div>
+		<div ng-view>
 		
-		<div class="slider_container">
-			<div id="ei-slider" class="ei-slider">
-                <ul class="ei-slider-large">
-                    <li>
-                        <img src="static/img/img0.jpg" alt="image01" />
-                        <div class="ei-title">
-                            <h2>欢迎来到羽球之家</h2>
-                            <h3>简介简介简介</h3>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="static/img/img1.jpg" alt="image02" />
-                        <div class="ei-title">
-                            <h2>欢迎来到羽球之家</h2>
-                            <h3>Devil</h3>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="static/img/img0.jpg" alt="image03"/>
-                        <div class="ei-title">
-                            <h2>欢迎来到羽球之家</h2>
-                            <h3>Compatriot</h3>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="static/img/img1.jpg" alt="image04"/>
-                        <div class="ei-title">
-                            <h2>欢迎来到羽球之家</h2>
-                            <h3>Hussler</h3>
-                        </div>
-                    </li>
-                </ul><!-- ei-slider-large -->
-                <ul class="ei-slider-thumbs">
-                    <li class="ei-slider-element">Current</li>
-                    <li><a href="#">Slide 1</a><img src="static/img/img0.jpg" alt="thumb01" /></li>
-                    <li><a href="#">Slide 2</a><img src="static/img/img1.jpg" alt="thumb02" /></li>
-                    <li><a href="#">Slide 3</a><img src="static/img/img0.jpg" alt="thumb03" /></li>
-                    <li><a href="#">Slide 4</a><img src="static/img/img1.jpg" alt="thumb04" /></li>
-                </ul><!-- ei-slider-thumbs -->
-            </div><!-- ei-slider -->
 		</div>
-		<div class="background backstretch" data-background-image="static/img/head_bg.jpg"></div>
-		<div id="content">
-			<badminton-learn></badminton-learn>
-			<div class="sale">
-				<div class="item_classify">
-					<div class="pic_bg">
-						<img src="static/img/item_classify_bg.png" alt="" />
-					</div>
-					<div class="button_list filters">
-						<ul>
-							<li><button type="button" class="btn btn-default xx-btn active" data-filter="*">所有商品分类</button></li>
-							<li><button type="button" class="btn btn-default xx-btn" data-filter=".shoes">球拍</button></li>
-							<li><button type="button" class="btn btn-default xx-btn" data-filter=".shoes">球鞋</button></li>
-							<li><button type="button" class="btn btn-default xx-btn" data-filter=".shoes">其他</button></li>
-							<li><button type="button" class="btn btn-default xx-btn" data-filter=".shoes">其他</button></li>
-						</ul>
-					</div>
-				</div>
-				<div class="item_pic">
-					<div id="isotope">
-						<div class="element-item shoes">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item shoes">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item shoes">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item shoes">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item shoes">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item">
-							<img src="static/img/img_test2.jpg" alt="" />
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item_more">
-					<button class="btn btn-primary">更多促销信息</button>
-				</div>
-			</div>
-			<div class="oneword">
-				<div class="avatar"></div>
-				<img src="static/img/oneword.png" alt="" />
-			</div>
-			<badminton-video></badminton-video>
-		</div>
-		
 		<div class="footer">
 			<div class="container">
 				<div class="col-lg-3 col-md-3 col-sm-12">

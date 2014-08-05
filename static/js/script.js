@@ -1,10 +1,16 @@
 (function() {
-    var app = angular.module('badmintonhome',['ngResource']);
+    var app = angular.module('badmintonhome',['ngResource','ngRoute']);
+    // URL route
+    app.config(['$routeProvider',function($routeProvider) {
+        $routeProvider.when('/',{
+            templateUrl:'static/tpl/index.html'
+        })
+        
+    }])
     app.directive('badmintonLearn', function() {
         return {
             restrict: 'E',
             templateUrl: 'static/tpl/badminton-learn.html'
-
         }
     });
     // app.directive('badmintonSale', function() {
