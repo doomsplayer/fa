@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html ng-app="badmintonhome">
+	<head>
+		<title>羽毛球之家</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, target-densitydpi=device-dpi" />
+		<meta name="description" content="" />
+		<meta name="author" content="CNSSUESTC.org" />
+		<link rel="stylesheet" href="static/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="static/css/style_menu.css" />
+		<link rel="stylesheet" href="static/css/style_eislideshow.css" />
+		<link rel="stylesheet" href="static/css/layout.css" />
+		<script type="text/javascript" src="static/js/jquery.min.js"></script>
+		<script type="text/javascript" src="static/js/angular.min.js"></script>
+		<script type="text/javascript" src="static/js/angular-route.js"></script>
+		<script type="text/javascript" src="static/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="static/js/script.js"></script>
+		<script type="text/javascript" src="static/js/jquery.mnmenu.js"></script>
+        <script type="text/javascript" src="static/js/jquery.eislideshow.js"></script>
+        <script type="text/javascript" src="static/js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('#ei-slider').eislideshow({
+					animation			: 'center',
+					autoplay			: true,
+					slideshow_interval	: 5000,
+					titlesFactor		: 0
+                });
+            });
+        </script>
+        <script type="text/javascript" src="static/js/isotope.pkgd.min.js"></script>
+        <script type="text/javascript">
+			$(function(){
+				var $container = $('#isotope');
+				$container.isotope({
+					itemSelector: '.element-item',
+					layoutMode: 'fitRows'
+				});
+				$('button.xx-btn').click(function(){
+					var filterValue = $(this).attr('data-filter');
+					$container.isotope({ filter: filterValue });
+					$('button.xx-btn').removeClass('active');
+					$(this).addClass('active');
+				});
+
+				function getColumnNumber() {
+					var winWidth = $(window).width(), columnNumber = 1;
+					if(winWidth > 1200) {
+						columnNumber = 5;
+					} else if (winWidth > 950) {
+						columnNumber = 4;
+					} else if (winWidth > 600) {
+						columnNumber = 3;
+					} else if (winWidth > 400) {
+						columnNumber = 2;
+					} else if (winWidth >250) {
+						columnNumber =1;
+					}
+						return columnNumber;
+				};
+				function setColumns() {
+					var winWidth = $(window).width(),
+					columnNumber = getColumnNumber(),
+					itemWidth = Math.floor(winWidth / columnNumber);
+					$container.find('.element-item').each(function() {
+						$(this).css( {
+							width: itemWidth + 'px',
+							height: itemWidth + 'px'
+						});
+					});
+				}
+				$(window).on('resize', function() {
+					setColumns();
+				});
+			});
+        </script>
+		<script type="text/javascript">
+			$(window).scroll(function() {
+				var _nav = $('#container');
+				var _logo = $('#logo');
+				var winHeight = $(window).height();
+				if($(window).scrollTop() >= winHeight) {
+					_nav.addClass('stuck');
+					_nav.removeClass('imstuck');
+				} else {
+					_nav.removeClass('stuck');
+					_nav.addClass('imstuck')
+				}
+			})
+
+		</script>
+		
+		<!-- Support for HTML5 -->
+		<!--[if lt IE 9]>
+			<script src="static/js/html5shiv.js"></script>
+		<![endif]-->
+
+		<!-- Enable media queries on older browsers -->
+		<!--[if lt IE 9]>
+			<script src="static/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		
+		<div class="container imstuck" id="container">
+			<div class="x-container container">
+				<div class="row">
+					<div class="col-md-2 col-md-offset-1">
+						<img src="static/img/logo_sm.png" id="logo" alt="logo" />
+					</div>
+					<div class="col-md-5 col-md-offset-3">
+						<main-bar></main-bar>
+					</div>
+				</div>
+			</div>
+		</div>
+				            	
+				            	
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog login_box">
+		    <div class="modal-content login_container">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		      
+		      <div class="modal-body">
+		      	<div class="btn_row">
+		        	<button class="x-btn weibo"></button>
+		      	</div>
+		      	<div class="btn_row">
+			        <button class="x-btn qq"></button>
+		      	</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div>
+		<!-- views here -->
+
+		</div>
+		
+		<div class="footer">
+			<div class="container">
+				<div class="col-lg-3 col-md-3 col-sm-12">
+					<h4 class="title">关于我们</h4>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s.. <span><a href="#">more</a></span></p>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12">
+					<h4 class="title">联系我们</h4>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12">
+					<h4 class="title">联系我们</h4>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12">
+					<h4 class="title">联系我们</h4>
+				</div>
+			</div>
+			<div class="copyright">
+				<div class="container">
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<p>Copyright&copy;2014-All Rights Reserved.Designed by CNSSUESTC.org</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
