@@ -1,0 +1,12 @@
+<!-- attributes available: isotope-layout-mode="fitRows" isotope-item-selector="div" -->
+<div isotope-grid="elementsList" isotope-reload-event="reload-elements" isotope-sort-event="sort-elements"
+     isotope-filter-event="filter-elements"
+     isotope-sort-data="{ name: '.name', 'symbol': '.symbol', 'number': '.number parseInt', 'weight': '.weight parseFloat', 'category': '[data-category]'}">
+
+    <div class="element-item {{element.css}}" data-category="{{element.category}}" ng-repeat="element in elementsList">
+        <h3 class="name">{{element.name}}</h3>
+        <p class="symbol">{{element.symbol}}</p>
+        <p class="number">{{element.number}}</p>
+        <p class="weight">{{element.weight}}</p>
+    </div>
+</div>
