@@ -46,7 +46,7 @@
 				},0)
 
 			}],
-			templateUrl: 'static/tpl/portfolio.html',
+			templateUrl: 'static/tpl/portfolio_tpl.html',
 			replace: true,
 			scope:{},
 			link: function($scope, iElm, iAttrs, controller) {

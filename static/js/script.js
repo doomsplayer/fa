@@ -8,23 +8,26 @@
         }).when('/about-us',{
             templateUrl:'static/tpl/about-us.html',
             controller:'defaultCtrl'
+        }).when('/portfolio',{
+            templateUrl:"static/tpl/portfolio.html",
+            controller:'PortfolioCtrl'
         })
-        }])
+    }])
 
         
-
-    app.directive('badmintonLearn', function() {
+    app.controller('PortfolioCtrl', ['$scope', function($scope){
+        $rootScope.is_index = false;
+    }]).controller('IndexCtrl', ['$rootScope', function($rootScope){
+        $rootScope.is_index = true;
+    }]).controller('defaultCtrl', ['$rootScope', function($rootScope){
+        $rootScope.is_index = false;       
+    }]).directive('badmintonLearn', function() {
         return {
             restrict: 'E',
             templateUrl: 'static/tpl/badminton-learn.html'
         }
     });
-    app.controller('IndexCtrl', ['$rootScope', function($rootScope){
-       $rootScope.is_index = true 
-    }])
-    app.controller('defaultCtrl', ['$rootScope', function($rootScope){
-        $rootScope.is_index = false;       
-    }])
+
     // app.directive('badmintonSale', function() {
     //     return {
     //         restrict: 'E',
