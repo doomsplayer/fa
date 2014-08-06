@@ -40,8 +40,8 @@ func (m *MainMenuApi) Menu() {
 	menu = append(menu, me)
 
 	me = new(Menu)
-	me.Title = `联系我们`
-	me.Url = url
+	me.Title = `关于我们`
+	me.Url = `#/about-us`
 	menu = append(menu, me)
 
 	m.Data[`json`] = menu
