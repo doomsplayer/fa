@@ -29,3 +29,5 @@ lastupdate.tmp
 !swagger/index.html
 static/upload/pdf
 !static/upload
+database.db
+commentsRouter.go
