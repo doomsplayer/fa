@@ -16,10 +16,11 @@ func init() {
 
 	ApiNS := beego.NewNamespace("/api",
 		beego.NSNamespace("/admin",
-			beego.NSInclude(&adminapi.CarouselApi{}),
+			beego.NSInclude(&adminapi.CarouselApi{}, &adminapi.PromotionApi{}),
 		),
 		beego.NSNamespace("/common",
-			beego.NSInclude(&api.MainMenuApi{}, &api.FileApi{}, &api.CarouselApi{}),
+			beego.NSInclude(&api.MainMenuApi{}, &api.FileApi{}, &api.CarouselApi{},
+				&api.PromotionApi{}),
 		),
 	)
 	beego.AddNamespace(ApiNS)

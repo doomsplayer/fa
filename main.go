@@ -11,6 +11,7 @@ func main() {
 		beego.DirectoryIndex = true
 		beego.StaticDir["/swagger"] = "swagger"
 	}
-
+	beego.TemplateLeft = "{%"
+	beego.TemplateRight = "%}"
 	beego.Run()
 }

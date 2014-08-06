@@ -172,9 +172,12 @@
 		4. 促销接口 
 
 			1. 促销信息获取接口
+				<pre>
+				GET /api/common/promotion?type=xxxx&from=xxxxnum=xxxx
 
-				`GET /api/deal/list`
-
+				from 是从第几条开始，如果没有了返回空，num指定返回几条。
+				如果要特定的一条，直接type=xxxx&from=xxxxnum=1即可。
+				</pre>
 		5. 视频库接口
 
 			1. 获取视频库列表接口
