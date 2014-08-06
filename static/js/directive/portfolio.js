@@ -16,7 +16,6 @@
 				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'cloth'})
 				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'cloth'})
 				$scope.category = {'shoe':'鞋子','cloth':'衣服'}
-				console.log($element)
 				setTimeout(function(){
                     // 绑定filter
                     var elm = angular.element('.filters');

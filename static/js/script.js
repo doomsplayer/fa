@@ -1,18 +1,30 @@
 (function() {
-    var app = angular.module('badmintonhome',['ngResource','ngRoute','ng-isotope']);
+    var app = angular.module('badmintonhome',['ngResource','ngRoute']);
     // URL route
     app.config(['$routeProvider',function($routeProvider) {
         $routeProvider.when('/',{
-            templateUrl:'static/tpl/index.html'
+            templateUrl:'static/tpl/index.html',
+            controller:'IndexCtrl'
+        }).when('/about-us',{
+            templateUrl:'static/tpl/about-us.html',
+            controller:'defaultCtrl'
         })
+        }])
+
         
-    }])
+
     app.directive('badmintonLearn', function() {
         return {
             restrict: 'E',
             templateUrl: 'static/tpl/badminton-learn.html'
         }
     });
+    app.controller('IndexCtrl', ['$rootScope', function($rootScope){
+       $rootScope.is_index = true 
+    }])
+    app.controller('defaultCtrl', ['$rootScope', function($rootScope){
+        $rootScope.is_index = false;       
+    }])
     // app.directive('badmintonSale', function() {
     //     return {
     //         restrict: 'E',
