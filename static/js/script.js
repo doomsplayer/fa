@@ -1,5 +1,5 @@
 (function() {
-    var app = angular.module('badmintonhome',['ngResource','ngRoute']);
+    var app = angular.module('badmintonhome',['ngResource','ngRoute','ng-isotope']);
     // URL route
     app.config(['$routeProvider',function($routeProvider) {
         $routeProvider.when('/',{
@@ -45,7 +45,5 @@
             replace: true,
         };
     });
-    app.controller('PortfolioItem', ['$scope', function($scope){
-        $scope.items = []
-    }])
+
 })();

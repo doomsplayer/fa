@@ -19,7 +19,6 @@
 						titlesFactor		: 0
 					});
 				},0)
-
 			}],
 			restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
 			templateUrl: 'static/tpl/slide.html',
