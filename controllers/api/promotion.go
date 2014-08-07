@@ -11,7 +11,7 @@ type PromotionApi struct {
 	lib.BaseController
 }
 
-// @Title mainBar
+// @Title promotion
 // @Description 获得促销商品
 // @Param from query int false 从第几项开始,0是第一个,默认0
 // @Param num query int false 几个，默认1
