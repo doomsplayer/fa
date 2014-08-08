@@ -26,7 +26,7 @@ ul.ei-slider-large {
 }
 .learn {
 	margin: 0 auto;
-	width: 80%;
+	width: 90%;
 	padding-top: 60px;
 }
 /*.title {
@@ -225,7 +225,7 @@ p.pic_intro {
 	margin-bottom: 30px;
 }
 .video {
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
 	margin-top: 40px;
 }
@@ -233,6 +233,9 @@ p.pic_intro {
 	padding-bottom: 20px;
 	margin-bottom: 20px;
 	border-bottom: 1px solid #ccc;
+}
+.text_wrapper {
+	padding-left: 3%;
 }
 .text_wrapper a:hover {
 	color: #1ebcb9;
@@ -364,4 +367,126 @@ button.close:hover {
 }
 .block_1::before, .block_1::after {
 	height: 150px;
+}
+.block .circle {
+	width: 80px;
+	height: 80px;
+	background-color: #fff;
+	margin: 0 auto 10px;
+	border-radius: 40px;
+}
+
+/*///////////////////////////video lib///////////////////////////////////*/
+.carousel {
+	width: 90%;
+	margin: 20px auto 40px;
+	border: 1px solid #ccc;
+}
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+	float: left;
+}
+.carousel-intro {
+	float: left;
+	width: 60%;
+	padding: 40px 0 0 50px;
+}
+.carousel-intro h3 {
+	font-size: 30px;
+	margin-bottom: 30px;
+}
+.carousel-intro p {
+	line-height: 1.6em;
+}
+.carousel-indicators {
+	margin-left: -10%;
+	bottom: 0;
+}
+.carousel-indicators li {
+	background-color: #e5e5e5;
+}
+.carousel-indicators .active {
+	background-color: #a0a0a0;
+}
+a.carousel-ctrl {
+	position: absolute;
+	top: 45%;
+	right: 2%;
+	font-size: 2em;
+	color: #eee;
+}
+a.left.carousel-ctrl {
+	left: 2%;
+}
+
+.title-wrapper span{
+	float: right;
+}
+.video-list {
+	width: 90%;
+	margin: 20px auto;
+}
+.myrow {
+	margin-right: -40px;
+	padding-top: 20px;
+}
+.video-list-inner {
+	padding-right: 25px;
+	width: 100%;
+	height: 380px;
+}
+.video-list-inner img {
+	width: 100%;
+}
+.video-list-inner .img {
+	position: relative;
+}
+.video-mask {
+	width: 100%;
+	height: 100%;
+	background: url(../img/video-mask.png) repeat center center;
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: none;
+}
+.video-list-inner .img:hover .video-mask {
+	display: block;
+}
+.video-list-inner .text {
+	padding: 10px;
+}
+.video-list-inner .text h5 {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.video-list-inner .text p {
+	line-height: 1.4em;
+	text-align: justify;
+}
+
+/*///////////////////////////video-collection///////////////////////////*/
+
+.topic {
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #ccc;
+}
+.topic h3 {
+	font-weight: bold;
+	margin-top: 50px;
+	text-align: center;
+}
+.topic p {
+	margin: 20px 0;
+}
+.rt-row {
+	margin-left: 50px;
+}
+.lf-row .video-list-inner {
+	height: auto;
+}
+.rt-row .text {
+	margin: 20px -10px 0 10px;
+}
+.sub-row {
+	margin-bottom: 20px;
 }
