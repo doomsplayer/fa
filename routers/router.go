@@ -20,6 +20,7 @@ func init() {
 				&adminapi.CarouselApi{},
 				&adminapi.PromotionApi{},
 				&adminapi.TutorialApi{},
+				&adminapi.VideoApi{},
 			),
 		),
 		beego.NSNamespace("/common",
@@ -29,6 +30,7 @@ func init() {
 				&api.CarouselApi{},
 				&api.PromotionApi{},
 				&api.TutorialApi{},
+				&api.VideoApi{},
 			),
 		),
 	)

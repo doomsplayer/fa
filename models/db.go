@@ -27,6 +27,8 @@ func init() {
 		new(PromotionType),
 		new(TutorialType),
 		new(Tutorial),
+		new(Video),
+		new(VideoType),
 	)
 	if beego.AppConfig.String("runmode") == "dev" {
 		Engine.ShowSQL = true

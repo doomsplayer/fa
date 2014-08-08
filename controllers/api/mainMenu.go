@@ -18,7 +18,7 @@ func (m *MainMenuApi) Menu() {
 	menu := []*Menu{}
 	me := new(Menu)
 	me.Title = "促销信息"
-	me.Url = "#"
+	me.Url = "#/portfolio"
 	menu = append(menu, me)
 
 	me = new(Menu)
