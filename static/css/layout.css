@@ -286,6 +286,12 @@ h4.title::after {
 	height: 0;
 	border-bottom: 2px solid #1ebcb9;
 }
+h4.title.title-6::after {
+	width: 110px;
+}
+h4.title.title-2::after {
+	width: 35px;
+}
 .login_box {
 	margin-top: 150px;
 }
@@ -519,4 +525,115 @@ a.left.carousel-ctrl {
 	margin: 0 auto;
 	overflow: hidden;
 	padding-bottom: 50px;
+}
+/*/////////////////article////////////////////////*/
+.content-wrapper {
+	width: 90%;
+	margin: 0 auto;
+}
+.x-breadcrumb {
+	margin-top: 20px;
+	background-color: #fff;
+	border-radius: 0;
+	border-bottom: 1px solid #ccc;
+}
+.x-breadcrumb a {
+	color: #999;
+}
+.x-breadcrumb>li+li:before {
+	content: '>';
+}
+.x-breadcrumb>.active {
+	color: #1ebcb9;
+}
+.label-article-p {
+	padding-top: 20px;
+}
+.label-article {
+	font-size: 12px;
+	background-color: #1ebcb9;
+}
+.xx-breadcrumb {
+	color: #999;
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 4px;
+	border-radius: 0;
+}
+.xx-breadcrumb span {
+	margin-left: 210px;
+}
+.article-lead p {
+	width: 70%;
+	margin: 0 auto;
+	font-size: 20px;
+	text-indent: 2em;
+	margin-bottom: 20px;
+}
+.article-content {
+	border-bottom: 1px solid #ccc;
+}
+.article-content p {
+	text-indent: 2em;
+	line-height: 1.6em;
+}
+ul {
+	list-style-type: none;
+	padding-left: 0;
+}
+.article-bar ul {
+	width: 300px;
+	float: right;
+	margin-top: 5px;
+}
+.article-bar ul li {
+	float: left;
+	margin-left: 40px;
+}
+.article-bar a {
+	color: #000;
+}
+.x-col-md-4 {
+	padding-left: 60px;
+}
+.article-list li {
+	border-bottom: 1px solid #ccc;
+	line-height: 1.8;
+}
+.article-list li a {
+	color: #282828;
+}
+.article-list li a:hover {
+	text-decoration: none;
+	color: #1ebcb9;
+}
+.article-list span{
+	float: right;
+}
+
+span.icon {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background: url(../img/icon-spirte1.png) no-repeat;
+	vertical-align: bottom;
+}
+span.icon-share {
+	background-position: -40px 0;
+}
+span.icon-weibo {
+	background-position: -88px -6px;
+}
+span.icon-qzone {
+	background-position: -128px -6px;
+}
+span.icon-wechat {
+	background-position: -168px -6px;
+}
+span.icon-weibo, span.icon-qzone, span.icon-wechat {
+	margin-left: 5px;
+}
+span.icon-weibo:hover, span.icon-qzone:hover, span.icon-wechat:hover {
+	-ms-background-position-y: -47px;
+	background-position-y: -47px;
 }
