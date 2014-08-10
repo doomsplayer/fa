@@ -592,7 +592,10 @@ a.left.carousel-ctrl {
 .label-article-p {
 	padding-top: 20px;
 }
-.label-article {
+.label-item-p {
+	padding-top: 10px;
+}
+.label-type {
 	font-size: 12px;
 	background-color: #1ebcb9;
 }
@@ -636,6 +639,15 @@ ul {
 .article-bar a {
 	color: #000;
 }
+.article-bar a.comment {
+	float: left;
+}
+.article-bar a.comment span {
+	margin-right: 10px;
+}
+.article-bar p {
+	text-align: right;
+}
 .x-col-md-4 {
 	padding-left: 60px;
 }
@@ -664,6 +676,9 @@ span.icon, .click2top {
 span.icon-share {
 	background-position: -40px 0;
 }
+span.icon-comment {
+	background-position: -47px -50px;
+}
 span.icon-weibo {
 	background-position: -88px -6px;
 }
@@ -691,10 +706,14 @@ span.icon.mail {
 }
 .click2top {
 	position: fixed;
-	right: 4%;
+	right: 1%;
 	bottom: 200px;
 	background-position: 0 -40px;
 	background-color: #1ebcb9 ;
+	transition: background-color 0.5s ease-in-out;
+}
+.click2top:hover {
+	background-color: #137876;
 }
 span.icon-sm-mail {
 	background-position: -8px -225px;
@@ -748,4 +767,101 @@ span.icon-sm-wechat {
 }
 .submit-btn:active {
 	border-bottom-width: 0px;
+}
+
+/*///////////////////////////item-detail//////////////////////////////*/
+span.item-price {
+	color: #1ebcb9;
+	margin-left: 70px;
+}
+.performance-parameter p, .performance-parameter ul {
+	float: left;
+}
+span.coupon-code {
+	float: right;
+}
+.item-wrapper {
+	overflow: hidden;
+	padding-bottom: 40px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 40px;
+}
+.item-list li {
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+.item-list img {
+	border: 1px solid #ccc;
+}
+.item-list .desc {
+	margin-top: 20px;
+}
+.item-list .price {
+	color: #1ebcb9;
+}
+.item-main-pic {
+	width: 95%;
+	margin: 0 auto;
+}
+.item-thumb-list {
+	width: 440px;
+	margin: 0 auto;
+	padding: 5px 0;
+	overflow: hidden;
+}
+.item-thumb-list li {
+	float: left;
+	border: 4px solid #ccc;
+	margin-right: 2px;
+	border-radius: 3px;
+}
+.item-thumb-list li.selected {
+	border-color: #1ebcb9;
+}
+.detail-desc p {
+	padding: 20px 10px;
+}
+.comment-box-wrapper {
+	overflow: hidden;
+}
+.comment-box {
+	float: left;
+	width: 91%;
+	margin-left: 20px;
+}
+.comment-list, .comment-list li {
+	overflow: hidden;
+	margin-top: 15px;
+}
+.comment-list li {
+	padding-top: 10px;
+	border-top: 1px solid #ccc;
+}
+.comment-list li:last-child {
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ccc;
+}
+.comment-list .left {
+	float: left;
+}
+.comment-list .right {
+	float: left;
+	width: 91%;
+	margin-left: 30px;
+}
+.comment-list .name {
+	color: #1ebcb9;
+}
+.right .name span.time, .right .react {
+	float: right;
+	color: #707070;
+}
+.right .react span {
+	margin-right: 20px;
+}
+.right .react a {
+	color: #707070;
+}
+.x-pagination {
+	margin-left: 40%;
 }
