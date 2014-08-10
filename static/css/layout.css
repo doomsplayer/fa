@@ -283,6 +283,9 @@ p.pic_intro {
 	padding-top: 80px;
 	padding-bottom: 40px;
 }
+.footer p {
+	color: #7b7b7b;
+}
 h4.title {
 	position: relative;
 	padding-bottom: 10px;
@@ -651,11 +654,11 @@ ul {
 	float: right;
 }
 
-span.icon {
+span.icon, .click2top {
 	display: inline-block;
 	width: 25px;
 	height: 25px;
-	background: url(../img/icon-spirte1.png) no-repeat;
+	background: url(../img/icon-spirte.png) no-repeat;
 	vertical-align: bottom;
 }
 span.icon-share {
@@ -676,6 +679,50 @@ span.icon-weibo, span.icon-qzone, span.icon-wechat {
 span.icon-weibo:hover, span.icon-qzone:hover, span.icon-wechat:hover {
 	-ms-background-position-y: -47px;
 	background-position-y: -47px;
+}
+span.icon.qq, span.icon.mail, .click2top {
+	width: 40px;
+	height: 40px;
+	background-position: 0 -100px;
+	vertical-align: middle;
+}
+span.icon.mail {
+	background-position: 0 -160px;
+}
+.click2top {
+	position: fixed;
+	right: 4%;
+	bottom: 200px;
+	background-position: 0 -40px;
+	background-color: #1ebcb9 ;
+}
+span.icon-sm-mail {
+	background-position: -8px -225px;
+}
+span.icon-sm-tel {
+	background-position: -8px -265px;
+}
+span.icon-sm-qq {
+	background-position: -8px -305px;
+}
+span.icon-sm-weibo {
+	background-position: -8px -345px;
+}
+span.icon-sm-wechat {
+	background-position: -8px -385px;
+}
+.icon-sm-mail, .icon-sm-tel, .icon-sm-qq, .icon-sm-weibo, .icon-sm-wechat {
+	margin-right: 15px;
+}
+.contact-method-list li, .contact-method-list li a {
+	color: #7b7b7b;
+}
+.contact-method-list li a:hover {
+	color: #999;
+	text-decoration: none;
+}
+.x-thumbnail {
+	margin-bottom: 15px;
 }
 .mywell {
 	padding: 40px;
