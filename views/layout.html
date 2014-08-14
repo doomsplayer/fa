@@ -39,6 +39,11 @@
 					_logo.attr('src','static/img/logo.png');
 				}
 			})
+			setTimeout(function(){
+				$('.click2top').click(function(){
+					$(window).scrollTop(0)
+				})
+			},0)
 		</script>
 		<!-- Support for HTML5 -->
 		<!--[if lt IE 9]>
@@ -87,7 +92,7 @@
 		
 		</div>
 		<div class="footer">
-			<a href="#" class="click2top"></a>
+			<a class="click2top"></a>
 			<div class="container">
 				<div class="col-lg-3 col-md-3 col-sm-12">
 					<h4 class="title">关于我们</h4>

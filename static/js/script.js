@@ -12,6 +12,9 @@
             }).when('/portfolio', {
                 templateUrl: "static/tpl/portfolio.html",
                 controller: 'PortfolioCtrl'
+            }).when('/videoLib',{
+                templateUrl: "static/tpl/video-lib.html",
+                controller:'VideoLibCtrl'
             })
         }
     ])
@@ -29,7 +32,10 @@
         function($rootScope) {
             $rootScope.is_index = false;
         }
-    ]).directive('badmintonLearn', function() {
+    ]).controller('VideoLibCtrl', ['$rootScope', function($rootScope){
+        $rootScope.is_index = false;
+        
+    }]).directive('badmintonLearn', function() {
         return {
             restrict: 'E',
             templateUrl: 'static/tpl/badminton-learn.html'
