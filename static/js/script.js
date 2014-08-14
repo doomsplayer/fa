@@ -15,6 +15,8 @@
             }).when('/videoLib',{
                 templateUrl: "static/tpl/video-lib.html",
                 controller:'VideoLibCtrl'
+            }).when('/videoAlbum/',{
+                templateUrl: "static/tpl/video-album.html"
             })
         }
     ])
@@ -42,10 +44,16 @@
         $scope.slides.push(sample)
         
         $scope.videos = []
+        var temp = []
         var video = {preview:'../static/img/img_test4.jpg',url:'',title:'假动作的魅力：盖得假动作集锦',desc:'描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述'}
+        
         for(var i=1;i<7;i++){
-            $scope.videos.push(video)
+            temp.push(video)
         }
+        $scope.videos.push({name:'国际大赛',videos:temp})
+        $scope.videos.push({name:'经典对战专辑',videos:temp})
+        $scope.videos.push({name:'玩转羽球',videos:temp}) // album.url 
+
         
     }]).directive('badmintonLearn', function() {
         return {
