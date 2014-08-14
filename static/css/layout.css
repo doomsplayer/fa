@@ -375,6 +375,9 @@ button.close:hover {
 	z-index: 99;
 	top: 0;
 }
+.unindex .x-container{
+	margin: 15px auto;
+}
 .stuck .x-container {
 	margin: 15px auto;
 	margin-top: -30px;
@@ -386,10 +389,11 @@ button.close:hover {
 .stuck:hover ul.style_menu{
 	margin-top: 0px;
 }
-.imstuck{
+.unindex{
 	width:100%;
 	background-color:#282828;
 }
+
 
 
 /*///////////////////////////////////about-us//////////////////////////////////////*/

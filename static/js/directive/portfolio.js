@@ -20,7 +20,6 @@
                     // 绑定filter
                     var elm = angular.element('.filters');
                     elm.find('*[isotope-filter-by]').bind('click', function (i, e) {
-                        console.log(angular.element(this))
                         angular.element('.filters .active').removeClass('active');
                         angular.element(this).addClass('active');
                         var filter = angular.element(this).attr('isotope-filter-by');
