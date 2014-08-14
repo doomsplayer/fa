@@ -557,7 +557,13 @@ button.close:hover {
 	height: auto;
 }
 .rt-row .text {
-	margin: 20px -10px 0 10px;
+	margin: 0px -40px 0 15px;
+}
+.rt-row .text a{
+	color:black;
+}
+.rt-row .text a:hover{
+	color:#1ebcb9;
 }
 .sub-row {
 	margin-bottom: 20px;

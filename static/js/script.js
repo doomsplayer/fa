@@ -36,13 +36,8 @@ is_index = true;
     ])
 
 
-    app.controller('$rootScope', ['$', function(){
-        
-    }]).controller('PortfolioCtrl', ['$scope',
-        function($scope) {
-        }
-    ]).controller('defaultCtrl', ['$rootScope',
-        function($rootScope) { }
+    app.controller('PortfolioCtrl', ['$scope',function($scope) { }
+    ]).controller('defaultCtrl', ['$rootScope',function($rootScope) { }
     ]).controller('VideoLibCtrl', ['$rootScope','$scope', function($rootScope,$scope){
         // FIXME 视频库的API
         $scope.slides = []
@@ -65,7 +60,13 @@ is_index = true;
         
     }]).controller('VideoAlbumCtrl', ['$scope','$rootScope','$routeParams', function($scope,$rootScope,$routeParams){
         var id = $routeParams.albumId
-
+        // FIXME 按照ID请求专题数据填充
+        $scope.name = '2014澳大利亚羽毛球公开赛';
+        $scope.desc = '简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介...';
+        var video1 = {url:undefined,preview:'../static/img/img_test4.jpg',name:'假动作的魅力：盖得假动作集锦',desc:'描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述'}
+        $scope.related = [video1,video1,video1,video1,video1,video1]
+        var video2 = {url:undefined,preview:'../static/img/img_test5.jpg',name:'2013澳大利亚羽毛球公开赛',desc:'简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简...'}
+        $scope.recommand = [video2,video2,video2,video2]
     }]).directive('badmintonLearn', function() {
         return {
             restrict: 'E',
