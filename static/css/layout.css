@@ -441,6 +441,7 @@ button.close:hover {
 	float: left;
 	width: 60%;
 	padding: 40px 0 0 50px;
+	text-align: left;
 }
 .carousel-intro h3 {
 	font-size: 30px;
@@ -461,15 +462,9 @@ button.close:hover {
 .carousel-indicators .active {
 	background-color: #a0a0a0;
 }
-a.carousel-ctrl {
-	position: absolute;
-	top: 45%;
-	right: 2%;
-	font-size: 2em;
-	color: #eee;
-}
-a.left.carousel-ctrl {
-	left: 2%;
+.carousel-control{
+	background:none !important;
+	width:5% !important;
 }
 
 .title-wrapper span{
