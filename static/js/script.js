@@ -40,6 +40,9 @@ is_index = true;
             }).when('/article/:articleId',{
                 templateUrl: 'static/tpl/article.html',
                 controller: 'ArticleCtrl'
+            }).when('/item/:itemId',{
+                templateUrl: 'static/tpl/item.html',
+                controller: 'ItemCtrl'
             })
 
         }
@@ -100,7 +103,6 @@ is_index = true;
         $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
         $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
         $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
-
     }]).controller('LearnBadmintonCtrl', ['$scope', function($scope){
         var slide = {pic:'../static/img/video-carousel-1.jpg',title:'你真的会缠手胶么？教你缠手胶的小窍门！',desc:'简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简...'}
         $scope.slides = [slide,slide,slide]
@@ -114,6 +116,28 @@ is_index = true;
         $scope.part2 = []
         $scope.part2.push({name:'伤病防护',link:undefined,passages:temp})
         $scope.part2.push({name:'常见问题',link:undefined,passages:temp})
+    }]).controller('ItemCtrl', ['$scope','$routeParams', function($scope,$routeParams){
+        $scope.type = '球拍'
+        $scope.title = '期待已久的弓箭11TH SP版明后天终于要到货啦，超级经典，绝版'
+        $scope.price = '￥868(王局体育预订价，包顺丰，限时抢购中)'
+        $scope.pic = '../static/img/item_main.jpg'
+        $scope.performance = ['xxxxxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxx']
+        $scope.link = {url:undefined,title:'淘宝',coupon:"ABCDEFG"}
+        var pic = {thumb:'../static/img/item_thumb.jpg',pic:'../static/img/item_main_pic.jpg'}
+        $scope.pics = [pic,pic,pic,pic]
+        $scope.desc = '文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述'
+        var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
+        $scope.recommand = [temp,temp,temp]
+
+
+        $scope.current_pic = $scope.pics[0].pic
+        $scope.selected = 0
+        $scope.switch_pic = function(index){
+            $scope.current_pic = $scope.pics[index].pic
+            $scope.selected = index
+            console.log($scope.current_pic)
+        }
+
     }]).directive('badmintonLearn', function() {
         return {
             restrict: 'E',
@@ -125,7 +149,6 @@ is_index = true;
     //     return {
     //         restrict: 'E',
     //         templateUrl: 'static/tpl/badminton-sale.html'
-
     //     }
     // });
     app.directive('badmintonVideo', function() {

@@ -1,0 +1,132 @@
+<div class="content-wrapper">
+	<ol class="breadcrumb x-breadcrumb">
+	  <li><a href="#">首页</a></li>
+	  <li><a href="#">促销信息</a></li>
+	  <li class="active">文章</li>
+	</ol>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="item-wrapper">
+				<div class="row">
+					<div class="item-name">
+						<div class="col-md-1 label-item-p"><span class="label label-default label-type" ng-bind="type"></span></div>
+						<div class="col-md-11">
+							<h4>{{title}}<span class="item-price">{{price}}</span></h4>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<img ng-src="{{pic}}" alt="" />
+					</div>
+					<div class="col-md-7">
+						<div class="performance-parameter">
+							<p>参数性能：</p>
+								<ul>
+									<li ng-repeat="item in performance track by $index" ng-bind="item"></li>
+								</ul>
+							<div class="clearfix"></div>
+						</div>
+						<p>购买链接：<a ng-href="{{link.url}}">{{link.title}}</a><span ng-if="link.coupon" class="coupon-code">（优惠码： {{link.coupon}}）</span></p>
+						<div class="article-bar">
+							<p><a href="#" class="comment"><span class="icon icon-comment"></span>评论 142条</a><span class="icon icon-share"></span>分享到<a href="#"><span class="icon icon-weibo"></span></a><a href="#"><span class="icon icon-qzone active"></span></a><a href="#"><span class="icon icon-wechat"></span></a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="item-gallery">
+				<div class="item-main-pic">
+					<img ng-src="{{current_pic}}" alt="" />
+				</div>
+				<ul class="item-thumb-list">
+					<li ng-class="{selected:$index == selected}" ng-repeat="pic in pics track by $index">
+						<a ng-click="switch_pic($index)"><img ng-src="{{pic.thumb}}"/></a>
+					</li>
+				</ul>
+			</div>
+			<div class="detail-desc">
+				<p ng-bind-html="desc"></p>
+			</div>
+			<!-- Comment are temporary unavailable -->
+			<div class="comment-wrapper">
+				<h4 class="title title-6">评论 （142条）</h4>
+				<div class="comment-box-wrapper">
+					<div class="img_wrapper">
+						<img src="../static/img/avatar1.jpg" alt="" />
+					</div>
+					<div class="comment-box">
+						<textarea class="form-control" rows="4" placeholder="小伙伴们有什么问题吗？羽球之家来解答"></textarea>
+						<div class="row">
+							<div class="col-md-offset-8 col-md-4">
+								<button class="submit-btn">发表评论</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="comment-list">
+					<li>
+						<div class="left">
+							<img src="../static/img/avatar2.jpg" alt="" />
+							<p>142楼</p>
+						</div>
+						<div class="right">
+							<div class="name">某人<span class="time">7月22号 08:23</span></div>
+							<p>拍子很好用！已经买了好几套了，朋友觉得我这个好用就叫我帮他买下，质量非常满意。颜色漂亮质量挺好的。下次还会光顾。好评5分。</p>
+							<div class="react"><span><a href="#">赞 （10）</a></span><a href="#">回复</a></div>
+						</div>
+					</li>
+					<li>
+						<div class="left">
+							<img src="../static/img/avatar2.jpg" alt="" />
+							<p>142楼</p>
+						</div>
+						<div class="right">
+							<div class="name">某人<span class="time">7月22号 08:23</span></div>
+							<p>拍子很好用！已经买了好几套了，朋友觉得我这个好用就叫我帮他买下，质量非常满意。颜色漂亮质量挺好的。下次还会光顾。好评5分。</p>
+							<div class="react"><span><a href="#">赞 （10）</a></span><a href="#">回复</a></div>
+						</div>
+					</li>
+					<li>
+						<div class="left">
+							<img src="../static/img/avatar2.jpg" alt="" />
+							<p>142楼</p>
+						</div>
+						<div class="right">
+							<div class="name">某人<span class="time">7月22号 08:23</span></div>
+							<p>拍子很好用！已经买了好几套了，朋友觉得我这个好用就叫我帮他买下，质量非常满意。颜色漂亮质量挺好的。下次还会光顾。好评5分。</p>
+							<div class="react"><span><a href="#">赞 （10）</a></span><a href="#">回复</a></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<ul class="pagination x-pagination">
+			  <li class="disabled"><a href="#">&laquo;</a></li>
+			  <li class="active"><a href="#">1</a></li>
+			  <li><a href="#">2</a></li>
+			  <li><a href="#">3</a></li>
+			  <li><a href="#">4</a></li>
+			  <li><a href="#">5</a></li>
+			  <li><a href="#">&raquo;</a></li>
+			</ul>
+
+		</div>
+		<div class="col-md-4 x-col-md-4">
+			<h4 class="title title-6">相关商品推荐</h4>
+			<div class="row">
+				<ul class="item-list">
+					<li ng-repeat="item in recommand track by $index">
+						<div class="col-md-12">
+							<div class="col-md-4">
+								<img ng-src="{{item.pic}}"/>
+							</div>
+							<div class="col-md-8">
+								<div class="desc">
+									<p ng-bind="item.name"></p>
+									<p class="price" ng-bind="item.price"></p>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
