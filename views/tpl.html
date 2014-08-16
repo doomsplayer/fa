@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="static/css/style_menu.css" />
 		<link rel="stylesheet" href="static/css/style_eislideshow.css" />
 		<link rel="stylesheet" href="static/css/layout.css" />
+		<link rel="stylesheet" href="static/css/lightSlider.css" />
+		<script type="text/javascript" src="static/js/jquery.lightSlider.js"></script>
 		<script type="text/javascript" src="static/js/jquery.min.js"></script>
 		<script type="text/javascript" src="static/js/angular.min.js"></script>
 		<script type="text/javascript" src="static/js/angular-route.min.js"></script>
@@ -30,6 +32,11 @@
 					slideshow_interval	: 5000,
 					titlesFactor		: 0
                 });
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#lightSlider").lightSlider(); 
             });
         </script>
         <script type="text/javascript" src="static/js/isotope.pkgd.min.js"></script>
