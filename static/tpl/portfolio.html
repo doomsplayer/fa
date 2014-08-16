@@ -1,1 +1,54 @@
-<div portfolio>
+<div>
+	<div portfolio></div>
+	<div class="row container	">
+		<div class="col-md-8">
+			<h4 class="title title-6">热门促销信息</h4>
+			<div class="item-wrapper" ng-repeat="item in items track by $index">
+				<div class="row">
+					<div class="item-name">
+						<div class="col-md-1 label-item-p"><span class="label label-default label-type" ng-bind="item.type"></span></div>
+						<div class="col-md-11">
+							<h4>{{item.title}}<span class="item-price">{{item.price}}</span></h4>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<img ng-src="{{item.pic}}" alt="" />
+					</div>
+					<div class="col-md-7">
+						<div class="performance-parameter">
+							<p>参数性能：</p>
+								<ul>
+									<li ng-repeat="per in item.performance track by $index" ng-bind="per"></li>
+								</ul>
+							<div class="clearfix"></div>
+						</div>
+						<p>购买链接：<a ng-href="{{item.link.url}}">{{item.link.title}}</a><span ng-if="item.link.coupon" class="coupon-code">（优惠码： {{item.link.coupon}}）</span></p>
+						<div class="article-bar">
+							<p><a href="#" class="comment"><span class="icon icon-comment"></span>评论 142条</a><span class="icon icon-share"></span>分享到<a href="#"><span class="icon icon-weibo"></span></a><a href="#"><span class="icon icon-qzone active"></span></a><a href="#"><span class="icon icon-wechat"></span></a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 x-col-md-4">
+			<h4 class="title title-6">相关商品推荐</h4>
+			<div class="row">
+				<ul class="item-list">
+					<li ng-repeat="item in recommand track by $index">
+						<div class="col-md-12">
+							<div class="col-md-4">
+								<img ng-src="{{item.pic}}"/>
+							</div>
+							<div class="col-md-8">
+								<div class="desc">
+									<p ng-bind="item.name"></p>
+									<p class="price" ng-bind="item.price"></p>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

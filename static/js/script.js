@@ -22,7 +22,7 @@ is_index = true;
             }).when('/about-us', {
                 templateUrl: 'static/tpl/about-us.html',
                 controller: 'defaultCtrl'
-            }).when('/portfolio', {
+            }).when('/Portfolio', {
                 templateUrl: "static/tpl/portfolio.html",
                 controller: 'PortfolioCtrl'
             }).when('/videoLib',{
@@ -41,16 +41,27 @@ is_index = true;
                 templateUrl: 'static/tpl/article.html',
                 controller: 'ArticleCtrl'
             }).when('/item/:itemId',{
-                templateUrl: 'static/tpl/item.html',
+                templateUrl: 'static/tpl/badminton-item.html',
                 controller: 'ItemCtrl'
             })
-
         }
     ])
 
 
-    app.controller('PortfolioCtrl', function() {        
-    }).controller('defaultCtrl', function() {
+    app.controller('PortfolioCtrl', ['$scope',function($scope) {
+        var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
+        $scope.recommand = [temp,temp,temp]
+        $scope.items = []
+        var temp2 = {}
+        temp2.pic = '../static/img/item_main.jpg'
+        temp2.type = '球拍'
+        temp2.title = '期待已久的弓箭11TH SP版明后天终于要到货啦，超级经典，绝版'
+        temp2.price = '￥868(王局体育预订价，包顺丰，限时抢购中)'
+        temp2.link = {url:undefined,title:'淘宝',coupon:"ABCDEFG"}
+        temp2.performance = performance = ['xxxxxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxx']
+
+        $scope.items.push(temp2)
+    }]).controller('defaultCtrl', function() {
     }).controller('VideoLibCtrl', ['$scope', function ($scope) {
         // FIXME 视频库的API
         $scope.slides = []
@@ -168,7 +179,7 @@ is_index = true;
                         setTimeout(function() {
                             $('#idmenu').mnmenu();
                             $('#idmenu').addClass('style_menu');
-                        }, 2)
+                        }, 0)
 
                     })
                 }

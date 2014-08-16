@@ -805,8 +805,10 @@ span.coupon-code {
 	color: #1ebcb9;
 }
 .item-main-pic {
-	width: 95%;
 	margin: 0 auto;
+}
+.item-main-pic img{
+	width:100%;
 }
 .item-thumb-list {
 	width: 440px;
@@ -996,8 +998,9 @@ a.link-sidebar:hover {
 	color: #1ebcb9;
 }
 
-a.link-sidebar>span {
+a.link-sidebar>div {
     color: #1ebcb9;
+    margin-top: 1.5em;
 }
 
 a.back-to-top {

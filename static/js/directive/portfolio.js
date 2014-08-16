@@ -49,10 +49,7 @@
 			}],
 			templateUrl: 'static/tpl/portfolio_tpl.html',
 			replace: true,
-			scope:{},
-			link: function($scope, iElm, iAttrs, controller) {
-				
-			}
+			scope:{}
 		};
 	});
 })();
