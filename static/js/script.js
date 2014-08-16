@@ -43,6 +43,9 @@ is_index = true;
             }).when('/item/:itemId',{
                 templateUrl: 'static/tpl/badminton-item.html',
                 controller: 'ItemCtrl'
+            }).when('/sales',{
+                templateUrl: 'static/tpl/badminton-sale.html',
+                controller: 'PortfolioCtrl'
             })
         }
     ])
@@ -51,7 +54,7 @@ is_index = true;
     app.controller('PortfolioCtrl', ['$scope',function($scope) {
         var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
         $scope.recommand = [temp,temp,temp]
-        $scope.items = []
+        
         var temp2 = {}
         temp2.pic = '../static/img/item_main.jpg'
         temp2.type = '球拍'
@@ -59,8 +62,7 @@ is_index = true;
         temp2.price = '￥868(王局体育预订价，包顺丰，限时抢购中)'
         temp2.link = {url:undefined,title:'淘宝',coupon:"ABCDEFG"}
         temp2.performance = performance = ['xxxxxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxx']
-
-        $scope.items.push(temp2)
+        $scope.items = [temp2,temp2,temp2,temp2,temp2,temp2,temp2]
     }]).controller('defaultCtrl', function() {
     }).controller('VideoLibCtrl', ['$scope', function ($scope) {
         // FIXME 视频库的API
@@ -155,19 +157,17 @@ is_index = true;
             templateUrl: 'static/tpl/badminton-learn.html'
         }
     });
-
-    // app.directive('badmintonSale', function() {
-    //     return {
-    //         restrict: 'E',
-    //         templateUrl: 'static/tpl/badminton-sale.html'
-    //     }
-    // });
     app.directive('badmintonVideo', function() {
         return {
             restrict: 'E',
             templateUrl: 'static/tpl/badminton-video.html'
 
         }
+    }).directive('shareTo', function(){
+        return {
+            restrict: 'EA',
+            template: '<span class="pull-right"><img src="../static/img/share.jpg" />分享到<a href="#"><img src="../static/img/weibo.jpg" /></a><a href="#"><img src="../static/img/qzone.jpg" /></a><a href="#"><img src="../static/img/weixin.jpg" /></a></span>'
+        };
     });
     app.directive('mainBar', function() {
         return {

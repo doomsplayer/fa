@@ -12,18 +12,19 @@
       </a>
       <div class="row">
        <div class="col-lg-5 col-md-5 col-sm-5">
-         <img src="../static/img/item_main.jpg" />
+         <img ng-src="{{pic}}" />
        </div>
        <div class="col-lg-7 col-md-7 col-sm-7">
        参数性能：
          <ul class="parameter">
-          <li ng-repeat="per in performance track by $index" ng-bind="per"></li></ul>
+          <li ng-repeat="per in performance track by $index" ng-bind="per"></li>
+          </ul>
          </p>
           <p>购买链接：<a ng-href="{{link.url}}">{{link.title}}</a> (优惠码：{{link.coupon}})</p>
           <div class="comment">
           <a href="#"><img src="../static/img/comment.jpg"/ >评论 142条</a>
           <!-- FIXME 同步评论数 -->
-          <span class="pull-right"><img src="../static/img/share.jpg" />分享到<a href="#"><img src="../static/img/weibo.jpg" /></a><a href="#"><img src="../static/img/qzone.jpg" /></a><a href="#"><img src="../static/img/weixin.jpg" /></a></span>
+          <share-to></share-to>
           </div>
         </div>
       </div>

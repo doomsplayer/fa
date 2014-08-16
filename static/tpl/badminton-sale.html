@@ -1,315 +1,48 @@
 <div class="sale">
-				<div class="item_classify">
-					<div class="pic_bg">
-						<img src="../static/img/item_classify_bg.png" alt="">
+	<div portfolio></div>
+
+	<div class="container">
+		<div class="col-lg-8 col-md-8 col-sm-12">
+			<h4 class="title">热门促销信息</h4>
+			<div class="item" ng-repeat="item in items track by $index">
+				<a class="title" href="#">
+					<h5><kbd>{{item.type}}</kbd>{{item.title}}<span class="subtitle">{{item.price}}</span></h5>
+				</a>
+				<div class="row">
+					<div class="col-lg-5 col-md-5 col-sm-5">
+						<img ng-src="{{item.pic}}" />
 					</div>
-					<div class="button_list filters">
-						<ul>
-							<li><button type="button" class="btn btn-default xx-btn active" data-filter="*">所有商品分类</button></li>
-							<li><button type="button" class="btn btn-default xx-btn" data-filter=".shoes">球拍</button></li>
-							<li><button type="button" class="btn btn-default xx-btn" data-filter=".shoes">球鞋</button></li>
-							<li><button type="button" class="btn btn-default xx-btn" data-filter=".shoes">其他</button></li>
-							<li><button type="button" class="btn btn-default xx-btn" data-filter=".shoes">其他</button></li>
+					<div class="col-lg-7 col-md-7 col-sm-7">
+						参数性能：
+						<ul class="parameter">
+							<li ng-repeat="per in item.performance track by $index" ng-bind="per"></li>
 						</ul>
+						<p>购买链接：<a ng-href="{{item.link.url}}">{{item.link.title}}</a> (优惠码：{{item.link.coupon}})</p>
+						<div class="comment"><a href="#"><img src="../static/img/comment.jpg"/ >评论 142条</a><share-to></share-to></div>
 					</div>
 				</div>
-				<div class="item_pic">
-					<div id="isotope" style="position: relative; height: 632px;">
-						<div class="element-item shoes" style="position: absolute; left: 0px; top: 0px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item" style="position: absolute; left: 316px; top: 0px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item shoes" style="position: absolute; left: 632px; top: 0px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item" style="position: absolute; left: 948px; top: 0px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item shoes" style="position: absolute; left: 1264px; top: 0px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item" style="position: absolute; left: 0px; top: 316px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item shoes" style="position: absolute; left: 316px; top: 316px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item" style="position: absolute; left: 632px; top: 316px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item shoes" style="position: absolute; left: 948px; top: 316px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
-						<div class="element-item" style="position: absolute; left: 1264px; top: 316px; width: 316px; height: 316px;">
-							<img src="../static/img/img_test2.jpg" alt="">
-							<div class="mask">
-								<p>产品名称</p>
-								<p>价格：1000</p>
-								<p>MORE</p>
-							</div>
-						</div>
+				<hr />
+			</div>
+			<!-- FIXME show the tip when loading -->
+			<div class="more">
+				<img src="../static/img/loading.gif" />更多促销信息加载中，请稍候
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-12">
+			<ul id="goods" class="nav nav-tabs" role="tablist">
+				<li class="x-tab active"><a href="#newest" role="tab" data-toggle="tab">最新</a></li>
+				<li class="x-tab"><a href="#oldest" role="tab" data-toggle="tab">即将过期</a></li>
+			</ul>
+			<div class="item" ng-repeat="item in recommand track by $index">
+				<div class="row">
+					<div class="col-xs-4">  
+						<img class="img-sidebar" ng-src="{{item.pic}}"/>
+					</div>
+					<div class="col-xs-8">
+						<a class="link-sidebar" ng-href="{{item.url}}">{{item.name}}<div ng-bind="item.price"></div></a>
 					</div>
 				</div>
-			
-          <div class="container">
-          	<br />
-			<div class="col-lg-8 col-md-8 col-sm-12">/static
-			        <h4 class="title">热门促销信息</h4>
-			        <div class="item">
-			        	<a class="title" href="#"><h5><kbd>球拍</kbd> 期待已久的弓箭11TH SP版明后天终于要到货啦，超级经典，绝版 <span class="subtitle"> ￥868（王局体育预订价，包顺丰，限时抢购中）</span></h5></a>
-			        	<div class="row">
-			        		<div class="col-lg-5 col-md-5 col-sm-5">
-			        	       <img src="../img/item_main.jpg" />
-			        	    </div>
-			        	    <div class="col-lg-7 col-md-7 col-sm-7">
-			        	    	<p class="parameter">参数性能：
-			        	    		xxxxxxxxxxxxxxxxxxxxxxxxx<br/>
-			        	    		ddddddddddddddddddddd<br/>
-			        	    		eeeeeeeeeeeeeeeeee<br/>
-			        	    		kkkkkkkkkk<br/>
-			        	    		rrrrrrrrrrrrrrrrrrrrrrr<br/>
-			        	    		ggggggggghhhhhhhhvvvvvvv</p>
-			        	    	<p>购买链接：<a href="#">www.whatisit.com</a> (优惠码：abcdefj)</p>
-			        	    	<div class="comment"><a href="#"><img src="../img/comment.jpg"/ >评论 142条</a> <span class="pull-right"><img src="../img/share.jpg" />分享到<a href="#"><img src="../img/weibo.jpg" /></a><a href="#"><img src="../img/qzone.jpg" /></a><a href="#"><img src="../img/weixin.jpg" /></a></span></div>
-			        	    </div>
-			        	</div>
-			        </div> 
-			        <hr />
-			        <div class="item">
-			        	<a class="title" href="#"><h5><kbd>球拍</kbd> 期待已久的弓箭11TH SP版明后天终于要到货啦，超级经典，绝版 <span class="subtitle"> ￥868（王局体育预订价，包顺丰，限时抢购中）</span></h5></a>
-			        	<div class="row">
-			        		<div class="col-lg-5 col-md-5 col-sm-5">
-			        	       <img src="../img/item_main.jpg" />
-			        	    </div>
-			        	    <div class="col-lg-7 col-md-7 col-sm-7">
-			        	    	<p class="parameter">参数性能：
-			        	    		xxxxxxxxxxxxxxxxxxxxxxxxx<br/>
-			        	    		ddddddddddddddddddddd<br/>
-			        	    		eeeeeeeeeeeeeeeeee<br/>
-			        	    		kkkkkkkkkk<br/>
-			        	    		rrrrrrrrrrrrrrrrrrrrrrr<br/>
-			        	    		ggggggggghhhhhhhhvvvvvvv</p>
-			        	    	<p>购买链接：<a href="#">www.whatisit.com</a> (优惠码：abcdefj)</p>
-			        	    	<div class="comment"><a href="#"><img src="../img/comment.jpg"/ >评论 142条</a> <span class="pull-right"><img src="../img/share.jpg" />分享到<a href="#"><img src="../img/weibo.jpg" /></a><a href="#"><img src="../img/qzone.jpg" /></a><a href="#"><img src="../img/weixin.jpg" /></a></span></div>
-			        	    </div>
-			        	</div>
-			        </div> 
-			        <hr />
-			        <div class="item">
-			        	<a class="title" href="#"><h5><kbd>球拍</kbd> 期待已久的弓箭11TH SP版明后天终于要到货啦，超级经典，绝版 <span class="subtitle"> ￥868（王局体育预订价，包顺丰，限时抢购中）</span></h5></a>
-			        	<div class="row">
-			        		<div class="col-lg-5 col-md-5 col-sm-5">
-			        	       <img src="../img/item_main.jpg" />
-			        	    </div>
-			        	    <div class="col-lg-7 col-md-7 col-sm-7">
-			        	    	<p class="parameter">参数性能：
-			        	    		xxxxxxxxxxxxxxxxxxxxxxxxx<br/>
-			        	    		ddddddddddddddddddddd<br/>
-			        	    		eeeeeeeeeeeeeeeeee<br/>
-			        	    		kkkkkkkkkk<br/>
-			        	    		rrrrrrrrrrrrrrrrrrrrrrr<br/>
-			        	    		ggggggggghhhhhhhhvvvvvvv</p>
-			        	    	<p>购买链接：<a href="#">www.whatisit.com</a> (优惠码：abcdefj)</p>
-			        	    	<div class="comment"><a href="#"><img src="../img/comment.jpg"/ >评论 142条</a> <span class="pull-right"><img src="../img/share.jpg" />分享到<a href="#"><img src="../img/weibo.jpg" /></a><a href="#"><img src="../img/qzone.jpg" /></a><a href="#"><img src="../img/weixin.jpg" /></a></span></div>
-			        	    </div>
-			        	</div>
-			        </div> 
-			        <hr />
-			        <div class="item">
-			        	<a class="title" href="#"><h5><kbd>球拍</kbd> 期待已久的弓箭11TH SP版明后天终于要到货啦，超级经典，绝版 <span class="subtitle"> ￥868（王局体育预订价，包顺丰，限时抢购中）</span></h5></a>
-			        	<div class="row">
-			        		<div class="col-lg-5 col-md-5 col-sm-5">
-			        	       <img src="../img/item_main.jpg" />
-			        	    </div>
-			        	    <div class="col-lg-7 col-md-7 col-sm-7">
-			        	    	<p class="parameter">参数性能：
-			        	    		xxxxxxxxxxxxxxxxxxxxxxxxx<br/>
-			        	    		ddddddddddddddddddddd<br/>
-			        	    		eeeeeeeeeeeeeeeeee<br/>
-			        	    		kkkkkkkkkk<br/>
-			        	    		rrrrrrrrrrrrrrrrrrrrrrr<br/>
-			        	    		ggggggggghhhhhhhhvvvvvvv</p>
-			        	    	<p>购买链接：<a href="#">www.whatisit.com</a> (优惠码：abcdefj)</p>
-			        	    	<div class="comment"><a href="#"><img src="../img/comment.jpg"/ >评论 142条</a> <span class="pull-right"><img src="../img/share.jpg" />分享到<a href="#"><img src="../img/weibo.jpg" /></a><a href="#"><img src="../img/qzone.jpg" /></a><a href="#"><img src="../img/weixin.jpg" /></a></span></div>
-			        	    </div>
-			        	</div>
-			        </div> 
-			        <hr />
-			        <div class="more">
-			        	<img src="../img/loading.jpg" />更多促销信息加载中，请稍候
-			        </div>
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12">/static
-				<ul id="goods" class="nav nav-tabs" role="tablist">
-			        <li class="x-tab active"><a href="#newest" role="tab" data-toggle="tab">最新</a></li>
-			        <li class="x-tab"><a href="#oldest" role="tab" data-toggle="tab">即将过期</a></li>
-			    </ul>
-			    <br />
-			    <div class="item">
-                  <div class="row">
-                    <div class="col-xs-4">  
-                      <img class="img-sidebar" src="../img/item_list_img.jpg" />
-                    </div>
-                    <div class="col-xs-8">
-                      <a class="link-sidebar" href="#">尤尼克斯YONEX/YY VTFZ2 李宗伟最新羽毛球拍SP版TW版
-                  <br/>
-                        <br/>
-                      <span>￥1050（正品包邮）</span></a>
-                    </div>
-                  </div>
-                </div>
-			    <div class="item">
-                  <div class="row">
-                    <div class="col-xs-4">  
-                      <img class="img-sidebar" src="../img/item_list_img.jpg" />
-                    </div>
-                    <div class="col-xs-8">
-                      <a class="link-sidebar" href="#">尤尼克斯YONEX/YY VTFZ2 李宗伟最新羽毛球拍SP版TW版
-                        <br/>
-                        <br/>
-                      <span>￥1050（正品包邮）</span></a>
-                    </div>
-                  </div>
-                </div>
-			    <div class="item">
-                  <div class="row">
-                    <div class="col-xs-4">  
-                      <img class="img-sidebar" src="../img/item_list_img.jpg" />
-                    </div>
-                    <div class="col-xs-8">
-                      <a class="link-sidebar" href="#">尤尼克斯YONEX/YY VTFZ2 李宗伟最新羽毛球拍SP版TW版
-                        <br/>
-                        <br/>
-                      <span>￥1050（正品包邮）</span></a>
-                    </div>
-                  </div>
-                </div>
-			    <div class="item">
-                  <div class="row">
-                    <div class="col-xs-4">  
-                      <img class="img-sidebar" src="../img/item_list_img.jpg" />
-                    </div>
-                    <div class="col-xs-8">
-                      <a class="link-sidebar" href="#">尤尼克斯YONEX/YY VTFZ2 李宗伟最新羽毛球拍SP版TW版
-                        <br/>
-                        <br/>
-                      <span>￥1050（正品包邮）</span></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="row">
-                    <div class="col-xs-4">  
-                      <img class="img-sidebar" src="../img/item_list_img.jpg" />
-                    </div>
-                    <div class="col-xs-8">
-                      <a class="link-sidebar" href="#">尤尼克斯YONEX/YY VTFZ2 李宗伟最新羽毛球拍SP版TW版
-                        <br/>
-                        <br/>
-                      <span>￥1050（正品包邮）</span></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="row">
-                    <div class="col-xs-4">  
-                      <img class="img-sidebar" src="../img/item_list_img.jpg" />
-                    </div>
-                    <div class="col-xs-8">
-                      <a class="link-sidebar" href="#">尤尼克斯YONEX/YY VTFZ2 李宗伟最新羽毛球拍SP版TW版
-                        <br/>
-                        <br/>
-                      <span>￥1050（正品包邮）</span></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="row">
-                    <div class="col-xs-4">  
-                      <img class="img-sidebar" src="../img/item_list_img.jpg" />
-                    </div>
-                    <div class="col-xs-8">
-                      <a class="link-sidebar" href="#">尤尼克斯YONEX/YY VTFZ2 李宗伟最新羽毛球拍SP版TW版
-                        <br/>
-                        <br/>
-                      <span>￥1050（正品包邮）</span></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="row">
-                    <div class="col-xs-4">  
-                      <img class="img-sidebar" src="../img/item_list_img.jpg" />
-                    </div>
-                    <div class="col-xs-8">
-                      <a class="link-sidebar" href="#">尤尼克斯YONEX/YY VTFZ2 李宗伟最新羽毛球拍SP版TW版
-                        <br/>
-                        <br/>
-                      <span>￥1050（正品包邮）</span></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="row">
-                    <div class="col-xs-4">  
-                      <img class="img-sidebar" src="../img/item_list_img.jpg" />
-                    </div>
-                    <div class="col-xs-8">
-                      <a class="link-sidebar" href="#">尤尼克斯YONEX/YY VTFZ2 李宗伟最新羽毛球拍SP版TW版
-                        <br/>
-                        <br/>
-                      <span>￥1050（正品包邮）</span></a>
-                    </div>
-                  </div>
-                </div>
-			</div>
-			  <a class="back-to-top" href="#top" > <img src="../static/img/back-to-top.jpg" />  </a>
-		  </div>
+			</div>	
+		</div>
+	</div>
 </div>

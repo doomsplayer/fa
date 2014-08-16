@@ -959,7 +959,8 @@ kbd {
     background-color: #1ebcb9;
     border-radius: 3px;
     -webkit-box-shadow: inset 0 -1px 0 #1ebcb9;
-    box-shadow: inset 0 -1px 0 #1ebcb9);
+    box-shadow: inset 0 -1px 0 #1ebcb9;
+	margin-right: 6px;
 }
 
 a {
@@ -1000,7 +1001,7 @@ a.link-sidebar:hover {
 
 a.link-sidebar>div {
     color: #1ebcb9;
-    margin-top: 1.5em;
+    margin-top: 1.25em;
 }
 
 a.back-to-top {
