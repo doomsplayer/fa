@@ -22,9 +22,6 @@ is_index = true;
             }).when('/about-us', {
                 templateUrl: 'static/tpl/about-us.html',
                 controller: 'defaultCtrl'
-            }).when('/Portfolio', {
-                templateUrl: "static/tpl/portfolio.html",
-                controller: 'PortfolioCtrl'
             }).when('/videoLib',{
                 templateUrl: "static/tpl/video-lib.html",
                 controller:'VideoLibCtrl'
@@ -46,6 +43,8 @@ is_index = true;
             }).when('/sales',{
                 templateUrl: 'static/tpl/badminton-sale.html',
                 controller: 'PortfolioCtrl'
+            }).when('/test',{
+                templateUrl: 'static/tpl/test.html'
             })
         }
     ])
