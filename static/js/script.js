@@ -158,9 +158,16 @@ is_index = true;
     });
     app.directive('badmintonVideo', function() {
         return {
+            scope:{},
             restrict: 'E',
-            templateUrl: 'static/tpl/badminton-video.html'
-
+            templateUrl: 'static/tpl/badminton-video.html',
+            controller: ['$scope','$http',function($scope,$http){
+                $scope.videos = []
+                var video  = {preview:'../static/img/img_test3.jpg',url:undefined,title:'苏迪曼杯这些年——盘点苏杯经典大战20场',desc:'苏迪曼杯，又称世界羽毛球混合团体锦标赛，是羽毛球三大世界性团体赛之一。1989年首届苏迪曼杯在雅加达举办，至今近30年，其中涌现的经典对决不计其数，小编在此为您准备了20场经典巅峰对决，带您一起走进苏迪曼杯这些年。'}
+                $scope.videos.push({name:'国际大赛专辑',videos:[video,video,video]})
+                $scope.videos.push({name:'经典对战专辑',videos:[video,video,video]})
+                $scope.videos.push({name:'玩转羽球',videos:[video,video,video]})
+            }]
         }
     }).directive('shareTo', function(){
         return {
@@ -188,4 +195,24 @@ is_index = true;
             replace: true,
         };
     });
+    app.directive('', ['', function(){
+        // Runs during compile
+        return {
+            // name: '',
+            // priority: 1,
+            // terminal: true,
+            // scope: {}, // {} = isolate, true = child, false/undefined = no change
+            // controller: function($scope, $element, $attrs, $transclude) {},
+            // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+            // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+            // template: '',
+            // templateUrl: '',
+            // replace: true,
+            // transclude: true,
+            // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+            link: function($scope, iElm, iAttrs, controller) {
+                
+            }
+        };
+    }]);
 })();

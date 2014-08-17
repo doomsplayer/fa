@@ -58,18 +58,18 @@ ul.ei-slider-large {
 	border-bottom: 2px solid #1ebcb9;
 }*/
 
-#content .x-tab a {
+.x-tab a {
 	border-color:transparent;
 	/*border-bottom-color: #ddd;*/
 	color: #555;
 }
-#content .x-tab.active a.title {
-	border-color:transparent;
+.x-tab.active a {
+	border-color:transparent !important;
 	border-bottom-color: #ddd;
-	color: #555;
+	color: #555 !important;
 	position: relative;
 }
-#content .x-tab.active a.title::before {
+.x-tab.active a::before {
 	content: "";
 	position: absolute;
 	left: 0;
@@ -79,23 +79,25 @@ ul.ei-slider-large {
 	border-radius: 500px;
 	background-color: #1ebcb9;
 }
-#content .x-tab.active a.title::after {
+.x-tab.active a::after {
 	content: "";
 	position: absolute;
 	left: 0;
 	bottom: -1px;
-	width: 70px;
+	width: 100%;
 	height: 0;
 	border-bottom: 2px solid #1ebcb9;
 }
-#content .x-tab.active a.title.title-6::after {
+.x-tab.active a.title.title-6::after {
 	width: 110px;
 }
-#content .x-tab.active a.title.title-2::after {
+.x-tab.active a.title.title-2::after {
 	width: 35px;
 } 
-#content .x-tab a:hover, #content .x-tab a:focus {
-	background-color: transparent;
+.x-tab a:hover,.x-tab a:focus {
+	background-color: transparent !important;
+	color:#1ebcb9 !important;
+	border-color: transparent !important;
 }
 ul>li.x-tab.last {
 	float: right;
