@@ -8,9 +8,9 @@
 
 [x] 重写badminton-video directive  
 [x] 重写badminton-learn directive  
-[ ] 用 angular 写 video-worldchampion 的模板  
+[x] 用 angular 写 video-worldchampion 的模板  
 [ ] 将现有的数据改为从远端fetch  
-[ ] 用angularui修改现有的TAB  
+[-] 用angularui修改现有的TAB  
 [ ] 添加分页逻辑（Url分页？无限滚动？）  
 [ ] 后台后台后台！  
 [ ] 合并较小的template为一个js文件   
