@@ -153,6 +153,9 @@ p.pic_intro {
 	color: #fff;
 	margin-top: 27%;
 }
+.mask a:hover{
+	color:#1ebcff;
+}
 .mask p {
 	text-align: center;
 	font-size: 16px;
