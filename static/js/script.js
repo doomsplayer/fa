@@ -28,7 +28,7 @@ is_index = true;
             }).when('/videoAlbum/:albumId',{
                 templateUrl: "static/tpl/video-album.html",
                 controller:'VideoAlbumCtrl'
-            }).when('/videoChampion',{
+            }).when('/worldChampion',{
                 templateUrl: "static/tpl/video-worldchampion.html",  // Seems this page is a part of album ?
                 controller: 'WorldChampionCtrl'
             }).when('/learnBadminton',{
@@ -91,7 +91,13 @@ is_index = true;
         var video2 = {url:undefined,preview:'../static/img/img_test5.jpg',name:'2013澳大利亚羽毛球公开赛',desc:'简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简...'}
         $scope.recommand = [video2,video2,video2,video2]
     }]).controller('WorldChampionCtrl', ['$scope', function($scope){
-        
+        $scope.title = '国际大赛专辑'
+        $scope.desc = '按赛事分类、按时间收录近期在各个国家举办的羽毛球国际赛事精彩视频专辑'
+        var item = {pic:'../static/img/img_test3.jpg',url:undefined,desc:'苏迪曼杯，又称世界羽毛球混合团体锦标赛，是羽毛球三大世界性团体赛之一。1989年首届苏迪曼杯在雅加达举办，至今近30年，其中涌现的经典对决不计其数，小编在此为您准备了20场经典巅峰对决，带您一起走进苏迪曼杯这些年。',title:'苏迪曼杯这些年——盘点苏杯经典大战20场'}
+        $scope.tabs = []
+        $scope.tabs.push({name:'最新',items:[item,item,item,item]})
+        $scope.tabs.push({name:'热门',items:[item,item,item]})
+
     }]).controller('ArticleCtrl', ['$routeParams','$scope', function($routeParams,$scope){
         var articleId = $routeParams.articleId
         // Fetch data
