@@ -7,7 +7,7 @@
 # TODO
 
 [x] 重写badminton-video directive  
-[ ] 重写badminton-learn directive  
+[x] 重写badminton-learn directive  
 [ ] 用 angular 写 video-worldchampion 的模板  
 [ ] 将现有的数据改为从远端fetch  
 [ ] 用angularui修改现有的TAB  

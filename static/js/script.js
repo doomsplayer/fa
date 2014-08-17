@@ -153,7 +153,17 @@ is_index = true;
     }]).directive('badmintonLearn', function() {
         return {
             restrict: 'E',
-            templateUrl: 'static/tpl/badminton-learn.html'
+            templateUrl: 'static/tpl/badminton-learn.html',
+            scope:{},
+            controller:['$scope','$http',function($scope,$http){
+                $scope.Learn = []
+                var item = {title:'澳洲赛：林丹逆转夺冠女双演横扫...',url:undefined,pic:'static/img/img_test1.jpg'}
+                $scope.Learn.push({name:'大话羽球',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
+                $scope.Learn.push({name:'羽球知识',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
+                $scope.Learn.push({name:'羽球技术',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
+                $scope.Learn.push({name:'羽球战术',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
+                $scope.Learn.push({name:'伤病防护',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
+            }]
         }
     });
     app.directive('badmintonVideo', function() {
@@ -195,24 +205,4 @@ is_index = true;
             replace: true,
         };
     });
-    app.directive('', ['', function(){
-        // Runs during compile
-        return {
-            // name: '',
-            // priority: 1,
-            // terminal: true,
-            // scope: {}, // {} = isolate, true = child, false/undefined = no change
-            // controller: function($scope, $element, $attrs, $transclude) {},
-            // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-            // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
-            // template: '',
-            // templateUrl: '',
-            // replace: true,
-            // transclude: true,
-            // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
-            link: function($scope, iElm, iAttrs, controller) {
-                
-            }
-        };
-    }]);
 })();
