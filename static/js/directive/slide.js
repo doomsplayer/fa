@@ -3,24 +3,46 @@
 	app.directive('slider',function(){
 		return {
 			scope: {}, // {} = isolate, true = child, false/undefined = no change
-			controller: ['$scope','$element',function($scope, $element) {
+			controller: ['$scope','$element','$http','$resource','$q',function($scope, $element,$http,$resource,$q) {
+				var s = $resource('/api/common/carousel')
+				var file = $resource('/api/common/upload')
 				$scope.slides = []
-				// DELETEME
-				$scope.slides.push({pic_url:'static/img/img1.jpg',pic_alt:'image01',title:'欢迎来到羽球之家',subtitle:'副标题'})
-				$scope.slides.push({pic_url:'static/img/img0.jpg',pic_alt:'image02',title:'欢迎来到羽球之家',subtitle:'副标题'})
-				$scope.slides.push({pic_url:'static/img/img1.jpg',pic_alt:'image03',title:'欢迎来到羽球之家',subtitle:'副标题'})
-				$scope.slides.push({pic_url:'static/img/img0.jpg',pic_alt:'image04',title:'欢迎来到羽球之家',subtitle:'副标题'})
-				//  FIXME 从远端Fetch
-				setTimeout(function(){
-					angular.element($element[0].firstElementChild).eislideshow({
-						animation			: 'center',
-						autoplay			: true,
-					 	slideshow_interval	: 5000,
-						titlesFactor		: 0
-					});
-				},0)
+				$scope.fetchUrl = function(item){
+					var d = $q.defer();
+					var result = file.get({id:item['PicId']})
+					result.$promise.then(function(){
+						if (result.ok){
+							item.PicUrl = result.filepath
+							d.resolve(item)
+							// console.log(item)
+						}
+					})
+					return d.promise
+				}
+				ret = s.get({num:4}) // 在这里修改出现的个数
+				var waitlist = []
+				ret.$promise.then(function(){
+					if (ret.ok){
+						// console.log(ret.carousels)
+						for (var i in ret.carousels){
+							waitlist.push($scope.fetchUrl(ret.carousels[i]))
+						}
+						$q.all(waitlist).then(function(data){
+							$scope.slides = data
+							setTimeout(function(){
+								$($element[0].firstElementChild).eislideshow({
+									animation			: 'center',
+									autoplay			: true,
+									slideshow_interval	: 5000,
+									titlesFactor		: 0
+								});
+							},0)
+						})
+					}
+				})
+				
 			}],
-			restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+			restrict: 'A',
 			templateUrl: 'static/tpl/slide.html',
 			replace: true
 		};
