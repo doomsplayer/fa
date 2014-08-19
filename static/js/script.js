@@ -1,5 +1,4 @@
 is_index = true;
-pan = null;
 (function() {
     var app = angular.module('badmintonhome', ['ngResource', 'ngRoute','ngSanitize','ui.bootstrap']);
     app.run(['$rootScope','$location',function($rootScope,$location){
@@ -16,6 +15,52 @@ pan = null;
             }
         }
     }])
+    
+    app.config(function($httpProvider) {
+      // Use x-www-form-urlencoded Content-Type
+      $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+     
+      /**
+       * The workhorse; converts an object to x-www-form-urlencoded serialization.
+       * @param {Object} obj
+       * @return {String}
+       */ 
+      var param = function(obj) {
+        var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
+          
+        for(name in obj) {
+          value = obj[name];
+            
+          if(value instanceof Array) {
+            for(i=0; i<value.length; ++i) {
+              subValue = value[i];
+              fullSubName = name + '[' + i + ']';
+              innerObj = {};
+              innerObj[fullSubName] = subValue;
+              query += param(innerObj) + '&';
+            }
+          } else if(value instanceof Object) {
+            for(subName in value) {
+              subValue = value[subName];
+              fullSubName = name + '[' + subName + ']';
+              innerObj = {};
+              innerObj[fullSubName] = subValue;
+              query += param(innerObj) + '&';
+            }
+          } else if(value !== undefined && value !== null) {
+            query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+          }
+        }
+          
+        return query.length ? query.substr(0, query.length - 1) : query;
+      };
+     
+      // Override $http service's default transformRequest
+      $httpProvider.defaults.transformRequest = [function(data) {
+        return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+      }];
+    });
+
     // URL route
     app.config(['$routeProvider',
         function($routeProvider) {
@@ -169,7 +214,6 @@ pan = null;
             $('.youku-video')[0].innerHTML = newValue.replace(/(width|height)=\d+/gi,'');
             // Remove the hardcoded size of video
         })
-        
     }]).directive('badmintonLearn', function() {
         return {
             restrict: 'E',
@@ -177,6 +221,7 @@ pan = null;
             scope:{},
             controller:['$scope','$http',function($scope,$http){
                 $scope.Learn = []
+
                 var item = {title:'澳洲赛：林丹逆转夺冠女双演横扫...',url:undefined,pic:'static/img/img_test1.jpg'}
                 $scope.Learn.push({name:'大话羽球',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
                 $scope.Learn.push({name:'羽球知识',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
@@ -193,6 +238,7 @@ pan = null;
             templateUrl: 'static/tpl/badminton-video.html',
             controller: ['$scope','$http',function($scope,$http){
                 $scope.videos = []
+
                 var video  = {preview:'../static/img/img_test3.jpg',url:undefined,title:'苏迪曼杯这些年——盘点苏杯经典大战20场',desc:'苏迪曼杯，又称世界羽毛球混合团体锦标赛，是羽毛球三大世界性团体赛之一。1989年首届苏迪曼杯在雅加达举办，至今近30年，其中涌现的经典对决不计其数，小编在此为您准备了20场经典巅峰对决，带您一起走进苏迪曼杯这些年。'}
                 $scope.videos.push({name:'国际大赛专辑',videos:[video,video,video]})
                 $scope.videos.push({name:'经典对战专辑',videos:[video,video,video]})
@@ -223,19 +269,6 @@ pan = null;
             restrict: 'E',
             templateUrl: 'static/tpl/mainBar.html',
             replace: true,
-        };
-    });
-    app.directive('youkuVideo', function () {
-        return {
-            scope:{url:'@url'},
-            replace:true,
-            restrict: 'EA',
-            template:'<div class="youku-video" style="height: 560px;"></div>',
-            controller:['$scope','$element',function($scope,$element){
-                $scope.$watch('url',function(newValue,oldValue){
-                    $element[0].innerHTML = '<embed src="' + $scope.url + '" allowFullScreen="true" quality="high" width="95%" height="100%" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'
-                })
-            }]
         };
     });
 })();
