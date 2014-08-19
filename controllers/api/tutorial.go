@@ -150,3 +150,31 @@ func (t *TutorialApi) AllTypes() {
 	t.ServeJson()
 	return
 }
+
+// @Title tutorial
+// @Description 获得教程详细内容
+// @Param id query int true id
+// @Success 200 {string} 列表的json
+// @Failure 404 Not found
+// @router /tutorial/:id [get]
+func (t *TutorialApi) Single() {
+	id, err := t.GetInt(`:id`)
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+
+	tot := new(models.Tutorial)
+	tot.Id = int64(id)
+
+	err = tot.Get()
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+	t.Data["json"] = map[string]interface{}{"ok": true, "tutorial": tot}
+	t.ServeJson()
+	return
+}
