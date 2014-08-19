@@ -154,7 +154,7 @@ is_index = true;
         $http.get({
             url: '/api/common/tutorial/' + articleId,
         }).success(function(response, status, headers, config){
-            if response.ok {
+            if (response.ok) {
                 var turorial = response.tutorial;
                 $scope.author = tutorial.Author;
                 $scope.source = tutorial.Source;
@@ -167,8 +167,6 @@ is_index = true;
             }
            
         })
-        // Fetch data
-        
         $scope.recommand = []
         $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
         $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
