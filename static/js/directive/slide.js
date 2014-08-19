@@ -3,7 +3,7 @@
 	app.directive('slider',function(){
 		return {
 			scope: {}, // {} = isolate, true = child, false/undefined = no change
-			controller: ['$scope','$element','$http','$resource','$q',function($scope, $element,$http,$resource,$q) {
+			controller: ['$scope','$element','$resource','$q',function($scope, $element,$resource,$q) {
 				var s = $resource('/api/common/carousel')
 				var file = $resource('/api/common/upload')
 				$scope.slides = []
