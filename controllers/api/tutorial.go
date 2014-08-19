@@ -5,6 +5,7 @@ import (
 	"badmintonhome/models"
 	"fmt"
 	"github.com/astaxie/beego/validation"
+	"strconv"
 )
 
 type TutorialApi struct {
@@ -158,7 +159,8 @@ func (t *TutorialApi) AllTypes() {
 // @Failure 404 Not found
 // @router /tutorial/:id [get]
 func (t *TutorialApi) Single() {
-	id, err := t.GetInt(`:id`)
+	ids := t.Ctx.Input.Param(`:id`)
+	id, err := strconv.Atoi(ids)
 	if err != nil {
 		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
 		t.ServeJson()
