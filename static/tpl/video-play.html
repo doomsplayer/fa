@@ -2,9 +2,9 @@
 	<div class="topic">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4"><h3>视频标题视频标题</h3></div>
+				<div class="col-md-4"><h3 ng-bind="title"></h3></div>
 				<div class="col-md-8">
-					<p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介...</p>
+					<p ng-bind="desc"></p>
 				</div>
 			</div>
 		</div>
@@ -12,11 +12,10 @@
 	<div class="video">
 		<div class="row">
 			<div class="col-md-8">
-				<div class="youku-video" style="height: 560px;">
-					<embed src="http://player.youku.com/player.php/sid/XNDEzMjU3NDg4/v.swf" allowFullScreen="true" quality="high" width="95%" height="100%" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
-				</div>
+				<youku-video url='{{video}}'></youku-video>
 			</div>
 			<div class="col-md-4">
+			<!-- Ignore comment -->
 				<div class="comment">
 				   <h4 class="title">评论<span class="small">（142条）</span></h4>
 				</div>
@@ -190,8 +189,6 @@
 						</div>
 					</div>
 				</form> 
-	
-
 			</div>
 		</div>
 	</div>

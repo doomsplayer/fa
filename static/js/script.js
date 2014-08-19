@@ -1,4 +1,5 @@
 is_index = true;
+pan = null;
 (function() {
     var app = angular.module('badmintonhome', ['ngResource', 'ngRoute','ngSanitize','ui.bootstrap']);
     app.run(['$rootScope','$location',function($rootScope,$location){
@@ -45,6 +46,9 @@ is_index = true;
             }).when('/portfolio',{
                 templateUrl: 'static/tpl/badminton-sale.html',
                 controller: 'PortfolioCtrl'
+            }).when('/video/:videoId',{
+                templateUrl: 'static/tpl/video-play.html',
+                controller: 'VideoCtrl'
             }).when('/test',{
                 templateUrl: 'static/tpl/test.html'
             })
@@ -158,6 +162,12 @@ is_index = true;
             console.log($scope.current_pic)
         }
 
+    }]).controller('VideoCtrl', ['$scope','$resource','$routeParams', function($scope,$resource,$routeParams){
+        $scope.title = '标题测试'
+        $scope.desc = '文字描述文字描述文字描述文字描述文字描述文字描述文字描述'
+        $scope.video = 'http://player.youku.com/player.php/sid/XNDEzMjU3NDg4/1.swf'
+
+        
     }]).directive('badmintonLearn', function() {
         return {
             restrict: 'E',
@@ -211,6 +221,19 @@ is_index = true;
             restrict: 'E',
             templateUrl: 'static/tpl/mainBar.html',
             replace: true,
+        };
+    });
+    app.directive('youkuVideo', function () {
+        return {
+            scope:{url:'@url'},
+            replace:true,
+            restrict: 'EA',
+            template:'<div class="youku-video" style="height: 560px;"></div>',
+            controller:['$scope','$element',function($scope,$element){
+                $scope.$watch('url',function(newValue,oldValue){
+                    $element[0].innerHTML = '<embed src="' + $scope.url + '" allowFullScreen="true" quality="high" width="95%" height="100%" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>'
+                })
+            }]
         };
     });
 })();
