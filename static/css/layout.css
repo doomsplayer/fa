@@ -1118,3 +1118,17 @@ hr {
 	margin-bottom: 10px;
 	border-color: #BDBDBD;
 }
+.comment-area {
+	height: 420px;
+	overflow: auto;
+	overflow-x: hidden;
+	margin-bottom: 20px;
+}
+.airplane-btn {
+	width:34px;
+	height:34px;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	padding: 0;
+	background: #1ebcb9 url(../img/icon-spirte.png) no-repeat scroll -82px -83px;
+}
