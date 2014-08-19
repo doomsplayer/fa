@@ -23,7 +23,7 @@ func (m *MainMenuApi) Menu() {
 
 	me = new(Menu)
 	me.Title = `学打羽毛球`
-	me.Url = "#"
+	me.Url = "#/learnBadminton"
 	me.AddSub(`大话羽球`, `#`)
 	me.AddSub(`羽球知识`, url)
 	me.AddSub(`羽球技术`, url)
@@ -33,8 +33,8 @@ func (m *MainMenuApi) Menu() {
 
 	me = new(Menu)
 	me.Title = `视频库`
-	me.Url = url
-	me.AddSub(`国际大赛专辑`, url)
+	me.Url = `#/videoLib`
+	me.AddSub(`国际大赛专辑`, `#/wordChampion`)
 	me.AddSub(`经典大赛专辑`, url)
 	me.AddSub(`玩转羽球`, url)
 	menu = append(menu, me)
