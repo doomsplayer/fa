@@ -28,21 +28,19 @@
 				<img src="../static/img/loading.gif" />更多促销信息加载中，请稍候
 			</div>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-12">
-			<ul id="goods" class="nav nav-tabs" role="tablist">
-				<li class="x-tab active"><a href="#newest" role="tab" data-toggle="tab">最新</a></li>
-				<li class="x-tab"><a href="#oldest" role="tab" data-toggle="tab">即将过期</a></li>
-			</ul>
-			<div class="item" ng-repeat="item in recommand track by $index">
-				<div class="row">
-					<div class="col-xs-4">  
-						<img class="img-sidebar" ng-src="{{item.pic}}"/>
-					</div>
-					<div class="col-xs-8">
-						<a class="link-sidebar" ng-href="{{item.url}}">{{item.name}}<div ng-bind="item.price"></div></a>
+		<tabset class="col-lg-4 col-md-4 col-sm-12">
+			<tab class='x-tab' heading='{{tab.heading}}' ng-repeat="tab in recommand">
+				<div class="item" ng-repeat="item in tab.items track by $index">
+					<div class="row">
+						<div class="col-xs-4">  
+							<img class="img-sidebar" ng-src="{{item.pic}}"/>
+						</div>
+						<div class="col-xs-8">
+							<a class="link-sidebar" ng-href="{{item.url}}">{{item.name}}<div ng-bind="item.price"></div></a>
+						</div>
 					</div>
 				</div>
-			</div>	
-		</div>
+			</tab>
+		</tabset>
 	</div>
 </div>

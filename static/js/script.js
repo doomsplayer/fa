@@ -40,7 +40,7 @@ is_index = true;
             }).when('/item/:itemId',{
                 templateUrl: 'static/tpl/badminton-item.html',
                 controller: 'ItemCtrl'
-            }).when('/sales',{
+            }).when('/portfolio',{
                 templateUrl: 'static/tpl/badminton-sale.html',
                 controller: 'PortfolioCtrl'
             }).when('/test',{
@@ -52,7 +52,7 @@ is_index = true;
 
     app.controller('PortfolioCtrl', ['$scope',function($scope) {
         var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
-        $scope.recommand = [temp,temp,temp]
+        $scope.recommand = [{heading:'最新',items:[temp,temp,temp]},{heading:'即将过期',items:[temp,temp,temp]}]
         
         var temp2 = {}
         temp2.pic = '../static/img/item_main.jpg'
