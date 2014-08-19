@@ -154,7 +154,7 @@ func (t *TutorialApi) AllTypes() {
 
 // @Title tutorial
 // @Description 获得教程详细内容
-// @Param id query int true id
+// @Param id path int true id
 // @Success 200 {string} 列表的json
 // @Failure 404 Not found
 // @router /tutorial/:id [get]
