@@ -149,13 +149,11 @@ is_index = true;
         $scope.tabs.push({name:'最新',items:[item,item,item,item]})
         $scope.tabs.push({name:'热门',items:[item,item,item]})
 
-    }]).controller('ArticleCtrl', ['$routeParams','$scope', function($routeParams,$scope){
+    }]).controller('ArticleCtrl', ['$http', '$routeParams','$scope', function($http, $routeParams,$scope){
         var articleId = $routeParams.articleId
-        $http.get({
-            url: '/api/common/tutorial/' + articleId,
-        }).success(function(response, status, headers, config){
+        $http.get('/api/common/tutorial/' + articleId).success(function(response, status, headers, config){
             if (response.ok) {
-                var turorial = response.tutorial;
+                var tutorial = response.tutorial;
                 $scope.author = tutorial.Author;
                 $scope.source = tutorial.Source;
                 $scope.date = tutorial.Time;
@@ -163,17 +161,18 @@ is_index = true;
                 $scope.star = tutorial.Favor;
                 $scope.title = tutorial.Title
                 $scope.content = tutorial.Content
-                
+                $http.get('/api/common/hottutorial?type=' + tutorial.Type).success(function(response, status, headers, config){
+                    if (response.ok) {
+                        var ts = response.tutorials;
+                        $scope.recommand = []
+                        for (var i in ts) {
+                            $scope.recommand.push({title: ts[i].Title, date: ts[i].Time ,url: "#/article/" + ts[i].Id})
+                        }
+                        
+                    }
+                })
             }
-           
         })
-        $scope.recommand = []
-        $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
-        $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
-        $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
-        $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
-        $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
-        $scope.recommand.push({title:'其他文章其他文章其他文章其他文章',date:'14-07-28',url:undefined})
     }]).controller('LearnBadmintonCtrl', ['$scope', function($scope){
         var slide = {pic:'../static/img/video-carousel-1.jpg',title:'你真的会缠手胶么？教你缠手胶的小窍门！',desc:'简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简...'}
         $scope.slides = [slide,slide,slide]
