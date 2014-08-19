@@ -6,9 +6,11 @@ is_index = true;
         $rootScope.index_css = function(){
             if ($location.path() == '/'){
                 is_index = true;
+                $rootScope.is_index = true;
                 return '';
             }else{
                 is_index = false;
+                $rootScope.is_index = false;
                 return 'unindex';
             }
         }
