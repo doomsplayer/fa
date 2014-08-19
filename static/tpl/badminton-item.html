@@ -8,7 +8,7 @@
    <div class="col-lg-8 col-md-8 col-sm-12">
      <div class="item">
       <a class="title" href="#">
-        <h5><kbd>{{type}}</kbd>{{title}}<span class="subtitle">{{price}}</span></h5>
+        <h5><kbd>{{type}}</kbd>{{title}}<span class="subtitle">{{title2}}</span></h5>
       </a>
       <div class="row">
        <div class="col-lg-5 col-md-5 col-sm-5">
@@ -16,11 +16,9 @@
        </div>
        <div class="col-lg-7 col-md-7 col-sm-7">
        参数性能：
-         <ul class="parameter">
-          <li ng-repeat="per in performance track by $index" ng-bind="per"></li>
-          </ul>
+         <div class="parameter" ng-bind-html="description"></div>
          </p>
-          <p>购买链接：<a ng-href="{{link.url}}">{{link.title}}</a> (优惠码：{{link.coupon}})</p>
+          <p>购买链接：<a ng-href="{{link.url}}">{{link.title}}</a></p>
           <div class="comment">
           <a href="#"><img src="../static/img/comment.jpg"/ >评论 142条</a>
           <!-- FIXME 同步评论数 -->

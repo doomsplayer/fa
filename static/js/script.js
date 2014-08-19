@@ -173,41 +173,207 @@ is_index = true;
                 })
             }
         })
-    }]).controller('LearnBadmintonCtrl', ['$scope', function($scope){
+    }]).controller('LearnBadmintonCtrl', ['$http', '$scope', function($http, $scope){
         var slide = {pic:'../static/img/video-carousel-1.jpg',title:'你真的会缠手胶么？教你缠手胶的小窍门！',desc:'简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简...'}
         $scope.slides = [slide,slide,slide]
-        var passage = {pic:'../static/img/img_test4.jpg',title:'假动作的魅力：盖得假动作集锦',url:undefined,desc:'描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述'}
-        var temp = [passage,passage,passage,passage]
+        
         $scope.knowledge = []
-        $scope.knowledge.push({name:'大话羽球',link:undefined,passages:temp})
-        $scope.knowledge.push({name:'羽球知识',link:undefined,passages:temp})
-        $scope.knowledge.push({name:'羽球技术',link:undefined,passages:temp})
-        $scope.knowledge.push({name:'羽球战术',link:undefined,passages:temp})
+
+        $http.get('/api/common/hottutorial',{params: {type: '大话羽球', from: 0, num: 4}})
+             .success(function(response, status, headers, config) {
+                if (response.ok) {
+                    var hts = response.tutorials;
+                    var tmp = [];
+                    for (var i in hts) {
+                        var ht = hts[i];
+                        var picurl = '';
+                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        .success(function(response, status, headers, config) {
+                            picurl = response.filepath;
+                            tmp.push(
+                            {
+                                pic: picurl, 
+                                title: ht.Title, 
+                                url: '#/article/' + ht.Id, 
+                                desc: '描述',
+                            }
+                            );
+                        })
+                    }
+                    $scope.knowledge.push({name:'大话羽球', link:undefined, passages:tmp});
+                }
+                
+            }
+        )
+        
+        $http.get('/api/common/hottutorial',{params: {type: '羽球战术', from: 0, num: 4}})
+             .success(function(response, status, headers, config) {
+                if (response.ok) {
+                    var hts = response.tutorials;
+                    var tmp = [];
+                    for (var i in hts) {
+                        var ht = hts[i];
+                        var picurl = '';
+                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        .success(function(response, status, headers, config) {
+                            picurl = response.filepath;
+                            tmp.push(
+                            {
+                                pic: picurl, 
+                                title: ht.Title, 
+                                url: '#/article/' + ht.Id, 
+                                desc: '描述',
+                            }
+                            );
+                        })
+                    }
+                    $scope.knowledge.push({name:'羽球战术', link:undefined, passages:tmp});
+                }
+                
+            }
+        )
+        
+        $http.get('/api/common/hottutorial',{params: {type: '羽球技术', from: 0, num: 4}})
+             .success(function(response, status, headers, config) {
+                if (response.ok) {
+                    var hts = response.tutorials;
+                    var tmp = [];
+                    for (var i in hts) {
+                        var ht = hts[i];
+                        var picurl = '';
+                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        .success(function(response, status, headers, config) {
+                            picurl = response.filepath;
+                            tmp.push(
+                            {
+                                pic: picurl, 
+                                title: ht.Title, 
+                                url: '#/article/' + ht.Id, 
+                                desc: '描述',
+                            }
+                            );
+                        })
+                    }
+                    $scope.knowledge.push({name:'羽球技术', link:undefined, passages:tmp});
+                }
+                
+            }
+        )
+
+        $http.get('/api/common/hottutorial',{params: {type: '羽球知识', from: 0, num: 4}})
+             .success(function(response, status, headers, config) {
+                if (response.ok) {
+                    var hts = response.tutorials;
+                    var tmp = [];
+                    for (var i in hts) {
+                        var ht = hts[i];
+                        var picurl = '';
+                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        .success(function(response, status, headers, config) {
+                            picurl = response.filepath;
+                            tmp.push(
+                            {
+                                pic: picurl, 
+                                title: ht.Title, 
+                                url: '#/article/' + ht.Id, 
+                                desc: '描述',
+                            }
+                            );
+                        })
+                    }
+                    $scope.knowledge.push({name:'羽球知识', link:undefined, passages:tmp});
+                }
+                
+            }
+        )
+
+
         $scope.part2 = []
-        $scope.part2.push({name:'伤病防护',link:undefined,passages:temp})
-        $scope.part2.push({name:'常见问题',link:undefined,passages:temp})
-    }]).controller('ItemCtrl', ['$scope','$routeParams', function($scope,$routeParams){
-        $scope.type = '球拍'
-        $scope.title = '期待已久的弓箭11TH SP版明后天终于要到货啦，超级经典，绝版'
-        $scope.price = '￥868(王局体育预订价，包顺丰，限时抢购中)'
-        $scope.pic = '../static/img/item_main.jpg'
-        $scope.performance = ['xxxxxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxx']
-        $scope.link = {url:undefined,title:'淘宝',coupon:"ABCDEFG"}
-        var pic = {thumb:'../static/img/item_thumb.jpg',pic:'../static/img/item_main_pic.jpg'}
-        $scope.pics = [pic,pic,pic,pic]
-        $scope.desc = '文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述'
-        var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
-        $scope.recommand = [temp,temp,temp]
+        $http.get('/api/common/hottutorial',{params: {type: '伤病防护', from: 0, num: 4}})
+             .success(function(response, status, headers, config) {
+                if (response.ok) {
+                    var hts = response.tutorials;
+                    var tmp = [];
+                    for (var i in hts) {
+                        var ht = hts[i];
+                        var picurl = '';
+                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        .success(function(response, status, headers, config) {
+                            picurl = response.filepath;
+                            tmp.push(
+                            {
+                                pic: picurl, 
+                                title: ht.Title, 
+                                url: '#/article/' + ht.Id, 
+                                desc: '描述',
+                            }
+                            );
+                        })
+                    }
+                    $scope.knowledge.push({name:'伤病防护', link:undefined, passages:tmp});
+                }
+                
+            }
+        )
+        $http.get('/api/common/hottutorial',{params: {type: '常见问题', from: 0, num: 4}})
+             .success(function(response, status, headers, config) {
+                if (response.ok) {
+                    var hts = response.tutorials;
+                    var tmp = [];
+                    for (var i in hts) {
+                        var ht = hts[i];
+                        var picurl = '';
+                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        .success(function(response, status, headers, config) {
+                            picurl = response.filepath;
+                            tmp.push(
+                            {
+                                pic: picurl, 
+                                title: ht.Title, 
+                                url: '#/article/' + ht.Id, 
+                                desc: '描述',
+                            }
+                            );
+                        })
+                    }
+                    $scope.knowledge.push({name:'常见问题', link:undefined, passages:tmp});
+                }
+                
+            }
+        )
+
+    }]).controller('ItemCtrl', ['$http', '$scope','$routeParams', function($http, $scope,$routeParams){
+        $http.get('/api/common/promotion/' + $routeParams.itemId).success(function(response) {
+            if (response.ok) {
+                var p = response.promotion;
+                $http.get('/api/common/upload', {params: {id: p.Picid}}).success(function(response) {
+                    if (response.ok) {
+                        $scope.type = p.Type
+                        $scope.title = p.Title
+                        $scope.title2 = p.Title2;
+                        $scope.pic = response.filePath;
+                        $scope.discription = p.Description;
+                        $scope.link = {url: p.url, title: p.Description2}
+                        var pic = {thumb:'../static/img/item_thumb.jpg',pic:'../static/img/item_main_pic.jpg'}
+                        $scope.pics = [pic,pic,pic,pic]
+                        $scope.desc = '文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述'
+                        var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
+                        $scope.recommand = [temp,temp,temp]
 
 
-        $scope.current_pic = $scope.pics[0].pic
-        $scope.selected = 0
-        $scope.switch_pic = function(index){
-            $scope.current_pic = $scope.pics[index].pic
-            $scope.selected = index
-            console.log($scope.current_pic)
-        }
-
+                        $scope.current_pic = $scope.pics[0].pic
+                        $scope.selected = 0
+                        $scope.switch_pic = function(index){
+                            $scope.current_pic = $scope.pics[index].pic
+                            $scope.selected = index
+                            console.log($scope.current_pic)
+                        }
+                    }
+                })
+                
+                
+            }
+        })
     }]).controller('VideoCtrl', ['$scope','$resource','$routeParams', function($scope,$resource,$routeParams){
         var video = $resource('api/common/video')
         var ret = video.get({type:$routeParams.videoType,from:$routeParams.videoId})

@@ -5,6 +5,7 @@ import (
 	"badmintonhome/models"
 	"fmt"
 	"github.com/astaxie/beego/validation"
+	"strconv"
 )
 
 type PromotionApi struct {
@@ -71,6 +72,35 @@ func (p *PromotionApi) Get() {
 	p.ServeJson()
 	return
 
+}
+
+// @Title promotion
+// @Description 获得促销详细内容
+// @Param id path int true id
+// @Success 200 {string} 促销内容json
+// @Failure 404 Not found
+// @router /promotion/:id [get]
+func (p *PromotionApi) Single() {
+	ids := p.Ctx.Input.Param(`:id`)
+	id, err := strconv.Atoi(ids)
+	if err != nil {
+		p.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		p.ServeJson()
+		return
+	}
+
+	tot := new(models.Promotion)
+	tot.Id = int64(id)
+
+	err = tot.Get()
+	if err != nil {
+		p.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		p.ServeJson()
+		return
+	}
+	p.Data["json"] = map[string]interface{}{"ok": true, "promotion": tot}
+	p.ServeJson()
+	return
 }
 
 // @Title mainBar
