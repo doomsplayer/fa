@@ -27,7 +27,11 @@ func (t *Tutorial) Put() (err error) {
 }
 
 func (t *Tutorial) Get() (err error) {
-	b, err := Engine.Where("type=?", t.Type).Get(t)
+	q := Engine.Id(t.Id)
+	if t.Type != `` {
+		q = q.Where("type=?", t.Type)
+	}
+	b, err := q.Get(t)
 	if !b {
 		return fmt.Errorf("not exist")
 	}
