@@ -91,6 +91,9 @@ is_index = true;
             }).when('/portfolio',{
                 templateUrl: 'static/tpl/badminton-sale.html',
                 controller: 'PortfolioCtrl'
+            }).when('/video/:videoType/:videoId',{
+                templateUrl: 'static/tpl/video-play.html',
+                controller: 'VideoCtrl'
             }).when('/test',{
                 templateUrl: 'static/tpl/test.html'
             })
@@ -204,6 +207,13 @@ is_index = true;
             console.log($scope.current_pic)
         }
 
+    }]).controller('VideoCtrl', ['$scope','$resource','$routeParams', function($scope,$resource,$routeParams){
+        var video = $resource('api/common/video')
+        $scope.video = video.get({type:$routeParams.videoType,from:$routeParams.videoId})
+        $scope.$watch('video.Content',function(newValue,oldValue){
+            $('.youku-video')[0].innerHTML = newValue.replace(/(width|height)=\d+/gi,'');
+            // Remove the hardcoded size of video
+        })
     }]).directive('badmintonLearn', function() {
         return {
             restrict: 'E',

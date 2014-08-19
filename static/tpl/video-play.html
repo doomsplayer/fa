@@ -2,7 +2,7 @@
 	<div class="topic">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4"><h3 ng-bind="title"></h3></div>
+				<div class="col-md-4"><h3 ng-bind="video.Title"></h3></div>
 				<div class="col-md-8">
 					<p ng-bind="desc"></p>
 				</div>
@@ -12,7 +12,9 @@
 	<div class="video">
 		<div class="row">
 			<div class="col-md-8">
-				<youku-video url='{{video}}'></youku-video>
+				<div class="youku-video" style="height: 560px;">
+						
+				</div>
 			</div>
 			<div class="col-md-4">
 			<!-- Ignore comment -->
