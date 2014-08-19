@@ -209,10 +209,10 @@ is_index = true;
 
     }]).controller('VideoCtrl', ['$scope','$resource','$routeParams', function($scope,$resource,$routeParams){
         var video = $resource('api/common/video')
-        $scope.video = video.get({type:$routeParams.videoType,from:$routeParams.videoId})
-        $scope.$watch('video.Content',function(newValue,oldValue){
-            $('.youku-video')[0].innerHTML = newValue.replace(/(width|height)=\d+/gi,'');
-            // Remove the hardcoded size of video
+        var ret = video.get({type:$routeParams.videoType,from:$routeParams.videoId})
+        ret.$promise.then(function(){
+            $scope.video = ret.videos[0]
+            $('.youku-video')[0].innerHTML = $scope.video.Content.replace(/(width|height)=\d+/gi,'');
         })
     }]).directive('badmintonLearn', function() {
         return {
