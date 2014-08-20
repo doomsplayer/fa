@@ -80,12 +80,15 @@ is_index = true;
             }).when('/videoAlbum/:albumId',{
                 templateUrl: "static/tpl/video-album.html",
                 controller:'VideoAlbumCtrl'
-            }).when('/worldChampion',{
-                templateUrl: "static/tpl/video-worldchampion.html",  // Seems this page is a part of album ?
-                controller: 'WorldChampionCtrl'
+            }).when('/video/:videoId',{
+                templateUrl: 'static/tpl/video-play.html',
+                controller: 'VideoCtrl'
             }).when('/learnBadminton',{
-                templateUrl: 'static/tpl/learn-to-play-badminton.html',
+                templateUrl: 'static/tpl/article-index.html',
                 controller: 'LearnBadmintonCtrl'
+            }).when('/articleAlbum/:albumId',{
+                templateUrl: 'static/tpl/article-list.html',
+                controller: 'ArticleAlbumCtrl'
             }).when('/article/:articleId',{
                 templateUrl: 'static/tpl/article.html',
                 controller: 'ArticleCtrl'
@@ -95,9 +98,6 @@ is_index = true;
             }).when('/portfolio',{
                 templateUrl: 'static/tpl/badminton-sale.html',
                 controller: 'PortfolioCtrl'
-            }).when('/video/:videoId',{
-                templateUrl: 'static/tpl/video-play.html',
-                controller: 'VideoCtrl'
             }).when('/test',{
                 templateUrl: 'static/tpl/test.html'
             })
@@ -154,20 +154,25 @@ is_index = true;
         $http.get("/api/common/video", {params: {type: id, num: 30}}).success(function(r) {
             $scope.name = '2014澳大利亚羽毛球公开赛';
             $scope.desc = '简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介...';
-            console.log(r)
             if (r.ok) {
                 $scope.related = r.videos;    
                 $scope.recommand = r.videos;
             }
         })
 
-    }]).controller('WorldChampionCtrl', ['$scope', function($scope){
-        $scope.title = '国际大赛专辑'
-        $scope.desc = '按赛事分类、按时间收录近期在各个国家举办的羽毛球国际赛事精彩视频专辑'
-        var item = {pic:'../static/img/img_test3.jpg',url:undefined,desc:'苏迪曼杯，又称世界羽毛球混合团体锦标赛，是羽毛球三大世界性团体赛之一。1989年首届苏迪曼杯在雅加达举办，至今近30年，其中涌现的经典对决不计其数，小编在此为您准备了20场经典巅峰对决，带您一起走进苏迪曼杯这些年。',title:'苏迪曼杯这些年——盘点苏杯经典大战20场'}
-        $scope.tabs = []
-        $scope.tabs.push({name:'最新',items:[item,item,item,item]})
-        $scope.tabs.push({name:'热门',items:[item,item,item]})
+    }]).controller('ArticleAlbumCtrl', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams){
+        var id = $routeParams.albumId;
+        $http.get('/api/common/tutorial',{params: {type: id, num: 20}}).success(function(r) {
+            if (r.ok) {
+                $scope.title = id;
+                $scope.desc = '按赛事分类、按时间收录近期在各个国家举办的羽毛球国际赛事精彩视频专辑'
+                $scope.tabs = []
+                $scope.tabs.push({name:'最新',items: r.tutorials})
+                $scope.tabs.push({name:'热门',items: r.tutorials})
+            }
+        });
+        
+        
 
     }]).controller('ArticleCtrl', ['$http', '$routeParams','$scope', function($http, $routeParams,$scope){
         var articleId = $routeParams.articleId
@@ -194,8 +199,12 @@ is_index = true;
             }
         })
     }]).controller('LearnBadmintonCtrl', ['$http', '$scope', function($http, $scope){
-        var slide = {pic:'../static/img/video-carousel-1.jpg',title:'你真的会缠手胶么？教你缠手胶的小窍门！',desc:'简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简...'}
-        $scope.slides = [slide,slide,slide]
+        $http.get('/api/common/hottutorial', {params: {num: 3}}).success(function(r) {
+            console.log(r)
+            if (r.ok) {
+                $scope.slides = r.tutorials;
+            }
+        });
         
         $scope.knowledge = []
 
