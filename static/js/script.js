@@ -473,16 +473,13 @@ is_index = true;
     app.directive('pic',function(){
         return {
             scope:{Id:'@picid'},
-            template: '<img ng-src="{{url}}"></img>',
+            template: '<img></img>',
             replace: true,
             restrict: 'E',
-            controller:['$scope','Api',function($scope,Api){
+            controller:['$scope','$element','Api',function($scope,$element,Api){
                 ret = Api.file.get({id:$scope.Id})
                 ret.$promise.then(function(){
-                    console.log(ret)
-                    if (ret.ok){
-                        $scope.url = ret.filepath
-                    }
+                    $($element).attr('src',ret.filepath)
                 })
             }]
         }
