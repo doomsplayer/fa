@@ -473,20 +473,24 @@ is_index = true;
     app.directive('pic',function(){
         return {
             scope:{Id:'@picid'},
-            template: '<img></img>',
+            template: '<img ng-src="{{url}}"></img>',
             replace: true,
             restrict: 'E',
             controller:['$scope','$element','Api',function($scope,$element,Api){
+                ret = Api.file.get({id:0})
+                ret.$promise.then(function(data){
+                    $scope.url = data.filepath
+                    // $($element).attr('src',data.filepath)
+                })
                 $scope.$watch('Id',function(newValue,oldValue){
                     if (newValue != oldValue){
-                        ret = Api.file.get({id:$scope.Id})
-                        ret.$promise.then(function(){
-                            $($element).attr('src',ret.filepath)
+                        ret = Api.file.get({id:0})
+                        ret.$promise.then(function(data){
+                            $scope.url = data.filepath
+                            // $($element).attr('src',data.filepath)
                         })
                     }
-                })
-                
-                
+                })                
             }]
         }
     })
