@@ -19,12 +19,13 @@
 											$http.get("/api/common/upload", {params: {id: items[i].PicId}}).success(function(response){
 												if (response.ok){
 													$scope.items.push(
-													{
+													{	
 														name:items[i].Title, 
 														pic_url: response.filepath, 
 														price: items[i].Description2, 
 														category: items[i].Type,
-													})					
+														id: items[i].Id
+													})
 												}
 												
 											})

@@ -435,7 +435,7 @@ is_index = true;
                         $q.all(promises).then(function(data){
                             for (var i in data){
                                 if (data[i].ok){
-                                    $scope.videos.push({name:data[i].$promise.Name,videos:ret.videos})
+                                    $scope.videos.push({name:data[i].$promise.Name,videos:data[i].videos})
                                 }
                             }
                         })

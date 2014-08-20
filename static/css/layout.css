@@ -281,6 +281,10 @@ p.pic_intro {
 	float: left;
 	position: relative;
 }
+.news_row .img_wrapper {
+	width:200px;
+	height:120px;
+}
 .text_wrapper {
 	float: left;
 	width: 80%;
