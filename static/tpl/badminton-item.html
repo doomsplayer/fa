@@ -8,17 +8,17 @@
    <div class="col-lg-8 col-md-8 col-sm-12">
      <div class="item">
       <a class="title" href="#">
-        <h5><kbd>{{type}}</kbd>{{title}}<span class="subtitle">{{title2}}</span></h5>
+        <h5><kbd>{{p.Type}}</kbd>{{p.Title}}<span class="subtitle">{{p.Title2}}</span></h5>
       </a>
       <div class="row">
        <div class="col-lg-5 col-md-5 col-sm-5">
-         <img ng-src="{{pic}}" />
+         <pic picid='{{p.Picid}}'></pic>
        </div>
        <div class="col-lg-7 col-md-7 col-sm-7">
        参数性能：
-         <div class="parameter" ng-bind-html="description"></div>
+         <div class="parameter" ng-bind-html="p.Description"></div>
          </p>
-          <p>购买链接：<a ng-href="{{link.url}}">{{link.title}}</a></p>
+          <p>购买链接：<a ng-href="{{p.url}}">{{p.Description2}}</a></p>
           <div class="comment">
           <a href="#"><img src="../static/img/comment.jpg"/ >评论 142条</a>
           <!-- FIXME 同步评论数 -->

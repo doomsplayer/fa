@@ -13,7 +13,11 @@ is_index = true;
                 $rootScope.is_index = false;
                 return 'unindex';
             }
+        };
+        $rootScope.index = function(){
+            $location.path('/');
         }
+
     }])
     
     app.config(function($httpProvider) {
@@ -103,6 +107,7 @@ is_index = true;
     app.factory('Api', ['$resource', function($resource){
         var api = {};
         api.file = $resource('/api/common/upload',{},{get:{cache:true,method:'GET'}});
+        api.video = $resource('/api/common/video', {}, {get:{cache:true,method:'GET'}});
         return api;
     }])
 
@@ -347,35 +352,25 @@ is_index = true;
     }]).controller('ItemCtrl', ['$http', '$scope','$routeParams', function($http, $scope,$routeParams){
         $http.get('/api/common/promotion/' + $routeParams.itemId).success(function(response) {
             if (response.ok) {
-                var p = response.promotion;
-                $http.get('/api/common/upload', {params: {id: p.Picid}}).success(function(response) {
-                    if (response.ok) {
-                        $scope.type = p.Type
-                        $scope.title = p.Title
-                        $scope.title2 = p.Title2;
-                        $scope.pic = response.filePath;
-                        $scope.description = p.Description;
-                        $scope.link = {url: p.url, title: p.Description2}
-                        var pic = {thumb:'../static/img/item_thumb.jpg',pic:'../static/img/item_main_pic.jpg'}
-                        $scope.pics = [pic,pic,pic,pic]
-                        var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
-                        $scope.recommand = [temp,temp,temp]
+                $scope.p = response.promotion;
+                // TODO fetch below data
+                var pic = {thumb:'../static/img/item_thumb.jpg',pic:'../static/img/item_main_pic.jpg'};
+                $scope.pics = [pic,pic,pic,pic];
+                var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined};
+                $scope.recommand = [temp,temp,temp];
 
 
-                        $scope.current_pic = $scope.pics[0].pic
-                        $scope.selected = 0
-                        $scope.switch_pic = function(index){
-                            $scope.current_pic = $scope.pics[index].pic
-                            $scope.selected = index
-                            console.log($scope.current_pic)
-                        }
-                    }
-                })
-                
-                
+                $scope.current_pic = $scope.pics[0].pic;
+                $scope.selected = 0;
+                $scope.switch_pic = function(index){
+                    $scope.current_pic = $scope.pics[index].pic;
+                    $scope.selected = index;
+                    console.log($scope.current_pic);
+                }
             }
         })
     }]).controller('VideoCtrl', ['$scope','$resource','$routeParams', function($scope,$resource,$routeParams){
+        console.log($routeParams)
         var video = $resource('api/common/video')
         var ret = video.get({type:$routeParams.videoType,from:$routeParams.videoId})
         ret.$promise.then(function(){
@@ -404,27 +399,31 @@ is_index = true;
             scope:{},
             restrict: 'E',
             templateUrl: 'static/tpl/badminton-video.html',
-            controller: ['$scope','$resource','$http',function($scope,$resource,$http){
+            controller: ['$scope','$resource','$http','$q','Api',function($scope,$resource,$http,$q,Api){
                 $scope.videos = []
-                // $http.get('/api/common/videotypes').success(function(response){
-                //     if (response.ok){
-                //         for( var i in response){
-                //             // $http.get('/api/common/video',{params:{num:3,type:response[i]}).success(function(response){
-                //             //     $scope.videos.push()
-                //             // })
-                //         }
-                //     }
-                // })
-                
-                
-                var video  = {preview:'../static/img/img_test3.jpg',url:undefined,title:'苏迪曼杯这些年——盘点苏杯经典大战20场',desc:'苏迪曼杯，又称世界羽毛球混合团体锦标赛，是羽毛球三大世界性团体赛之一。1989年首届苏迪曼杯在雅加达举办，至今近30年，其中涌现的经典对决不计其数，小编在此为您准备了20场经典巅峰对决，带您一起走进苏迪曼杯这些年。'}
-                $scope.videos.push({name:'国际大赛专辑',videos:[video,video,video]})
-                $scope.videos.push({name:'经典对战专辑',videos:[video,video,video]})
-                $scope.videos.push({name:'玩转羽球',videos:[video,video,video]})
+                $http.get('/api/common/videotypes').success(function(response){
+                    if (response.ok){
+                        var promises = []
+                        for(var i in response.videotypes){
+                            var Name = response.videotypes[i].Name
+                            var ret = Api.video.get({num:3,type:Name})
+                            ret.$promise.Name = Name
+                            promises.push(ret.$promise)
+                        }
+                        $q.all(promises).then(function(data){
+                            for (var i in data){
+                                if (data[i].ok){
+                                    $scope.videos.push({name:data[i].$promise.Name,videos:ret.videos})
+                                }
+                            }
+                        })
+                    }
+                })
             }]
         }
     }).directive('shareTo', function(){
         return {
+            // TODO 引入第三方社会化分享工具
             restrict: 'EA',
             template: '<span class="pull-right"><img src="../static/img/share.jpg" />分享到<a href="#"><img src="../static/img/weibo.jpg" /></a><a href="#"><img src="../static/img/qzone.jpg" /></a><a href="#"><img src="../static/img/weixin.jpg" /></a></span>'
         };
