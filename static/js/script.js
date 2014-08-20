@@ -477,7 +477,7 @@ is_index = true;
             replace: true,
             restrict: 'E',
             controller:['$scope','$element','Api',function($scope,$element,Api){
-                ret = Api.file.get({id:newValue})
+                ret = Api.file.get({id:$scope.Id})
                 ret.$promise.then(function(data){
                     $scope.url = data.filepath
                     // $($element).attr('src',data.filepath)
