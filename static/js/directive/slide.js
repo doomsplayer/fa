@@ -3,13 +3,12 @@
 	app.directive('slider',function(){
 		return {
 			scope: {}, // {} = isolate, true = child, false/undefined = no change
-			controller: ['$scope','$element','$resource','$q',function($scope, $element,$resource,$q) {
+			controller: ['$scope','$element','$resource','$q','Api',function($scope, $element,$resource,$q,Api) {
 				var s = $resource('/api/common/carousel')
-				var file = $resource('/api/common/upload')
 				$scope.slides = []
 				$scope.fetchUrl = function(item){
 					var d = $q.defer();
-					var result = file.get({id:item['PicId']})
+					var result = Api.file.get({id:item['PicId']})
 					result.$promise.then(function(){
 						if (result.ok){
 							item.PicUrl = result.filepath
