@@ -6,16 +6,17 @@ import (
 )
 
 type Video struct {
-	Id      int64     `form:"-"`
-	Title   string    `form:"title" valid:"Required"`
-	Picid   int       `form:"picid" valid:"Required"`
-	Content string    `form:"content" xorm:"text" valid:"Required"`
-	Type    string    `form:"type" valid:"Required"`
-	Author  string    `form:"author"`
-	Source  string    `form:"source"`
-	Click   int       `form:"-"`
-	Favor   int       `form:"-"`
-	Time    time.Time `xorm:"updated"`
+	Id          int64     `form:"-"`
+	Title       string    `form:"title" valid:"Required"`
+	PicId       int       `form:"picid" valid:"Required"`
+	Content     string    `form:"content" xorm:"text" valid:"Required"`
+	Type        string    `form:"type" valid:"Required"`
+	Author      string    `form:"author"`
+	Source      string    `form:"source"`
+	Click       int       `form:"-"`
+	Favor       int       `form:"-"`
+	Description string    `form:"description"`
+	Time        time.Time `xorm:"updated"`
 }
 
 type VideoSlice []Video
@@ -27,7 +28,7 @@ func (t *Video) Put() (err error) {
 }
 
 func (t *Video) Get() (err error) {
-	b, err := Engine.Where("type=?", t.Type).Get(t)
+	b, err := Engine.Get(t)
 	if !b {
 		return fmt.Errorf("not exist")
 	}
@@ -43,12 +44,21 @@ func (t *VideoSlice) Hot(n, from int, tp string) (err error) {
 	if n == 0 {
 		n = 1
 	}
-	err = Engine.Where("type=?", tp).Desc("time").Limit(n, from).Find(t)
+	q := Engine.Desc("time").Limit(n, from)
+	if tp != `` {
+		q = q.Where("type=?", tp)
+	}
+	err = q.Find(t)
+	fmt.Println(t)
 	return
 }
 
 func (t *VideoSlice) All(n, from int, tp string) (err error) {
-	err = Engine.Where("type=?", tp).Desc("id").Limit(n, from).Find(t)
+	q := Engine.Desc("id").Limit(n, from)
+	if tp != `` {
+		q = q.Where("type=?", tp)
+	}
+	err = q.Find(t)
 	return
 }
 

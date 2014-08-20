@@ -1,30 +1,37 @@
 <carousel>
-	<slide ng-repeat="slide in slides track by $index">
-		<img ng-src="{{slide.pic}}" />
-		<div class="carousel-intro">
-			<h3 ng-bind="slide.title"></h3>
-			<p ng-bind="slide.content"></p>
-		</div>
-	</slide>
+    <slide ng-repeat="slide in slides track by $index">
+    <a ng-href="#/video/{{slide.Id}}"><pic picid="{{slide.PicId}}"></pic></a>
+        <div class="carousel-intro">
+            <h3 ng-bind="slide.Title"></h3>
+            <p ng-bind="slide.Description"></p>
+        </div>
+    </slide>
 </carousel>
 <div class="video-list">
-    <div id="vd_0" ng-repeat="album in videos">
-    	<div class="title-wrapper">
-    		<h4 class="title" ng-bind="album.name"><span><a ng-href="{{album.url}}">MORE></a></span></h4>
-    	</div>
-    	<div class="row myrow">
-    		<div class="col-md-4" ng-repeat="video in album.videos track by $index">
-    			<div class="video-list-inner">
-    				<div class="img">
-	    				<img ng-src="{{video.preview}}" alt="" />
-						<div class="video-mask"></div>			    					
-    				</div>
-	    			<div class="text">
-		    			<h5><a ng-href="{{video.url}}"  ng-bind="video.title"></a></h5>
-		    			<p ng-bind="video.desc"></p>
-	    			</div>
-    			</div>
-    		</div>
-    	</div>
+    <div id="vd_0" ng-repeat="album in albums">
+        <div class="title-wrapper">
+        
+            <h4 class="title" ng-bind="album.name">
+                <span>
+                    <a ng-href="#/videoAlbum/{{album.name}}">MORE></a>
+                </span>
+            </h4>
+        </div>
+        <div class="row myrow">
+            <div class="col-md-4" ng-repeat="video in album.videos track by $index">
+                <div class="video-list-inner">
+                    <div class="img">
+                        <pic picid="{{video.PicId}}"></pic>
+                        <a ng-href="#/video/{{video.Id}}"><div class="video-mask"></div></a>
+                    </div>
+                    <div class="text">
+                        <h5>
+                            <a ng-href="#/video/{{video.Id}}"  ng-bind="video.Title"></a>
+                        </h5>
+                        <p ng-bind="video.Description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

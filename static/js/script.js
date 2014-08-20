@@ -95,7 +95,7 @@ is_index = true;
             }).when('/portfolio',{
                 templateUrl: 'static/tpl/badminton-sale.html',
                 controller: 'PortfolioCtrl'
-            }).when('/video/:videoType/:videoId',{
+            }).when('/video/:videoId',{
                 templateUrl: 'static/tpl/video-play.html',
                 controller: 'VideoCtrl'
             }).when('/test',{
@@ -121,33 +121,46 @@ is_index = true;
         });
         
     }]).controller('defaultCtrl', function() {
-    }).controller('VideoLibCtrl', ['$scope', function ($scope) {
-        // FIXME 视频库的API
-        $scope.slides = []
-        var sample = {pic:'../static/img/video-carousel-0.jpg',title:'赠粉丝——李龙大郑在成搭档这七年',content:'韩国羽毛球名将李龙大/郑在成在北京时间2012年8月5日进行的伦敦奥运会羽毛球男双3、4名争夺战中战胜马来西亚组合获得一枚铜牌。伦敦奥运也是郑在成代表韩国参加的最后的比赛，自此他将正式退役。这枚男双铜牌也将是他运动员生涯的最后一枚奖牌。自此，这对创造无数传奇的的搭档也将正式解散。图为李龙大与郑在成获得铜牌后紧紧相拥。'}
-        $scope.slides.push(sample)
-        $scope.slides.push(sample)
-        $scope.slides.push(sample)
+    }).controller('VideoLibCtrl', ['$http', '$scope', function($http, $scope) {
+        $http.get('/api/common/videotypes').success(function(resp) {
+            $scope.albums = [];
+            if (resp.ok) {
+                for (var i in resp.videotypes) {
+                    var typeName = resp.videotypes[i].Name;
+
+                    $http.get('/api/common/hotvideo', {params: {type: typeName, num: 6}})
+                    .success(function(typeName) {
+                        return function(resp) {
+                            if (resp.ok) {
+                                console.log(typeName)
+                                $scope.albums.push({name: typeName,videos: resp.videos})
+                            }
+                        }
+                    }(typeName))
+                    
+                }
+            }
+        })
+        $http.get('/api/common/hotvideo', {params: {num: 3}}).success(function(r) {
+            if (r.ok) {
+                $scope.slides = r.videos;
+            }
+        })
         
-        $scope.videos = []
-        var temp = []
-        var video = {preview:'../static/img/img_test4.jpg',url:'',title:'假动作的魅力：盖得假动作集锦',desc:'描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述'}
         
-        for(var i=1;i<7;i++){
-            temp.push(video)
-        }
-        $scope.videos.push({name:'国际大赛',videos:temp})
-        $scope.videos.push({name:'经典对战专辑',videos:temp})
-        $scope.videos.push({name:'玩转羽球',videos:temp}) // album.url 
-    }]).controller('VideoAlbumCtrl', ['$scope','$routeParams', function($scope,$routeParams){
-        var id = $routeParams.albumId
-        // FIXME 按照ID请求专题数据填充
-        $scope.name = '2014澳大利亚羽毛球公开赛';
-        $scope.desc = '简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介...';
-        var video1 = {url:undefined,preview:'../static/img/img_test4.jpg',name:'假动作的魅力：盖得假动作集锦',desc:'描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述描述'}
-        $scope.related = [video1,video1,video1,video1,video1,video1]
-        var video2 = {url:undefined,preview:'../static/img/img_test5.jpg',name:'2013澳大利亚羽毛球公开赛',desc:'简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简...'}
-        $scope.recommand = [video2,video2,video2,video2]
+
+    }]).controller('VideoAlbumCtrl', ['$http', '$scope','$routeParams', function($http, $scope,$routeParams){
+        var id = $routeParams.albumId;
+        $http.get("/api/common/video", {params: {type: id, num: 30}}).success(function(r) {
+            $scope.name = '2014澳大利亚羽毛球公开赛';
+            $scope.desc = '简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介...';
+            console.log(r)
+            if (r.ok) {
+                $scope.related = r.videos;    
+                $scope.recommand = r.videos;
+            }
+        })
+
     }]).controller('WorldChampionCtrl', ['$scope', function($scope){
         $scope.title = '国际大赛专辑'
         $scope.desc = '按赛事分类、按时间收录近期在各个国家举办的羽毛球国际赛事精彩视频专辑'
@@ -194,7 +207,7 @@ is_index = true;
                     for (var i in hts) {
                         var ht = hts[i];
                         var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
                         .success(function(response, status, headers, config) {
                             picurl = response.filepath;
                             tmp.push(
@@ -221,7 +234,7 @@ is_index = true;
                     for (var i in hts) {
                         var ht = hts[i];
                         var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
                         .success(function(response, status, headers, config) {
                             picurl = response.filepath;
                             tmp.push(
@@ -248,7 +261,7 @@ is_index = true;
                     for (var i in hts) {
                         var ht = hts[i];
                         var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
                         .success(function(response, status, headers, config) {
                             picurl = response.filepath;
                             tmp.push(
@@ -275,7 +288,7 @@ is_index = true;
                     for (var i in hts) {
                         var ht = hts[i];
                         var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
                         .success(function(response, status, headers, config) {
                             picurl = response.filepath;
                             tmp.push(
@@ -304,7 +317,7 @@ is_index = true;
                     for (var i in hts) {
                         var ht = hts[i];
                         var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
                         .success(function(response, status, headers, config) {
                             picurl = response.filepath;
                             tmp.push(
@@ -330,7 +343,7 @@ is_index = true;
                     for (var i in hts) {
                         var ht = hts[i];
                         var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.Picid}})
+                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
                         .success(function(response, status, headers, config) {
                             picurl = response.filepath;
                             tmp.push(
@@ -369,8 +382,8 @@ is_index = true;
                 }
             }
         })
-    }]).controller('VideoCtrl', ['$scope','$resource','$routeParams', function($scope,$resource,$routeParams){
-        console.log($routeParams)
+    }]).controller('VideoCtrl', ['$http', '$scope','$resource','$routeParams', function($http, $scope,$resource,$routeParams){
+        var videoId = $routeParams.videoId;
         var video = $resource('api/common/video')
         var ret = video.get({type:$routeParams.videoType,from:$routeParams.videoId})
         ret.$promise.then(function(){

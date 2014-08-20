@@ -18,6 +18,7 @@ type VideoApi struct {
 // @Param type form string true 视频类型
 // @Param picid form int true 大图片id
 // @Param content form string true 视频内容（url）
+// @Param description form string true 视频描述
 // @Param author form string false 视频作者
 // @Param source form string false 视频来源
 // @Success 200 {string} 列表的json

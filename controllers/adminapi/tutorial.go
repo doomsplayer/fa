@@ -18,6 +18,7 @@ type TutorialApi struct {
 // @Param type form string true 教程类型
 // @Param picid form int true 大图片id
 // @Param content form string true 教程内容
+// @Param description form string true 教程描述
 // @Param author form string false 教程作者
 // @Param source form string false 教程来源
 // @Success 200 {string} 列表的json
@@ -92,6 +93,7 @@ func (t *TutorialApi) Delete() {
 // @Title tutorialTypes
 // @Description 添加文章分类
 // @Param name form string true 文章分类的名字
+// @Param description form string true 文章分类的描述
 // @Success 200 {string} 列表的json
 // @Failure 404 Not found
 // @router /tutorialtypes [put]

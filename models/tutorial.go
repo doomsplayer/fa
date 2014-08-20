@@ -6,16 +6,17 @@ import (
 )
 
 type Tutorial struct {
-	Id      int64     `form:"-"`
-	Title   string    `form:"title" valid:"Required"`
-	Picid   int       `form:"picid" valid:"Required"`
-	Content string    `form:"content" xorm:"text" valid:"Required"`
-	Type    string    `form:"type" valid:"Required"`
-	Author  string    `form:"author"`
-	Source  string    `form:"source"`
-	Click   int       `form:"-"`
-	Favor   int       `form:"-"`
-	Time    time.Time `xorm:"updated"`
+	Id          int64     `form:"-"`
+	Title       string    `form:"title" valid:"Required"`
+	PicId       int       `form:"picid" valid:"Required"`
+	Content     string    `form:"content" xorm:"text" valid:"Required"`
+	Description string    `form:"description"`
+	Type        string    `form:"type" valid:"Required"`
+	Author      string    `form:"author"`
+	Source      string    `form:"source"`
+	Click       int       `form:"-"`
+	Favor       int       `form:"-"`
+	Time        time.Time `xorm:"updated"`
 }
 
 type TutorialSlice []Tutorial
@@ -57,8 +58,9 @@ func (t *TutorialSlice) All(n, from int, tp string) (err error) {
 }
 
 type TutorialType struct {
-	Id   int64
-	Name string
+	Id          int64
+	Name        string
+	Description string
 }
 type TutorialTypeSlice []TutorialType
 

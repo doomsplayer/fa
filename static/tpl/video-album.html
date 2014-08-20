@@ -17,12 +17,12 @@
 					<div class="col-md-6" ng-repeat="video in related track by $index">
 						<div class="video-list-inner">
 		    				<div class="img">
-			    				<img ng-src="{{video.preview}}" alt="" />
+		    					<pic picid="{{video.PicId}}"></pic>
 								<div class="video-mask"></div>			    					
 		    				</div>
 			    			<div class="text">
-				    			<h5><a ng-bind="video.name" ng-href="{{video.url}}"></a></h5>
-				    			<p ng-bind="video.desc"></p>
+				    			<h5><a ng-bind="video.Title" ng-href="#/video/{{video.Id}}"></a></h5>
+				    			<p ng-bind="video.Description"></p>
 			    			</div>
 		    			</div>
 					</div>
@@ -42,13 +42,13 @@
 					<div class="col-md-11">
 						<div class="row sub-row" ng-repeat="video in recommand track by $index">
 							<div class="col-md-3">
-								<img ng-src="{{video.preview}}" alt="" />
+								<pic picid="{{video.PicId}}"></pic>
 							</div>
 							<div class="col-md-9">
 								<div class="text">
-									<a ng-href="{{video.url}}">
-										<h5 ng-bind="video.name"></h5>
-										<p ng-bind="video.desc"></p>
+									<a ng-href="#/video/{{video.Id}}">
+										<h5 ng-bind="video.Title"></h5>
+										<p ng-bind="video.Description"></p>
 									</a>
 								</div>
 							</div>

@@ -12,10 +12,10 @@
         </ul>
     </li>
     <li ng-repeat="title in titles">
-        <a ng-href="{{title.Url}}"><span>{{title.Title}}</span></a>
+        <a ng-href="{{title.Url}}"  target="_blank"><span>{{title.Title}}</span></a>
         <ul ng-if="title.SubTitle">
             <span>
-                <li ng-repeat="sub in title.SubTitle"><a ng-href="{{sub.Url}}"><span>{{sub.Title}}</span></a></li>
+                <li ng-repeat="sub in title.SubTitle"><a ng-href="{{sub.Url}}" target="_blank"><span>{{sub.Title}}</span></a></li>
             </span>
         </ul>
     </li>
