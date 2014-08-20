@@ -12,12 +12,12 @@
 </div>
 <div class="item_pic">
 	<div id="isotope" isotope-grid="items" isotope-item-selector=".element-item" isotope-filter-event="filter-elements">
-		<div class="element-item {{item.category}}" ng-repeat="item in items" data-category="{{item.category}}">
-			<img ng-src="{{item.pic_url}}"/>
+		<div class="element-item {{item.Type}}" ng-repeat="item in items" data-category="{{item.Type}}">
+			<pic picid='{{item.PicId}}'></pic>
 			<a ng-href='#/item/{{item.Id}}'>
 				<div class="mask x-mask">
-					<p>{{item.name}}</p>
-					<p>{{item.price}}</p>
+					<p>{{item.Title}}</p>
+					<p>{{item.Description2}}</p>
 					<p>MORE</p>
 				</div>
 			</a>
