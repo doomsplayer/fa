@@ -1,0 +1,69 @@
+<carousel>
+	<slide ng-repeat="slide in slides track by $index">
+		<a ng-href="#/article/{{slide.Id}}"><pic picid="{{slide.PicId}}"></pic></a>
+		<div class="carousel-intro">
+			<h3 ng-bind="slide.Title"></h3>
+			<p ng-bind="slide.Description"></p>
+		</div>
+	</slide>
+</carousel>
+<div class="video-list">
+	<div class="row">
+		<div class="col-md-6" ng-repeat="part in knowledge track by $index">
+			<div>
+		    	<div class="title-wrapper">
+		    		<h4 class="title" ng-bind="part.name"><span><a ng-href="{{part.link}}">MORE></a></span></h4>
+		    	</div>
+		    	<div class="row myrow">
+		    		<div class="col-md-6" ng-repeat="passage in part.passages track by $index">
+		    			<div class="video-list-inner">
+		    				<div class="img">
+			    				<img ng-src="{{passage.pic}}"/>
+								<div class="mask more"></div>			    					
+		    				</div>
+			    			<div class="text">
+				    			<h5><a ng-href="{{passage.url}}" ng-bind="passage.title"></a></h5>
+				    			<p ng-bind="passage.desc"></p>
+			    			</div>
+		    			</div>
+		    		</div>		    		
+		    	</div>
+	    	</div>
+		</div>
+	</div>
+    <div ng-repeat="part in part2 track by $index">
+    	<div class="title-wrapper">
+    		<h4 class="title" ng-bind="part.name"><span><a ng-href="{{part.link}}">MORE></a></span></h4>
+    	</div>
+    	<div class="row myrow">
+    		<div class="col-md-4" ng-repeat="passage in part.passages track by $index">
+    			<div class="video-list-inner">
+    				<div class="img">
+	    				<img ng-src="{{passage.pic}}"/>
+						<div class="mask more"></div>			    					
+    				</div>
+	    			<div class="text">
+		    			<h5><a ng-href="{{passage.url}}" ng-bind="passage.title"></a></h5>
+				    	<p ng-bind="passage.desc"></p>
+	    			</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+</div>
+<!-- FIXME Ignore comment -->
+<div class="well mywell">
+	<div class="row">
+		<div class="img_wrapper">
+			<img src="../static/img/avatar1.jpg" alt="" />
+		</div>
+		<div class="col-md-11">
+			<textarea class="form-control" rows="8" placeholder="小伙伴们有什么问题吗？羽球之家来解答"></textarea>
+			<div class="row">
+				<div class="col-md-offset-10 col-md-2">
+					<button class="submit-btn">提问</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

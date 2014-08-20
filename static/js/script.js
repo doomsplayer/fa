@@ -96,7 +96,7 @@ is_index = true;
                 templateUrl: 'static/tpl/badminton-item.html',
                 controller: 'ItemCtrl'
             }).when('/portfolio',{
-                templateUrl: 'static/tpl/badminton-sale.html',
+                templateUrl: 'static/tpl/portfolio.html',
                 controller: 'PortfolioCtrl'
             }).when('/test',{
                 templateUrl: 'static/tpl/test.html'
@@ -374,7 +374,7 @@ is_index = true;
     }]).controller('ItemCtrl', ['$http', '$scope','$routeParams', function($http, $scope,$routeParams){
         $http.get('/api/common/promotion/' + $routeParams.itemId).success(function(response) {
             if (response.ok) {
-                $scope.p = response.promotion;
+                $scope.promotion = response.promotion;
                 // TODO fetch below data
                 var pic = {thumb:'../static/img/item_thumb.jpg',pic:'../static/img/item_main_pic.jpg'};
                 $scope.pics = [pic,pic,pic,pic];

@@ -1,24 +1,24 @@
 <div class="item-detail">
   <div class="container">
     <ol class="breadcrumb x-breadcrumb">
-      <li><a href="#">首页</a></li>
-      <li><a href="#">促销信息</a></li>
+      <li><a href="#/">首页</a></li>
+      <li><a href="#/portfolio">促销信息</a></li>
       <li class="active">文章</li>
     </ol>
    <div class="col-lg-8 col-md-8 col-sm-12">
      <div class="item">
       <a class="title" href="#">
-        <h5><kbd>{{p.Type}}</kbd>{{p.Title}}<span class="subtitle">{{p.Title2}}</span></h5>
+        <h5><kbd>{{promotion.Type}}</kbd>{{promotion.Title}}<span class="subtitle">{{promotion.Title2}}</span></h5>
       </a>
       <div class="row">
        <div class="col-lg-5 col-md-5 col-sm-5">
-         <pic picid='{{p.PicId}}'></pic>
+         <pic picid='{{promotion.PicId}}'></pic>
        </div>
        <div class="col-lg-7 col-md-7 col-sm-7">
        参数性能：
-         <div class="parameter" ng-bind-html="p.Description"></div>
+         <div class="parameter" ng-bind-html="promotion.Description"></div>
          </p>
-          <p>购买链接：<a ng-href="{{p.url}}">{{p.Description2}}</a></p>
+          <p>购买链接：<a ng-href="{{promotion.Link}}">{{promotion.Description2}}</a></p>
           <div class="comment">
           <a href="#"><img src="../static/img/comment.jpg"/ >评论 142条</a>
           <!-- FIXME 同步评论数 -->
@@ -30,17 +30,7 @@
     <hr>
 
     <div class="detail">
-      <div class="item-gallery">
-        <div class="item-main-pic">
-          <img ng-src="{{current_pic}}" alt="" />
-        </div>
-        <ul class="item-thumb-list">
-          <li ng-class="{selected:$index == selected}" ng-repeat="pic in pics track by $index">
-            <a ng-click="switch_pic($index)"><img ng-src="{{pic.thumb}}"/></a>
-          </li>
-        </ul>
-      </div>
-     <p ng-bind="desc"></p>
+     <p ng-bind="promotion.Detail"></p>
  </div>	
 <!-- FIXME Ignore comment function temporarily -->
 <!--  <div class="comment">
@@ -187,7 +177,7 @@
 </div> -->
 
 
-<div class="col-lg-4 col-md-4 col-sm-12">
+<!-- <div class="col-lg-4 col-md-4 col-sm-12">
   <h4 class="title title-6">相关商品推荐</h4>
   <div class="item" ng-repeat="item in recommand track by $index">
     <div class="row">
@@ -199,7 +189,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 </div>
 </div>
 
