@@ -14,7 +14,7 @@ type MainMenuApi struct {
 // @Failure 404 Not found
 // @router /mainBar [get]
 func (m *MainMenuApi) Menu() {
-	url := `#`
+	// url := `#`
 	menu := []*Menu{}
 	me := new(Menu)
 	me.Title = "促销信息"
@@ -24,19 +24,19 @@ func (m *MainMenuApi) Menu() {
 	me = new(Menu)
 	me.Title = `学打羽毛球`
 	me.Url = "#/learnBadminton"
-	me.AddSub(`大话羽球`, `#`)
-	me.AddSub(`羽球知识`, url)
-	me.AddSub(`羽球技术`, url)
-	me.AddSub(`羽球战术`, url)
-	me.AddSub(`伤病防护`, url)
+	me.AddSub(`大话羽球`, `#/articleAlbum/大话羽球`)
+	me.AddSub(`羽球知识`, `#/articleAlbum/羽球知识`)
+	me.AddSub(`羽球技术`, `#/articleAlbum/羽球技术`)
+	me.AddSub(`羽球战术`, `#/articleAlbum/羽球战术`)
+	me.AddSub(`伤病防护`, `#/articleAlbum/伤病防护`)
 	menu = append(menu, me)
 
 	me = new(Menu)
 	me.Title = `视频库`
 	me.Url = `#/videoLib`
-	me.AddSub(`国际大赛专辑`, `#/wordChampion`)
-	me.AddSub(`经典大赛专辑`, url)
-	me.AddSub(`玩转羽球`, url)
+	me.AddSub(`国际大赛专辑`, `#/videoAlbum/国际大赛专辑`)
+	me.AddSub(`经典大赛专辑`, `#/videoAlbum/经典大赛专辑`)
+	me.AddSub(`玩转羽球`, `#/videoAlbum/玩转羽球`)
 	menu = append(menu, me)
 
 	me = new(Menu)

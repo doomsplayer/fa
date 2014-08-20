@@ -48,12 +48,21 @@ func (t *TutorialSlice) Hot(n, from int, tp string) (err error) {
 	if n == 0 {
 		n = 1
 	}
-	err = Engine.Where("type=?", tp).Desc("time").Limit(n, from).Find(t)
+	q := Engine.Desc("time").Limit(n, from)
+	if tp != `` {
+		q = q.Where("type=?", tp)
+	}
+	err = q.Find(t)
 	return
 }
 
 func (t *TutorialSlice) All(n, from int, tp string) (err error) {
-	err = Engine.Where("type=?", tp).Desc("id").Limit(n, from).Find(t)
+
+	q := Engine.Desc("id").Limit(n, from)
+	if tp != `` {
+		q = q.Where("type=?", tp)
+	}
+	err = q.Find(t)
 	return
 }
 
