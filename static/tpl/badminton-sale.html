@@ -10,7 +10,7 @@
 				</a>
 				<div class="row">
 					<div class="col-lg-5 col-md-5 col-sm-5">
-						<pic picid="{{item.PicId}}"></pic>
+						<pic class='col-lg-5 col-md-5 col-sm-5' picid="{{item.PicId}}"></pic>
 					</div>
 					<div class="col-lg-7 col-md-7 col-sm-7">
 						参数性能：
@@ -33,7 +33,7 @@
 				<div class="item" ng-repeat="item in tab.items track by $index">
 					<div class="row">
 						<div class="col-xs-4">  
-							<pic class="img-sidebar" picid="{{item.PicId}}"></pic>
+							<pic class="col-xs-4 img-sidebar" picid="{{item.PicId}}"></pic>
 						</div>
 						<div class="col-xs-8">
 							<a class="link-sidebar" ng-href="{{item.Link}}">{{item.Title}}<div ng-bind="item.Description"></div></a>
