@@ -281,7 +281,7 @@ p.pic_intro {
 	float: left;
 	position: relative;
 }
-.news_row .img_wrapper {
+.news_row .img_wrapper img{
 	width:200px;
 	height:120px;
 }

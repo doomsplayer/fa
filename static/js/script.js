@@ -106,8 +106,8 @@ is_index = true;
     
     app.factory('Api', ['$resource', function($resource){
         var api = {};
-        api.file = $resource('/api/common/upload',{},{get:{cache:true,method:'GET'}});
-        api.video = $resource('/api/common/video', {}, {get:{cache:true,method:'GET'}});
+        api.file = $resource('/api/common/upload',{},{get:{cache:false,method:'GET'}});
+        api.video = $resource('/api/common/video',{},{get:{cache:true,method:'GET'}});
         return api;
     }])
 
@@ -479,6 +479,7 @@ is_index = true;
             controller:['$scope','Api',function($scope,Api){
                 ret = Api.file.get({id:$scope.Id})
                 ret.$promise.then(function(){
+                    console.log(ret)
                     if (ret.ok){
                         $scope.url = ret.filepath
                     }
