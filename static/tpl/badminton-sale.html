@@ -6,18 +6,18 @@
 			<h4 class="title">热门促销信息</h4>
 			<div class="item" ng-repeat="item in items track by $index">
 				<a class="title" href="#">
-					<h5><kbd>{{item.type}}</kbd>{{item.title}}<span class="subtitle">{{item.price}}</span></h5>
+					<h5><kbd>{{item.Type}}</kbd>{{item.Title}}<span class="subtitle">{{item.Title2}}</span></h5>
 				</a>
 				<div class="row">
 					<div class="col-lg-5 col-md-5 col-sm-5">
-						<img ng-src="{{item.pic}}" />
+						<pic picid="{{item.PicId}}"></pic>
 					</div>
 					<div class="col-lg-7 col-md-7 col-sm-7">
 						参数性能：
-						<ul class="parameter">
+						<div class="parameter">
 							<li ng-repeat="per in item.performance track by $index" ng-bind="per"></li>
-						</ul>
-						<p>购买链接：<a ng-href="{{item.link.url}}">{{item.link.title}}</a> (优惠码：{{item.link.coupon}})</p>
+						</div>
+						<p>购买链接：<a ng-href="{{item.Link}}">{{item.Discription2}}</a></p>
 						<div class="comment"><a href="#"><img src="../static/img/comment.jpg"/ >评论 142条</a><share-to></share-to></div>
 					</div>
 				</div>
@@ -33,10 +33,10 @@
 				<div class="item" ng-repeat="item in tab.items track by $index">
 					<div class="row">
 						<div class="col-xs-4">  
-							<img class="img-sidebar" ng-src="{{item.pic}}"/>
+							<pic class="img-sidebar" picid="{{item.PicId}}"></pic>
 						</div>
 						<div class="col-xs-8">
-							<a class="link-sidebar" ng-href="{{item.url}}">{{item.name}}<div ng-bind="item.price"></div></a>
+							<a class="link-sidebar" ng-href="{{item.Link}}">{{item.Title}}<div ng-bind="item.Description"></div></a>
 						</div>
 					</div>
 				</div>

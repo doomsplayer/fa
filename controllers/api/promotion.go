@@ -16,7 +16,7 @@ type PromotionApi struct {
 // @Description 获得促销商品
 // @Param from query int false 从第几项开始,0是第一个,默认0
 // @Param num query int false 几个，默认1
-// @Param type query string true 类型（球鞋拍子blahblah）
+// @Param type query string false 类型（球鞋拍子blahblah）
 // @Success 200 {string} 列表的json
 // @Failure 404 Not found
 // @router /promotion [get]
@@ -24,7 +24,7 @@ func (p *PromotionApi) Get() {
 	type list struct {
 		From int    `form:"from" valid:"Min(0)"`
 		Num  int    `form:"num" valid:"Min(0)"`
-		Type string `form:"type" valid:"Required"`
+		Type string `form:"type" valid:""`
 	}
 	l := new(list)
 	err := p.ParseForm(l)

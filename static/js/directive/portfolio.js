@@ -2,21 +2,42 @@
 	app = angular.module('badmintonhome');
 	app.directive('portfolio', function(){
 		return {
-			controller: ['$scope','$element','$attrs',function($scope, $element,$attrs) {
-				$scope.items = []
-				// FIXME 在线Fetch
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'shoe'})
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'shoe'})
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'cloth'})
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'shoe'})
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'shoe'})
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'shoe'})
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'shoe'})
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'shoe'})
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'cloth'})
-				$scope.items.push({name:'产品名称',pic_url:'static/img/img_test2.jpg',price:'价格xx元',category:'cloth'})
-				
-				$scope.category = {'shoe':'鞋子','cloth':'衣服'}
+			controller: ['$http', '$scope','$element','$attrs',function($http, $scope, $element,$attrs) {
+				$scope.items = [];
+				$scope.category = {};
+
+				$http.get('/api/common/promotiontypes').success(
+					function(response) {
+						if (response.ok) {
+							var p = response.promotiontypes;
+							for (var i in p) {
+								$scope.category[p[i].Name] = p[i].Name;
+								$http.get('/api/common/promotion', {params: {type: p[i].Name, num: 16}}).success(function(response){
+									if (response.ok) {
+										var items = response.promotions;
+										for (var i in items) {
+											$http.get("/api/common/upload", {params: {id: items[i].PicId}}).success(function(response){
+												if (response.ok){
+													$scope.items.push(
+													{
+														name:items[i].Title, 
+														pic_url: response.filepath, 
+														price: items[i].Description2, 
+														category: items[i].Type,
+													})					
+												}
+												
+											})
+											
+										}
+										
+									}
+									
+								})
+								
+							}
+						}
+				});
 
 				setTimeout(function(){
                     // 绑定filter
