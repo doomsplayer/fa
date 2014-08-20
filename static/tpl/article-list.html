@@ -11,7 +11,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="video">
+	<div class="container" style="margin-top:40px;">
 		<tabset>
 			<tab class='x-tab' ng-repeat="tab in tabs" heading="{{tab.name}}">
 				<div class="news_wrapper">
@@ -21,12 +21,12 @@
 							<a ng-href="#/article/{{item.Id}}">
 								<div class="video-mask"></div>
 							</a>
-							<div class="text_wrapper">
-								<a ng-href="#/article/{{item.Id}}">
-									<h4 ng-bind="item.Title"></h4>
-									<p ng-bind="item.Description"></p>
-								</a>
-							</div>
+						</div>
+						<div class="text_wrapper">
+							<a ng-href="#/article/{{item.Id}}">
+								<h4 ng-bind="item.Title"></h4>
+								<p ng-bind="item.Description"></p>
+							</a>
 						</div>
 					</div>
 				</tab>

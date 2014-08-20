@@ -447,7 +447,7 @@ is_index = true;
         return {
             // TODO 引入第三方社会化分享工具
             restrict: 'EA',
-            template: '<span class="pull-right"><img src="../static/img/share.jpg" />分享到<a href="#"><img src="../static/img/weibo.jpg" /></a><a href="#"><img src="../static/img/qzone.jpg" /></a><a href="#"><img src="../static/img/weixin.jpg" /></a></span>'
+            template: '<span class="pull-right"><span class="icon icon-share"></span>分享到<a href="#"><span class="icon icon-weibo"></span></a><a href="#"><span class="icon icon-qzone active"></span></a><a href="#"><span class="icon icon-wechat"></span></a></span>'
         };
     });
     app.directive('mainBar', function() {
