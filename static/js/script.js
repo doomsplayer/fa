@@ -99,7 +99,12 @@ is_index = true;
             })
         }
     ])
-
+    
+    app.factory('Api', ['$resource', function($resource){
+        var api = {};
+        api.file = $resource('/api/common/upload',{},{get:{cache:true,method:'GET'}});
+        return api;
+    }])
 
     app.controller('PortfolioCtrl', ['$scope',function($scope) {
         var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
@@ -356,7 +361,6 @@ is_index = true;
                         $scope.link = {url: p.url, title: p.Description2}
                         var pic = {thumb:'../static/img/item_thumb.jpg',pic:'../static/img/item_main_pic.jpg'}
                         $scope.pics = [pic,pic,pic,pic]
-                        $scope.desc = '文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述'
                         var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
                         $scope.recommand = [temp,temp,temp]
 
@@ -403,9 +407,19 @@ is_index = true;
             scope:{},
             restrict: 'E',
             templateUrl: 'static/tpl/badminton-video.html',
-            controller: ['$scope','$http',function($scope,$http){
+            controller: ['$scope','$resource','$http',function($scope,$resource,$http){
                 $scope.videos = []
-
+                // $http.get('/api/common/videotypes').success(function(response){
+                //     if (response.ok){
+                //         for( var i in response){
+                //             // $http.get('/api/common/video',{params:{num:3,type:response[i]}).success(function(response){
+                //             //     $scope.videos.push()
+                //             // })
+                //         }
+                //     }
+                // })
+                
+                
                 var video  = {preview:'../static/img/img_test3.jpg',url:undefined,title:'苏迪曼杯这些年——盘点苏杯经典大战20场',desc:'苏迪曼杯，又称世界羽毛球混合团体锦标赛，是羽毛球三大世界性团体赛之一。1989年首届苏迪曼杯在雅加达举办，至今近30年，其中涌现的经典对决不计其数，小编在此为您准备了20场经典巅峰对决，带您一起走进苏迪曼杯这些年。'}
                 $scope.videos.push({name:'国际大赛专辑',videos:[video,video,video]})
                 $scope.videos.push({name:'经典对战专辑',videos:[video,video,video]})
@@ -438,4 +452,21 @@ is_index = true;
             replace: true,
         };
     });
+    app.directive('pic',function(){
+        return {
+            scope:{Id:'@picid'},
+            template: '<img ng-src="{{url}}"></img>',
+            replace: true,
+            restrict: 'E',
+            controller:['$scope','Api',function($scope,Api){
+                ret = Api.file.get({id:$scope.Id})
+                ret.$promise.then(function(){
+                    if (ret.ok){
+                        $scope.url = ret.filepath
+                    }
+                })
+            }]
+        }
+    })
+
 })();
