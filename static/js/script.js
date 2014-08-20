@@ -477,7 +477,7 @@ is_index = true;
             replace: true,
             restrict: 'E',
             controller:['$scope','$element','Api',function($scope,$element,Api){
-                $scope.$watch('Id'.function(newValue,oldValue){
+                $scope.$watch('Id',function(newValue,oldValue){
                     if (newValue != oldValue){
                         ret = Api.file.get({id:$scope.Id})
                         ret.$promise.then(function(){
