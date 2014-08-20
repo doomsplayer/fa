@@ -1036,10 +1036,9 @@ ul.cSGallery>li.active {
 	border-color: #1ebcb9;
 }
 
-button.btn-custom {
+.btn-custom {
 	background-color: #1ebcb9;
 	color: white;
-	height: 30px;
 	width: 140px;
 	margin: 15px;
 }
