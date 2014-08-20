@@ -106,18 +106,15 @@ is_index = true;
         return api;
     }])
 
-    app.controller('PortfolioCtrl', ['$scope',function($scope) {
-        var temp = {name:'尤尼克斯YONEX/YY VTZF2 李宗伟最新羽毛球拍SP版TW版',price:'￥1050（正品包邮）',pic:'../static/img/item_list_img.jpg',url:undefined}
-        $scope.recommand = [{heading:'最新',items:[temp,temp,temp]},{heading:'即将过期',items:[temp,temp,temp]}]
+    app.controller('PortfolioCtrl', ['$http', '$scope',function($http, $scope) {
+        $http.get('/api/common/promotion', {params: {num: 20}}).success(function(response) {
+            if (response.ok) {
+                var items = response.promotions;
+                $scope.items = items;
+                $scope.recommand = [{heading:'最新',items: items},{heading:'即将过期',items: items}]    
+            }
+        });
         
-        var temp2 = {}
-        temp2.pic = '../static/img/item_main.jpg'
-        temp2.type = '球拍'
-        temp2.title = '期待已久的弓箭11TH SP版明后天终于要到货啦，超级经典，绝版'
-        temp2.price = '￥868(王局体育预订价，包顺丰，限时抢购中)'
-        temp2.link = {url:undefined,title:'淘宝',coupon:"ABCDEFG"}
-        temp2.performance = performance = ['xxxxxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxxxx','xxxxxxxxxxxxxxxxx','xxxxxxxxxxx']
-        $scope.items = [temp2,temp2,temp2,temp2,temp2,temp2,temp2]
     }]).controller('defaultCtrl', function() {
     }).controller('VideoLibCtrl', ['$scope', function ($scope) {
         // FIXME 视频库的API
