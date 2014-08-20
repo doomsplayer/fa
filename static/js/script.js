@@ -473,7 +473,7 @@ is_index = true;
     app.directive('pic',function(){
         return {
             scope:{Id:'@picid'},
-            template: '<img ng-src="{{url}}"></img>',
+            template: '<img class="pic" ng-src="{{url}}"></img>',
             replace: true,
             restrict: 'E',
             controller:['$scope','$element','Api',function($scope,$element,Api){
