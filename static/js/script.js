@@ -106,7 +106,7 @@ is_index = true;
     
     app.factory('Api', ['$resource', function($resource){
         var api = {};
-        api.file = $resource('/api/common/upload',{},{get:{cache:false,method:'GET'}});
+        api.file = $resource('/api/common/upload',{},{get:{cache:true,method:'GET'}});
         api.video = $resource('/api/common/video',{},{get:{cache:true,method:'GET'}});
         return api;
     }])
@@ -477,10 +477,16 @@ is_index = true;
             replace: true,
             restrict: 'E',
             controller:['$scope','$element','Api',function($scope,$element,Api){
-                ret = Api.file.get({id:$scope.Id})
-                ret.$promise.then(function(){
-                    $($element).attr('src',ret.filepath)
+                $scope.$watch('Id'.function(newValue,oldValue){
+                    if (newValue != oldValue){
+                        ret = Api.file.get({id:$scope.Id})
+                        ret.$promise.then(function(){
+                            $($element).attr('src',ret.filepath)
+                        })
+                    }
                 })
+                
+                
             }]
         }
     })
