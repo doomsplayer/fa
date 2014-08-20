@@ -1144,3 +1144,7 @@ hr {
 	width:100% !important;
 	height:100% !important;
 }
+.pic {
+    height: auto;
+    width: 100%;
+}
