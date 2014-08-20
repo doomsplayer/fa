@@ -25,7 +25,7 @@
 														price: items[i].Description2, 
 														category: items[i].Type,
 														id: items[i].Id
-													})					
+													})
 												}
 												
 											})
