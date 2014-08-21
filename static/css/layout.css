@@ -133,7 +133,9 @@ p.pic_intro {
 	height: 100%;
 	background-color: rgba(30,188,185,0.8);
 	top:0;
-	display: none;
+	display: block;
+	opacity: 0;
+	cursor: pointer;
 }
 .mask.x-mask {
 	padding-top: 100px;
@@ -155,7 +157,8 @@ p.pic_intro {
 	margin-top: 27%;
 }
 .mask a:hover{
-	color:#1ebcff;
+	/*color:#1ebcff;*/
+	color: #fff;
 }
 .mask p {
 	text-align: center;
@@ -167,7 +170,12 @@ p.pic_intro {
 	margin-top: 60px;
 }*/
 .pic_news_container:hover div.mask, .img:hover .mask.more {
-	display: block;
+	opacity: 1;	
+	-webkit-transition: opacity .3s ease-in-out;
+	   -moz-transition: opacity .3s ease-in-out;
+	    -ms-transition: opacity .3s ease-in-out;
+	     -o-transition: opacity .3s ease-in-out;
+	        transition: opacity .3s ease-in-out;
 }
 .pic_news_container:hover p.pic_intro {
 	background-color: transparent;
@@ -242,7 +250,12 @@ p.pic_intro {
 	height: 100%;
 }
 .element-item:hover .mask {
-	display: block;
+	opacity: 1;	
+	-webkit-transition: opacity .3s ease-in-out;
+	   -moz-transition: opacity .3s ease-in-out;
+	    -ms-transition: opacity .3s ease-in-out;
+	     -o-transition: opacity .3s ease-in-out;
+	        transition: opacity .3s ease-in-out;
 }
 .item_more {
 	width: 100%;
@@ -523,10 +536,16 @@ button.close:hover {
 	position: absolute;
 	left: 0;
 	top: 0;
-	display: none;
+	display: block;
+	opacity: 0;
 }
 .video-list-inner .img:hover .video-mask, .img_wrapper:hover .video-mask {
-	display: block;
+	opacity: 1;	
+	-webkit-transition: opacity .3s ease-in-out;
+	   -moz-transition: opacity .3s ease-in-out;
+	    -ms-transition: opacity .3s ease-in-out;
+	     -o-transition: opacity .3s ease-in-out;
+	        transition: opacity .3s ease-in-out;
 }
 .video-list-inner .text {
 	padding: 10px;
