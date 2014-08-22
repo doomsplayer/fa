@@ -338,6 +338,7 @@ is_index = true;
                         for (var i in types.tutorialtypes){
                             $scope.Learn.push({name:types.tutorialtypes[i].Name,pic_news:undefined,text_news:undefined})
                         }
+                        $scope.click(0);
                     }
                 })
                 $scope.click = function(num){
@@ -352,7 +353,7 @@ is_index = true;
                         })
                     }
                 }
-                $scope.click(0)
+
             }]
         }
     });
