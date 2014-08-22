@@ -125,7 +125,7 @@ is_index = true;
         });
         $scope.nextPage = function(){
             if ($scope.loading) return;
-            $http.get('/api/common/promotions',{params:{num:20,from:$scope.now}}).success(function(response){
+            $http.get('/api/common/promotion',{params:{num:20,from:$scope.now}}).success(function(response){
                 if(response.ok){
                     var items = response.promotions;
                     for (var i in items){
@@ -178,18 +178,34 @@ is_index = true;
             }
         })
 
-    }]).controller('ArticleAlbumCtrl', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams){
+    }]).controller('ArticleAlbumCtrl', ['$http', '$scope', '$routeParams', '$log', function($http, $scope, $routeParams, $log){
         var id = $routeParams.albumId;
+        $scope.now = 0
+        $scope.loading = true
         $http.get('/api/common/tutorial',{params: {type: id, num: 20}}).success(function(r) {
             if (r.ok) {
                 $scope.title = id;
-                $scope.desc = '按赛事分类、按时间收录近期在各个国家举办的羽毛球国际赛事精彩视频专辑'
-                $scope.tabs = []
-                $scope.tabs.push({name:'最新',items: r.tutorials})
-                $scope.tabs.push({name:'热门',items: r.tutorials})
+                $scope.desc = '按赛事分类、按时间收录近期在各个国家举办的羽毛球国际赛事精彩视频专辑';
+                $scope.tabs = [];
+                $scope.tabs.push({name:'最新',items: r.tutorials});
+                $scope.tabs.push({name:'热门',items: r.tutorials});
+                $scope.now += r.tutorials.length;
+                $scope.loading = false;
             }
         });
-        
+        $scope.nextPage = function(){
+            $http.get('/api/common/tutorial',{params: {type:$routeParams.albumId, num:20, from:$scope.now}}).success(function(r){
+                if(r.ok){
+                    for(var i in r.tutorials){
+                        $scope.tabs[0].items.push(r.tutorials[i]);
+                        $scope.tabs[1].items.push(r.tutorials[i]);
+                    };
+                    $scope.now += r.tutorials.length;
+                    $scope.loading = false;
+                    $log.log('load ' + r.tutorials.length + ' Articles');
+                }
+            })
+        }
         
 
     }]).controller('ArticleCtrl', ['$http', '$routeParams','$scope', function($http, $routeParams,$scope){
