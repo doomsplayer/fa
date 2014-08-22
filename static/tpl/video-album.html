@@ -9,7 +9,7 @@
 	</div>
 </div>
 <div class="container">
-		<div class="col-md-7">
+		<div class="col-md-7" infinite-scroll='nextPage()' infinite-scroll-distance='1'>
 			<div class="row lf-row">
 				<h4 class="title">相关视频</h4>
 				<div class="row myrow" >
@@ -25,10 +25,10 @@
 			    			</div>
 		    			</div>
 					</div>
-					<div class="col-md-12" ng-if="!related">
+					<div class="col-md-12" ng-show="loading">
 						<div class="loading">
 							<img src="../static/img/loading.gif" alt="" style="float:left"/>
-							<p style="padding:10px 0 0 10px;float:left;">更多信息加载中，请稍后</p>
+							<p style="padding:10px 0 0 10px;float:left;">{{msg}}</p>
 						</div>
 					</div>
 				</div>
