@@ -108,6 +108,8 @@ is_index = true;
         var api = {};
         api.file = $resource('/api/common/upload',{},{get:{cache:true,method:'GET'}});
         api.video = $resource('/api/common/video',{},{get:{cache:true,method:'GET'}});
+        api.tutorialtypes = $resource('/api/common/tutorialtypes', {}, {get:{cache:true,method:'GET'}});
+        api.tutorial = $resource('/api/common/tutorial')
         return api;
     }])
 
@@ -328,15 +330,27 @@ is_index = true;
             restrict: 'E',
             templateUrl: 'static/tpl/badminton-learn.html',
             scope:{},
-            controller:['$scope','$http',function($scope,$http){
-                $scope.Learn = []
-
-                var item = {title:'澳洲赛：林丹逆转夺冠女双演横扫...',url:undefined,pic:'static/img/img_test1.jpg'}
-                $scope.Learn.push({name:'大话羽球',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
-                $scope.Learn.push({name:'羽球知识',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
-                $scope.Learn.push({name:'羽球技术',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
-                $scope.Learn.push({name:'羽球战术',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
-                $scope.Learn.push({name:'伤病防护',pic_news:[item,item,item,item,item,item,item,item],text_news:[item,item,item,item,item,item,item,item,item]})
+            controller:['$scope','Api',function($scope,Api){
+                $scope.Learn = [];
+                var types = Api.tutorialtypes.get()
+                types.$promise.then(function(){
+                    if (types.ok){
+                        for (var i in types.tutorialtypes){
+                            $scope.Learn.push({name:types.tutorialtypes[i].Name,pic_news:undefined,text_news:undefined})
+                        }
+                    }
+                })
+                $scope.click = function(num){
+                    if (!$scope.Learn[num].pic_news){
+                        var d = Api.tutorials.get({type:$scope.Learn[num].name,num:8})
+                        d.$promise.then(function(){
+                            if (d.ok){
+                                $scope.Learn[num].pic_news = d.tutorials;
+                                $scope.Learn[num].text_news = d.tutorials;
+                            }
+                        })
+                    }
+                }
             }]
         }
     });

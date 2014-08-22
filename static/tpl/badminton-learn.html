@@ -1,19 +1,19 @@
 <div class="container" style="margin-top:40px;">
 <tabset>
-	<tab ng-repeat="tab in Learn" heading='{{tab.name}}' class="x-tab">
+	<tab ng-repeat="tab in Learn" heading='{{tab.name}}' class="x-tab" select='click({{$index}})'>
 		<div class="pic_news">
 			<div class="col-lg-3 col-md-3 col-sm-6" ng-repeat="item in tab.pic_news track by $index">
 				<div class="pic_news_container">
-					<img ng-src="{{item.pic}}" alt="" />
-					<p class="pic_intro" ng-bind="item.title"></p>
-					<div class="mask"><a ng-href='{{item.url}}'>MORE</a></div>
+					<pic picid="{{item.PicId}}"
+					<p class="pic_intro" ng-bind="item.Title"></p>
+					<div class="mask"><a ng-href='#/article/{{item.Id}}'>MORE</a></div>
 				</div>
 			</div>		
 		</div>
 		<div class="text_news">
 			<div class="text_news_container">
 				<ul>
-					<li class="col-lg-3 col-md-3 col-sm-6" ng-repeat="item in tab.text_news track by $index"><a ng-href="{{item.url}}" ng-bind="item.title"></a></li>
+					<li class="col-lg-3 col-md-3 col-sm-6" ng-repeat="item in tab.text_news track by $index"><a ng-href="#/article/{{item.Id}}" ng-bind="item.Title"></a></li>
 				</ul>
 			</div>
 		</div>
