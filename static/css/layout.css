@@ -99,6 +99,7 @@ ul.ei-slider-large {
 	background-color: transparent !important;
 	color:#1ebcb9 !important;
 	border-color: transparent !important;
+	cursor: pointer;
 }
 ul>li.x-tab.last {
 	float: right;
