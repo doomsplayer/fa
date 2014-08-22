@@ -113,6 +113,7 @@ is_index = true;
 
     app.controller('PortfolioCtrl', ['$http', '$scope','$log',function($http, $scope, $log) {
         $scope.now = 0;
+        $scope.msg = '更多促销信息加载中，请稍候'
         $scope.loading = true;
         $http.get('/api/common/promotion', {params: {num: 20}}).success(function(response) {
             if (response.ok) {
@@ -134,6 +135,11 @@ is_index = true;
                     $scope.now += items.length;
                     $log.log('load ' + items.length + ' promotions')
                     $scope.loading = false;
+                }else{
+                    if (response.errmsg == 'empty'){
+                        $log.log('No more data')
+                        $scope.msg = '您已经看完全部啦，休息一下吧！'
+                    }
                 }
             })
         }
@@ -180,6 +186,7 @@ is_index = true;
 
     }]).controller('ArticleAlbumCtrl', ['$http', '$scope', '$routeParams', '$log', function($http, $scope, $routeParams, $log){
         var id = $routeParams.albumId;
+        $scope.msg = '更多促销信息加载中，请稍后'
         $scope.now = 0
         $scope.loading = true
         $http.get('/api/common/tutorial',{params: {type: id, num: 20}}).success(function(r) {
@@ -203,6 +210,11 @@ is_index = true;
                     $scope.now += r.tutorials.length;
                     $scope.loading = false;
                     $log.log('load ' + r.tutorials.length + ' Articles');
+                }else{
+                    if (r.errmsg == 'empty'){
+                        $log.log('No more data')
+                        $scope.msg = '您已经看完全部啦，休息一下吧！'
+                    }
                 }
             })
         }
