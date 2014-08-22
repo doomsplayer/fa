@@ -6,8 +6,10 @@ package routers
 
 import (
 	"badmintonhome/controllers"
+	"badmintonhome/controllers/admin"
 	"badmintonhome/controllers/adminapi"
 	"badmintonhome/controllers/api"
+	"badmintonhome/controllers/ueditor"
 	"github.com/astaxie/beego"
 )
 
@@ -34,6 +36,13 @@ func init() {
 			),
 		),
 	)
-	beego.AddNamespace(ApiNS)
 
+	beego.AddNamespace(ApiNS)
+	var AdminNs = beego.NewNamespace(`/admin`)
+	AdminNs.Include(&admin.AdminController{}, &admin.LoginController{})
+	beego.AddNamespace(AdminNs)
+
+	ue := beego.NewNamespace(`/ue`)
+	ue.Include(&ueditor.UController{})
+	beego.AddNamespace(ue)
 }

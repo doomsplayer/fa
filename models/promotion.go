@@ -114,6 +114,11 @@ func (p *PromotionSlice) Hot(n int, from int, tp string) (err error) {
 	return
 }
 
+func (p *PromotionSlice) GetAll(from, num int) (err error) {
+	err = Engine.Limit(num, from).Find(p)
+	return
+}
+
 type PromotionType struct {
 	Id   int64
 	Name string

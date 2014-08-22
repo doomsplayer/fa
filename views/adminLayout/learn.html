@@ -1,0 +1,111 @@
+<div class="container">
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active">
+			<a href="#list" tole="tab" data-toggle="tab">列表</a>
+		</li>
+		<li role="presentation">
+			<a href="#add" tole="tab" data-toggle="tab">添加</a>
+		</li>
+	</ul>
+	<br/>
+	<div class="tab-content">
+		<div id="list" class="tab-pane active">
+			<table class="table">
+				<tr>
+					<th>#</th>
+					<th>title</th>
+					<th>type</th>
+					<th>author</th>
+					<th>source</th>
+					<th>time</th>
+					<th>modify</th>
+				</tr>
+				{%range .learns%}
+				<tr>
+					<td>{%.Id%}</td>
+					<td>{%.Title%}</td>
+					<td>{%.Type%}</td>
+					<td>{%.Author%}</td>
+					<td>{%.Source%}</td>
+					<td>{%date .Time "y-m-d h:i"%}</td>
+					<td>
+						<a> <i class="glyphicon glyphicon-edit"></i>
+						</a>
+						<a onclick="deletepost({%.Id%})"> <i class="glyphicon glyphicon-remove"></i>
+						</a>
+					</td>
+				</tr>
+				{%end%}
+			</table>
+		</div>
+
+		<div id="add" class="tab-pane">
+			<form action="" method="post" id="form">
+				<input class="form-control" name="title" placeholder="title" />
+				<br/>
+				<input class="form-control" name="type" placeholder="type" />
+				<br/>
+				<input class="form-control" name="picid" placeholder="picid" />
+				<br/>
+				<input class="form-control" name="author" placeholder="author" />
+				<br/>
+				<input class="form-control" name="source" placeholder="source" />
+				<br/>
+				<textarea class="form-control" name="description" placeholder="description"></textarea>
+				<br/>
+				<!-- 加载编辑器的容器 -->
+				<script id="content" name="content" type="text/plain">这里写你的初始化内容</script>
+				<br/>
+				<button class="btn btn-success" onclick="postform($('#form'))" type="button">添加</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+<!-- 配置文件 -->
+<script type="text/javascript" src="/static/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">var ue = UE.getEditor('content');</script>
+
+<script>
+	function postform(form) {
+		var title = form.find('input').eq(0).val();
+		var type = form.find('input').eq(1).val();
+		var picid = form.find('input').eq(2).val();
+		var author = form.find('input').eq(3).val();
+		var source = form.find('input').eq(4).val();
+		var description = form.find('textarea').eq(0).val();
+		var content = form.find('textarea').eq(1).val();
+		$.ajax({
+			url: '/api/admin/tutorial',
+			type: 'PUT',
+			data: {
+				title: title,
+				type: type,
+				picid: picid,
+				author: author,
+				source: source,
+				description: description,
+				content: content,
+			},
+			success: function(re) {
+						if (!re.ok) {
+							$('#add').before('<div class="alert alert-danger" role="alert">'+re.errmsg+'</div>')
+						} else {
+							location.reload()
+						}
+					 }
+			})	
+	}
+	function deletepost(id) {
+		$.ajax({
+			url: '/api/admin/tutorial?id=' + id,
+			type: 'DELETE',
+			success: function(r) {
+				location.reload()
+			}
+		})
+	}
+</script>

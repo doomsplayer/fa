@@ -1,6 +1,6 @@
 is_index = true;
 (function() {
-    var app = angular.module('badmintonhome', ['ngResource', 'ngRoute','ngSanitize','ui.bootstrap']);
+    var app = angular.module('badmintonhome', ['ngResource', 'ngRoute','ngSanitize','ui.bootstrap','infinite-scroll']);
     app.run(['$rootScope','$location',function($rootScope,$location){
         // Fix for nav bar
         $rootScope.index_css = function(){
@@ -111,14 +111,39 @@ is_index = true;
         return api;
     }])
 
-    app.controller('PortfolioCtrl', ['$http', '$scope',function($http, $scope) {
+    app.controller('PortfolioCtrl', ['$http', '$scope','$log',function($http, $scope, $log) {
+        $scope.now = 0;
+        $scope.msg = '更多促销信息加载中，请稍候'
+        $scope.loading = true;
         $http.get('/api/common/promotion', {params: {num: 20}}).success(function(response) {
             if (response.ok) {
                 var items = response.promotions;
+                $scope.loading = false;
                 $scope.items = items;
+                $scope.now += items.length;
                 $scope.recommand = [{heading:'最新',items: items},{heading:'即将过期',items: items}]    
             }
         });
+        $scope.nextPage = function(){
+            if ($scope.loading) return;
+            $scope.loading = true;
+            $http.get('/api/common/promotion',{params:{num:20,from:$scope.now}}).success(function(response){
+                if(response.ok){
+                    var items = response.promotions;
+                    for (var i in items){
+                        $scope.items.push(items[i]);
+                    }
+                    $scope.now += items.length;
+                    $log.log('load ' + items.length + ' promotions');
+                    $scope.loading = false;
+                }else{
+                    if (response.errmsg == 'empty'){
+                        $log.log('No more data')
+                        $scope.msg = '您已经全部看完啦，休息一下吧！'
+                    }
+                }
+            })
+        }
         
     }]).controller('defaultCtrl', function() {
     }).controller('VideoLibCtrl', ['$http', '$scope', function($http, $scope) {
@@ -149,29 +174,78 @@ is_index = true;
         
         
 
-    }]).controller('VideoAlbumCtrl', ['$http', '$scope','$routeParams', function($http, $scope,$routeParams){
+    }]).controller('VideoAlbumCtrl', ['$http', '$scope','$routeParams', '$log', function($http, $scope, $routeParams, $log){
         var id = $routeParams.albumId;
+        $scope.now = 0
+        $scope.loading = true
         $http.get("/api/common/video", {params: {type: id, num: 30}}).success(function(r) {
-            $scope.name = '2014澳大利亚羽毛球公开赛';
-            $scope.desc = '简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介...';
+            console.log(r)
+            $scope.name = id;
+            $scope.desc = '';
             if (r.ok) {
                 $scope.related = r.videos;    
                 $scope.recommand = r.videos;
-            }
+                $scope.now += r.videos.length;
+                $scope.loading = false;
+            } 
         })
+        $scope.nextPage = function(){
+            if ($scope.load) return;
+            $scope.loading = true;
+            $http.get("/api/common/video", {params: {type: $routeParams.albumId, num: 30, from: $scope.now}}).success(function(r){
+                if (r.ok){
+                    for(var i in r.videos){
+                        $scope.related.push(r.videos[i]);
+                        // $scope.recommand.push(r.videos[i]);  //FIXME Should recommands be infinite-Scollable ?
+                    }
+                    $scope.now += r.videos.length;
+                    $log.log('Load ' + r.videos.length + ' videos');
+                    $scope.loading = false;
+                }else{
+                    if (r.errmsg == 'empty'){
+                        $log.log('No more data');
+                        $scope.msg = '您已经全部看完啦，休息一下吧！';
+                    }
+                }
+            })
+        }
 
-    }]).controller('ArticleAlbumCtrl', ['$http', '$scope', '$routeParams', function($http, $scope, $routeParams){
+    }]).controller('ArticleAlbumCtrl', ['$http', '$scope', '$routeParams', '$log', function($http, $scope, $routeParams, $log){
         var id = $routeParams.albumId;
+        $scope.msg = '更多促销信息加载中，请稍后'
+        $scope.now = 0
+        $scope.loading = true
         $http.get('/api/common/tutorial',{params: {type: id, num: 20}}).success(function(r) {
             if (r.ok) {
                 $scope.title = id;
-                $scope.desc = '按赛事分类、按时间收录近期在各个国家举办的羽毛球国际赛事精彩视频专辑'
-                $scope.tabs = []
-                $scope.tabs.push({name:'最新',items: r.tutorials})
-                $scope.tabs.push({name:'热门',items: r.tutorials})
+                $scope.desc = '按赛事分类、按时间收录近期在各个国家举办的羽毛球国际赛事精彩视频专辑';
+                $scope.tabs = [];
+                $scope.tabs.push({name:'最新',items: r.tutorials});
+                $scope.tabs.push({name:'热门',items: r.tutorials});
+                $scope.now += r.tutorials.length;
+                $scope.loading = false;
             }
         });
-        
+        $scope.nextPage = function(){
+            if ($scope.loading) return;
+            $scope.loading = true
+            $http.get('/api/common/tutorial',{params: {type:$routeParams.albumId, num:20, from:$scope.now}}).success(function(r){
+                if(r.ok){
+                    for(var i in r.tutorials){
+                        $scope.tabs[0].items.push(r.tutorials[i]);
+                        $scope.tabs[1].items.push(r.tutorials[i]);
+                    };
+                    $scope.now += r.tutorials.length;
+                    $scope.loading = false;
+                    $log.log('load ' + r.tutorials.length + ' Articles');
+                }else{
+                    if (r.errmsg == 'empty'){
+                        $log.log('No more data')
+                        $scope.msg = '您已经全部看完啦，休息一下吧！'
+                    }
+                }
+            })
+        }
         
 
     }]).controller('ArticleCtrl', ['$http', '$routeParams','$scope', function($http, $routeParams,$scope){
@@ -200,177 +274,27 @@ is_index = true;
         })
     }]).controller('LearnBadmintonCtrl', ['$http', '$scope', function($http, $scope){
         $http.get('/api/common/hottutorial', {params: {num: 3}}).success(function(r) {
-            console.log(r)
             if (r.ok) {
                 $scope.slides = r.tutorials;
             }
         });
-        
         $scope.knowledge = []
-
-        $http.get('/api/common/hottutorial',{params: {type: '大话羽球', from: 0, num: 4}})
-             .success(function(response, status, headers, config) {
-                if (response.ok) {
-                    var hts = response.tutorials;
-                    var tmp = [];
-                    for (var i in hts) {
-                        var ht = hts[i];
-                        var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
-                        .success(function(response, status, headers, config) {
-                            picurl = response.filepath;
-                            tmp.push(
-                            {
-                                pic: picurl, 
-                                title: ht.Title, 
-                                url: '#/article/' + ht.Id, 
-                                desc: '描述',
-                            }
-                            );
-                        })
-                    }
-                    $scope.knowledge.push({name:'大话羽球', link:undefined, passages:tmp});
+        $http.get('/api/common/tutorialtypes').success(function(r) {
+            if (r.ok) {
+                for (var i in r.tutorialtypes) {   
+                    $http.get('/api/common/hottutorial',{params: {type: r.tutorialtypes[i].Name, from: 0, num: 4}})
+                         .success(
+                            function(i) {
+                                return function(response, status, headers, config) {
+                                    if (response.ok) {
+                                        $scope.knowledge.push({name: r.tutorialtypes[i].Name, link: '/#/articleAlbum/' + r.tutorialtypes[i].Name, passages: response.tutorials});
+                                    }
+                                }
+                            }(i)
+                        )
                 }
-                
             }
-        )
-        
-        $http.get('/api/common/hottutorial',{params: {type: '羽球战术', from: 0, num: 4}})
-             .success(function(response, status, headers, config) {
-                if (response.ok) {
-                    var hts = response.tutorials;
-                    var tmp = [];
-                    for (var i in hts) {
-                        var ht = hts[i];
-                        var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
-                        .success(function(response, status, headers, config) {
-                            picurl = response.filepath;
-                            tmp.push(
-                            {
-                                pic: picurl, 
-                                title: ht.Title, 
-                                url: '#/article/' + ht.Id, 
-                                desc: '描述',
-                            }
-                            );
-                        })
-                    }
-                    $scope.knowledge.push({name:'羽球战术', link:undefined, passages:tmp});
-                }
-                
-            }
-        )
-        
-        $http.get('/api/common/hottutorial',{params: {type: '羽球技术', from: 0, num: 4}})
-             .success(function(response, status, headers, config) {
-                if (response.ok) {
-                    var hts = response.tutorials;
-                    var tmp = [];
-                    for (var i in hts) {
-                        var ht = hts[i];
-                        var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
-                        .success(function(response, status, headers, config) {
-                            picurl = response.filepath;
-                            tmp.push(
-                            {
-                                pic: picurl, 
-                                title: ht.Title, 
-                                url: '#/article/' + ht.Id, 
-                                desc: '描述',
-                            }
-                            );
-                        })
-                    }
-                    $scope.knowledge.push({name:'羽球技术', link:undefined, passages:tmp});
-                }
-                
-            }
-        )
-
-        $http.get('/api/common/hottutorial',{params: {type: '羽球知识', from: 0, num: 4}})
-             .success(function(response, status, headers, config) {
-                if (response.ok) {
-                    var hts = response.tutorials;
-                    var tmp = [];
-                    for (var i in hts) {
-                        var ht = hts[i];
-                        var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
-                        .success(function(response, status, headers, config) {
-                            picurl = response.filepath;
-                            tmp.push(
-                            {
-                                pic: picurl, 
-                                title: ht.Title, 
-                                url: '#/article/' + ht.Id, 
-                                desc: '描述',
-                            }
-                            );
-                        })
-                    }
-                    $scope.knowledge.push({name:'羽球知识', link:undefined, passages:tmp});
-                }
-                
-            }
-        )
-
-
-        $scope.part2 = []
-        $http.get('/api/common/hottutorial',{params: {type: '伤病防护', from: 0, num: 4}})
-             .success(function(response, status, headers, config) {
-                if (response.ok) {
-                    var hts = response.tutorials;
-                    var tmp = [];
-                    for (var i in hts) {
-                        var ht = hts[i];
-                        var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
-                        .success(function(response, status, headers, config) {
-                            picurl = response.filepath;
-                            tmp.push(
-                            {
-                                pic: picurl, 
-                                title: ht.Title, 
-                                url: '#/article/' + ht.Id, 
-                                desc: '描述',
-                            }
-                            );
-                        })
-                    }
-                    $scope.knowledge.push({name:'伤病防护', link:undefined, passages:tmp});
-                }
-                
-            }
-        )
-        $http.get('/api/common/hottutorial',{params: {type: '常见问题', from: 0, num: 4}})
-             .success(function(response, status, headers, config) {
-                if (response.ok) {
-                    var hts = response.tutorials;
-                    var tmp = [];
-                    for (var i in hts) {
-                        var ht = hts[i];
-                        var picurl = '';
-                        $http.get('/api/common/upload',{params: {id: ht.PicId}})
-                        .success(function(response, status, headers, config) {
-                            picurl = response.filepath;
-                            tmp.push(
-                            {
-                                pic: picurl, 
-                                title: ht.Title, 
-                                url: '#/article/' + ht.Id, 
-                                desc: '描述',
-                            }
-                            );
-                        })
-                    }
-                    $scope.knowledge.push({name:'常见问题', link:undefined, passages:tmp});
-                }
-                
-            }
-        )
-
+        })
     }]).controller('ItemCtrl', ['$http', '$scope','$routeParams', function($http, $scope,$routeParams){
         $http.get('/api/common/promotion/' + $routeParams.itemId).success(function(response) {
             if (response.ok) {

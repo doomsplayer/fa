@@ -17,7 +17,7 @@ type FileApi struct {
 // @Failure 404 Not found errmsg
 // @Failure 401 Need Permmision errmsg
 // @Failure 500 Server Error errmsg
-// @router /upload [put]
+// @router /upload [put,post]
 func (f *FileApi) UploadFile() {
 
 	file, header, err := f.GetFile("file")
