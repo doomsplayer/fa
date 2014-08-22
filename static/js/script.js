@@ -126,6 +126,7 @@ is_index = true;
         });
         $scope.nextPage = function(){
             if ($scope.loading) return;
+            $scope.loading = true;
             $http.get('/api/common/promotion',{params:{num:20,from:$scope.now}}).success(function(response){
                 if(response.ok){
                     var items = response.promotions;
@@ -201,6 +202,8 @@ is_index = true;
             }
         });
         $scope.nextPage = function(){
+            if ($scope.loading) return;
+            $scope.loading = true
             $http.get('/api/common/tutorial',{params: {type:$routeParams.albumId, num:20, from:$scope.now}}).success(function(r){
                 if(r.ok){
                     for(var i in r.tutorials){
