@@ -1,6 +1,6 @@
 is_index = true;
 (function() {
-    var app = angular.module('badmintonhome', ['ngResource', 'ngRoute','ngSanitize','ui.bootstrap']);
+    var app = angular.module('badmintonhome', ['ngResource', 'ngRoute','ngSanitize','ui.bootstrap','infinite-scroll']);
     app.run(['$rootScope','$location',function($rootScope,$location){
         // Fix for nav bar
         $rootScope.index_css = function(){
@@ -111,7 +111,7 @@ is_index = true;
         return api;
     }])
 
-    app.controller('PortfolioCtrl', ['$http', '$scope',function($http, $scope) {
+    app.controller('PortfolioCtrl', ['$http', '$scope','$log',function($http, $scope, $log) {
         $scope.now = 0;
         $scope.loading = true;
         $http.get('/api/common/promotion', {params: {num: 20}}).success(function(response) {
@@ -132,6 +132,7 @@ is_index = true;
                         $scope.items.push(items[i]);
                     }
                     $scope.now += items.length;
+                    $log.log('load ' + items.length + ' promotions')
                     $scope.loading = false;
                 }
             })
