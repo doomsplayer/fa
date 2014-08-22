@@ -11,7 +11,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container" style="margin-top:40px;">
+	<div class="container" style="margin-top:40px;" infinite-scroll='nextPage()' infinite-scroll-distance='1'>
 		<tabset>
 			<tab class='x-tab' ng-repeat="tab in tabs" heading="{{tab.name}}">
 				<div class="news_wrapper">
@@ -31,9 +31,9 @@
 					</div>
 				</tab>
 			</tabset>
-			<div class="loading">
+			<div class="loading" ng-show="loading">
 				<img src="../static/img/loading.gif" alt="" style="float:left"/>
-				<p style="padding:10px 0 0 10px;float:left;">更多促销信息加载中，请稍后</p>
+				<p style="padding:10px 0 0 10px;float:left;">{{msg}}</p>
 			</div>
 		</div>
 
