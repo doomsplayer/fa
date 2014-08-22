@@ -330,7 +330,7 @@ is_index = true;
             restrict: 'E',
             templateUrl: 'static/tpl/badminton-learn.html',
             scope:{},
-            controller:['$scope','Api',function($scope,Api){
+            controller:['$scope','Api','$log',function($scope,Api,$log){
                 $scope.Learn = [];
                 var types = Api.tutorialtypes.get()
                 types.$promise.then(function(){
@@ -342,6 +342,7 @@ is_index = true;
                 })
                 $scope.click = function(num){
                     if (!$scope.Learn[num].pic_news){
+                        $log.log('load ' + $scope.Learn[num].name)
                         var d = Api.tutorials.get({type:$scope.Learn[num].name,num:8})
                         d.$promise.then(function(){
                             if (d.ok){
@@ -351,6 +352,7 @@ is_index = true;
                         })
                     }
                 }
+                $scope.click(0)
             }]
         }
     });
