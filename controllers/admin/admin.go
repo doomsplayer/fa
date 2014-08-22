@@ -78,6 +78,33 @@ func (this *AdminController) Learn() {
 	this.Render()
 }
 
+// @router /file [get]
+func (this *AdminController) Files() {
+	t := &models.FileSlice{}
+	t.GetAll(0, 10000)
+	this.Data["files"] = t
+	this.TplNames = "adminLayout/resource.html"
+	this.Render()
+}
+
+// @router /promotion [get]
+func (this *AdminController) Promotions() {
+	t := &models.PromotionSlice{}
+	t.GetAll(0, 10000)
+	this.Data["promotions"] = t
+	this.TplNames = "adminLayout/promotions.html"
+	this.Render()
+}
+
+// @router /video [get]
+func (this *AdminController) Videos() {
+	t := &models.VideoSlice{}
+	t.All(10000, 0, ``)
+	this.Data["videos"] = t
+	this.TplNames = "adminLayout/videos.html"
+	this.Render()
+}
+
 // @router /sysstatus [get]
 func (this *AdminController) Sysstatus() {
 	var startTime = time.Now()

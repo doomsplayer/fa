@@ -18,12 +18,12 @@
 		    		<div class="col-md-6" ng-repeat="passage in part.passages track by $index">
 		    			<div class="video-list-inner">
 		    				<div class="img">
-			    				<img ng-src="{{passage.pic}}"/>
+		    					<pic picid="{{passage.PicId}}"></pic>
 								<div class="mask more"></div>			    					
 		    				</div>
 			    			<div class="text">
-				    			<h5><a ng-href="{{passage.url}}" ng-bind="passage.title"></a></h5>
-				    			<p ng-bind="passage.desc"></p>
+				    			<h5><a ng-href="/#/article/{{passage.Id}}" ng-bind="passage.Title"></a></h5>
+				    			<p ng-bind="passage.Description"></p>
 			    			</div>
 		    			</div>
 		    		</div>		    		
@@ -31,25 +31,7 @@
 	    	</div>
 		</div>
 	</div>
-    <div ng-repeat="part in part2 track by $index">
-    	<div class="title-wrapper">
-    		<h4 class="title" ng-bind="part.name"><span><a ng-href="{{part.link}}">MORE></a></span></h4>
-    	</div>
-    	<div class="row myrow">
-    		<div class="col-md-4" ng-repeat="passage in part.passages track by $index">
-    			<div class="video-list-inner">
-    				<div class="img">
-	    				<img ng-src="{{passage.pic}}"/>
-						<div class="mask more"></div>			    					
-    				</div>
-	    			<div class="text">
-		    			<h5><a ng-href="{{passage.url}}" ng-bind="passage.title"></a></h5>
-				    	<p ng-bind="passage.desc"></p>
-	    			</div>
-    			</div>
-    		</div>
-    	</div>
-    </div>
+
 </div>
 <!-- FIXME Ignore comment -->
 <div class="well mywell">

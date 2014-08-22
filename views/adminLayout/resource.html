@@ -1,0 +1,65 @@
+<div class="container">
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active">
+			<a href="#list" tole="tab" data-toggle="tab">列表</a>
+		</li>
+	</ul>
+	<br/>
+	<div class="tab-content"> 
+		<form action="/api/common/upload" method="post" enctype="multipart/form-data" id="uploadform">
+			<input type="file" name="file"/>
+			<br/>
+			<button class="btn btn-success">上传</button>
+			<br/>
+		</form>
+		<div id="list" class="tab-pane active">
+			<table class="table">
+				<tr>
+					<th>#</th>
+					<th>name</th>
+					<th>path</th>
+					<th>modify</th>
+				</tr>
+				{%range .files%}
+				<tr>
+					<td>{%.Id%}</td>
+					<td>{%.Name%}</td>
+					<td>{%.Path%}</td>
+					<td>
+						<a onclick="deletepost({%.Id%})"> <i class="glyphicon glyphicon-remove"></i>
+						</a>
+					</td>
+				</tr>
+				{%end%}
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+	function upload() {
+		$.ajax({
+  			 type: "PUT",
+  			 url: "/api/common/upload",
+  			 data: $('uploadform').serialize(),
+  			 contentType:"multipart/form-data",
+  			 success: function(msg){
+   				  console.log(msg)
+  			 }
+		});
+	}
+	function deletepost(id) {
+		$.ajax({
+			url: '/api/common/upload?id=' + id,
+			type: 'DELETE',
+			success: function(r) {
+				if (r.ok) {
+					location.reload()	
+				} else {
+					console.log(r)
+				}
+							
+			}
+		})
+	}
+</script>

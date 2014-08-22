@@ -23,8 +23,7 @@ type PromotionApi struct {
 // @Param link form string true 连接地址
 // @Param detail form string true 商品细节
 // @Param picid form string true 大图片id
-// @Param starttime form string true 促销开始时间，用格式 2014-09-01 13:11
-// @Param endtime form string true 促销结束时间
+// @Param promotetime form string true 促销时间，用格式 2014-09-01~2015-01-01
 // @Success 200 {string} 列表的json
 // @Failure 404 Not found
 // @router /promotion [put]
@@ -54,22 +53,11 @@ func (p *PromotionApi) Put() {
 		p.ServeJson()
 		return
 	}
-	starttimeS := p.GetString("starttime")
-	endtimeS := p.GetString("endtime")
+	promotetimeS := p.GetString("promotetime")
 
-	starttime, err := time.Parse("2006-01-02 15:04", starttimeS)
-	if err != nil {
-		p.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
-		p.ServeJson()
-		return
-	}
-	endtime, err := time.Parse("2006-01-02 15:04", endtimeS)
-	if err != nil {
-		p.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
-		p.ServeJson()
-		return
-	}
-
+	s := strings.Split(promotetimeS, "~")
+	starttime, _ := time.Parse("2006-01-02", s[0])
+	endtime, _ := time.Parse("2006-01-02", s[1])
 	pro.StartTime = starttime
 	pro.EndTime = endtime
 	err = pro.Put()

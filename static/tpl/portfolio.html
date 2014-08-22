@@ -5,7 +5,7 @@
 		<div class="col-lg-8 col-md-8 col-sm-12" infinite-scroll='nextPage()' infinite-scroll-distance='1'>
 			<h4 class="title title-6">热门促销信息</h4>
 			<div class="item" ng-repeat="item in items track by $index">
-				<a class="title" href="#">
+				<a class="title" href="/#/item/{{item.Id}}">
 					<h5><kbd>{{item.Type}}</kbd>{{item.Title}}<span class="subtitle">{{item.Title2}}</span></h5>
 				</a>
 				<div class="row">
@@ -15,10 +15,10 @@
 					<div class="col-lg-7 col-md-7 col-sm-7">
 						参数性能：
 						<div class="parameter">
-							<li ng-repeat="per in item.performance track by $index" ng-bind="per"></li>
+							{{item.Description}}
 						</div>
-						<p>购买链接：<a ng-href="{{item.Link}}">{{item.Discription2}}</a></p>
-						<div class="comment"><a href="#"><img src="../static/img/comment.jpg"/ >评论 142条</a><share-to></share-to></div>
+						<p>购买链接：<a ng-href="{{item.Link}}">{{item.Description2}}</a></p>
+						<!-- <div class="comment"><a href="#"><img src="/static/img/comment.jpg"/ >评论 142条</a><share-to></share-to></div> -->
 					</div>
 				</div>
 				<hr />

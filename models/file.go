@@ -101,3 +101,17 @@ func (f *File) Delete() (err error) {
 	E(err)
 	return
 }
+
+type FileSlice []File
+
+func (this *FileSlice) GetAll(start, num int) (err error) {
+	defer func() {
+		if e := recover(); e != nil {
+			err = e.(error)
+		}
+	}()
+
+	err = Engine.Find(this)
+
+	return
+}

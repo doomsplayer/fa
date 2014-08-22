@@ -63,8 +63,9 @@ func (t *VideoSlice) All(n, from int, tp string) (err error) {
 }
 
 type VideoType struct {
-	Id   int64
-	Name string
+	Id          int64
+	Name        string
+	Description string
 }
 type VideoTypeSlice []VideoType
 
