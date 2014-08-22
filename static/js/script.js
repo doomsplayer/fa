@@ -134,12 +134,12 @@ is_index = true;
                         $scope.items.push(items[i]);
                     }
                     $scope.now += items.length;
-                    $log.log('load ' + items.length + ' promotions')
+                    $log.log('load ' + items.length + ' promotions');
                     $scope.loading = false;
                 }else{
                     if (response.errmsg == 'empty'){
                         $log.log('No more data')
-                        $scope.msg = '您已经看完全部啦，休息一下吧！'
+                        $scope.msg = '您已经全部看完啦，休息一下吧！'
                     }
                 }
             })
@@ -174,16 +174,40 @@ is_index = true;
         
         
 
-    }]).controller('VideoAlbumCtrl', ['$http', '$scope','$routeParams', function($http, $scope,$routeParams){
+    }]).controller('VideoAlbumCtrl', ['$http', '$scope','$routeParams', '$log', function($http, $scope, $routeParams, $log){
         var id = $routeParams.albumId;
+        $scope.now = 0
+        $scope.loading = true
         $http.get("/api/common/video", {params: {type: id, num: 30}}).success(function(r) {
-            $scope.name = '2014澳大利亚羽毛球公开赛';
+            $scope.name = id;
             $scope.desc = '简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介...';
             if (r.ok) {
                 $scope.related = r.videos;    
                 $scope.recommand = r.videos;
+                $scope.now += r.videos.length;
+                $scope.loading = false;
             }
         })
+        $scope.nextPage = function(){
+            if ($scope.load) return;
+            $scope.loading = true;
+            $http.get("/api/common/video", {params: {type: $routeParams.albumId, num: 30, from: $scope.now}}).success(function(r){
+                if (r.ok){
+                    for(var i in r.videos){
+                        $scope.related.push(r.videos[i]);
+                        // $scope.recommand.push(r.videos[i]);  //FIXME Should recommands be infinite-Scollable ?
+                    }
+                    $scope.now += r.videos.length;
+                    $log.log('Load ' + r.videos.length + ' videos');
+                    $scope.loading = false;
+                }else{
+                    if (r.errmsg == 'empty'){
+                        $log.log('No more data');
+                        $scope.msg = '您已经全部看完啦，休息一下吧！';
+                    }
+                }
+            })
+        }
 
     }]).controller('ArticleAlbumCtrl', ['$http', '$scope', '$routeParams', '$log', function($http, $scope, $routeParams, $log){
         var id = $routeParams.albumId;
@@ -216,7 +240,7 @@ is_index = true;
                 }else{
                     if (r.errmsg == 'empty'){
                         $log.log('No more data')
-                        $scope.msg = '您已经看完全部啦，休息一下吧！'
+                        $scope.msg = '您已经全部看完啦，休息一下吧！'
                     }
                 }
             })
