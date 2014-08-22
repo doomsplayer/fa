@@ -2,7 +2,7 @@
 	<div portfolio></div>
 
 	<div class="container">
-		<div class="col-lg-8 col-md-8 col-sm-12">
+		<div class="col-lg-8 col-md-8 col-sm-12" infinite-scroll='nextPage()' infinite-scroll-disabled='loading' infinite-scroll-distance='1'>
 			<h4 class="title title-6">热门促销信息</h4>
 			<div class="item" ng-repeat="item in items track by $index">
 				<a class="title" href="#">
@@ -23,8 +23,7 @@
 				</div>
 				<hr />
 			</div>
-			<!-- FIXME show the tip when loading -->
-			<div class="more">
+			<div class="more" ng-show="loading">
 				<img src="../static/img/loading.gif" />更多促销信息加载中，请稍候
 			</div>
 		</div>

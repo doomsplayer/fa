@@ -112,13 +112,30 @@ is_index = true;
     }])
 
     app.controller('PortfolioCtrl', ['$http', '$scope',function($http, $scope) {
+        $scope.now = 0;
+        $scope.loading = true;
         $http.get('/api/common/promotion', {params: {num: 20}}).success(function(response) {
             if (response.ok) {
                 var items = response.promotions;
+                $scope.loading = false;
                 $scope.items = items;
+                $scope.now += items.length;
                 $scope.recommand = [{heading:'最新',items: items},{heading:'即将过期',items: items}]    
             }
         });
+        $scope.nextPage = function(){
+            if ($scope.loading) return;
+            $http.get('/api/common/promotions',{params:{num:20,from:$scope.now}}).success(function(response){
+                if(response.ok){
+                    var items = response.promotions;
+                    for (var i in items){
+                        $scope.items.push(items[i]);
+                    }
+                    $scope.now += items.length;
+                    $scope.loading = false;
+                }
+            })
+        }
         
     }]).controller('defaultCtrl', function() {
     }).controller('VideoLibCtrl', ['$http', '$scope', function($http, $scope) {
