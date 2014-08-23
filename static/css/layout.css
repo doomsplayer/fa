@@ -106,16 +106,18 @@ ul>li.x-tab.last {
 }
 .tab-content {
 	overflow: hidden;
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 }
 .news_wrapper {
 	margin-top: 20px;
 }
 .pic_news{
 	margin-top: 20px;
+	overflow: hidden;
 }
 .pic_news img{
 	width: 100%;
+	height: 200px;
 }
 .pic_news_container {
 	position: relative;
@@ -127,6 +129,7 @@ p.pic_intro {
 	color: #fff;
 	margin-top: -20px;
 	text-align: center;
+	height: 20px;
 }
 .mask {
 	position: absolute;
@@ -239,7 +242,9 @@ p.pic_intro {
 .isotope {
 	overflow: hidden;
 }
-
+#isotope {
+	margin-bottom: 30px;
+}
 .element-item {
 	position: relative;
 	float: left;
@@ -477,7 +482,7 @@ button.close:hover {
 }
 .carousel-inner>.item>img, .carousel-inner>.item>a>img {
 	float: left;
-	width: 430px;
+	width: 35%;
 	height: 300px;
 }
 .carousel-intro {
@@ -519,15 +524,16 @@ button.close:hover {
 }
 .myrow {
 	/*margin-right: -40px;*/
-	padding-top: 20px;
+	padding-top: 10px;
 }
 .video-list-inner {
 	/*padding-right: 25px;*/
 	width: 100%;
-	/*height: 380px;*/
+	height: 350px;
 }
 .video-list-inner img {
 	width: 100%;
+	height: 200px;
 }
 .video-list-inner .img {
 	position: relative;
@@ -549,6 +555,7 @@ button.close:hover {
 	    -ms-transition: opacity .3s ease-in-out;
 	     -o-transition: opacity .3s ease-in-out;
 	        transition: opacity .3s ease-in-out;
+	cursor: pointer;
 }
 .video-list-inner .text {
 	padding: 10px;
@@ -601,7 +608,7 @@ button.close:hover {
 	height: auto;
 }
 .rt-row .text {
-	margin: 0px -40px 0 15px;
+	margin: 0px -40px 0 -15px;
 }
 .rt-row .text a{
 	color:black;
@@ -613,7 +620,7 @@ button.close:hover {
 	margin-bottom: 20px;
 }
 .loading {
-	width: 25%;
+	width: 300px;
 	margin: 0 auto;
 	overflow: hidden;
 	padding-bottom: 50px;
@@ -937,9 +944,11 @@ div.pagination {
 }
 
 div.item {
-	margin-bottom: 10px;
+	/*margin-top: 20px;*/
 }
-
+.tab-content .item {
+	margin-bottom: 15px;
+}
 div.pagination>div {
 	display: inline-block;
 }
@@ -971,25 +980,6 @@ form.page-jump>input {
     margin: 0 5px 0 5px;
 }
 
-h5,h4 {
-	font-family: 微软雅黑;
-	font-size: 18px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-h5 {
-	text-indent:-40px;
-	margin-left:40px;
-	line-height: 19px;
-}
-
-h6 {
-	font-family: 微软雅黑;
-	font-size: 16px;
-	color: #1ebcb9;
-}
-
 span.subtitle {
 	color: #1ebcb9;
 }
@@ -1007,7 +997,7 @@ kbd {
     -webkit-box-shadow: inset 0 -1px 0 #1ebcb9;
     box-shadow: inset 0 -1px 0 #1ebcb9;
 	margin-right: 6px;
-	vertical-align: top;
+	vertical-align: middle;
 }
 
 a {
@@ -1142,8 +1132,8 @@ textarea {
 }
 
 hr {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 30px;
+	margin-bottom: 15px;
 	border-color: #BDBDBD;
 }
 .comment-area {
@@ -1171,4 +1161,8 @@ hr {
 .pic {
     height: auto;
     width: 100%;
+}
+.col-md-6-wrapper {
+	height: 700px;
+	overflow: hidden;
 }
