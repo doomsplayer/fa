@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"path/filepath"
 )
 
 type UController struct {
@@ -43,7 +42,7 @@ func (this *UController) Main() {
 			err = dbfile.SaveToFile(header.Filename, username, data)
 			if err != nil {
 				this.Data[`json`] = map[string]interface{}{
-					"filetype": filepath.Ext(header.Filename),
+					"title":    header.Filename,
 					"original": header.Filename,
 					"state":    "FAIL",
 				}
@@ -51,7 +50,7 @@ func (this *UController) Main() {
 				return
 			} else {
 				this.Data[`json`] = map[string]interface{}{
-					"filetype": filepath.Ext(header.Filename),
+					"title":    header.Filename,
 					"original": header.Filename,
 					"state":    "SUCCESS",
 					"url":      "/" + dbfile.Path,
@@ -60,6 +59,27 @@ func (this *UController) Main() {
 				return
 			}
 
+		}
+	case `listimage`:
+		{
+			start, _ := this.GetInt(`start`)
+			num, _ := this.GetInt(`size`)
+			dir, _ := os.Open(`static/upload/ue`)
+			fileinfos, _ := dir.Readdir(-1)
+			m := map[string]interface{}{}
+			m[`state`] = `SUCCESS`
+			m["start"] = start
+			m["total"] = len(fileinfos)
+			s := []map[string]string{}
+			for num = num - 1; num >= 0; num-- {
+				s = append(s, map[string]string{
+					"url": "/static/upload/ue/" + fileinfos[num+start].Name(),
+				})
+			}
+			m[`list`] = s
+			this.Data[`json`] = m
+			this.ServeJson()
+			return
 		}
 	}
 }
