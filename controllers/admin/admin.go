@@ -105,6 +105,15 @@ func (this *AdminController) Videos() {
 	this.Render()
 }
 
+// @router /carousel [get]
+func (this *AdminController) Carousel() {
+	t := &models.CarouselSlice{}
+	t.All()
+	this.Data["carousels"] = t
+	this.TplNames = "adminLayout/carousel.html"
+	this.Render()
+}
+
 // @router /sysstatus [get]
 func (this *AdminController) Sysstatus() {
 	var startTime = time.Now()

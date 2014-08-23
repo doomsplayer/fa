@@ -43,7 +43,9 @@
 			<form action="" method="post" id="form">
 				<input class="form-control" name="title" placeholder="title" />
 				<br/>
-				<input class="form-control" name="type" placeholder="type" />
+				<select class="form-control" name="type" placeholder="type" id="type">
+					
+				</select>
 				<br/>
 				<input class="form-control" name="picid" placeholder="picid" />
 				<br/>
@@ -70,6 +72,16 @@
 <script type="text/javascript">var ue = UE.getEditor('content');</script>
 
 <script>
+	(function(){
+		$.get('/api/common/tutorialtypes', function(r) {
+			if (r.ok) {
+				for (var i in r.tutorialtypes) {
+					var element = '<option value="' + r.tutorialtypes[i].Name + '">' + r.tutorialtypes[i].Name + '</option>';
+					$('select#type').append(element);
+				}
+			}
+		})
+	})()
 	function postform(form) {
 		var title = form.find('input').eq(0).val();
 		var type = form.find('input').eq(1).val();

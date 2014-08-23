@@ -109,7 +109,7 @@ is_index = true;
         api.file = $resource('/api/common/upload',{},{get:{cache:true,method:'GET'}});
         api.video = $resource('/api/common/video',{},{get:{cache:true,method:'GET'}});
         api.tutorialtypes = $resource('/api/common/tutorialtypes', {}, {get:{cache:true,method:'GET'}});
-        api.tutorial = $resource('/api/common/tutorial')
+        api.hottutorial = $resource('/api/common/hottutorial')
         return api;
     }])
 
@@ -345,7 +345,7 @@ is_index = true;
                 $scope.click = function(num){
                     if (!$scope.Learn[num].pic_news){
                         $log.log('load ' + $scope.Learn[num].name)
-                        var d = Api.tutorials.get({type:$scope.Learn[num].name,num:8})
+                        var d = Api.hottutorial.get({type:$scope.Learn[num].name,num:8})
                         d.$promise.then(function(){
                             if (d.ok){
                                 $scope.Learn[num].pic_news = d.tutorials;
@@ -419,18 +419,20 @@ is_index = true;
             replace: true,
             restrict: 'E',
             controller:['$scope','$element','Api',function($scope,$element,Api){
-                ret = Api.file.get({id:$scope.Id})
+                var ret = Api.file.get({id:$scope.Id});
                 ret.$promise.then(function(data){
                     if(ret.ok){
                        $scope.url = data.filepath;
+                       // $element.attr('src',data.filepath);
                    }
                 })
                 $scope.$watch('Id',function(newValue,oldValue){
                     if (newValue != oldValue){
-                        ret = Api.file.get({id:newValue});
+                        var ret = Api.file.get({id:newValue});
                         ret.$promise.then(function(data){
                             if (ret.ok){
                                 $scope.url = data.filepath;
+                                // $element.attr('src',data.filepath);
                             }
                         })
                     }

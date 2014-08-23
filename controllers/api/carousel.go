@@ -18,6 +18,7 @@ type CarouselApi struct {
 // @Failure 500 Server Error errmsg
 // @router /carousel [get]
 func (c *CarouselApi) List() {
+
 	num, err := c.GetInt("num")
 	if err != nil {
 		c.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
@@ -25,7 +26,7 @@ func (c *CarouselApi) List() {
 		return
 	}
 	cs := &models.CarouselSlice{}
-	err = cs.Recent(int(num))
+	err = cs.GetUse(int(num))
 	if err != nil {
 		c.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
 		c.ServeJson()

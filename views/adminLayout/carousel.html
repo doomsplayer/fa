@@ -1,0 +1,103 @@
+<div class="container">
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active">
+			<a href="#list" tole="tab" data-toggle="tab">列表</a>
+		</li>
+		<li role="presentation">
+			<a href="#add" tole="tab" data-toggle="tab">添加</a>
+		</li>
+	</ul>
+	<br/>
+	<div class="tab-content">
+		<div id="list" class="tab-pane active">
+			<table class="table">
+				<tr>
+					<th>#</th>
+					<th>title</th>
+					<th>subtitle</th>
+					<th>url</th>
+					<th>use</th>
+					<th>modify</th>
+				</tr>
+				{%range .carousels%}
+				<tr>
+					<td>{%.Id%}</td>
+					<td>{%.Title%}</td>
+					<td>{%.Subtitle%}</td>
+					<td>{%.Url%}</td>
+					<td>{%.Use%}</td>
+					<td>
+						{%if .Use%}
+						<a onclick="use({%.Id%},false)"> <i class="glyphicon glyphicon-stop"></i>
+						</a>
+						{%else%}
+						<a onclick="use({%.Id%},true)"> <i class="glyphicon glyphicon-play"></i>
+						</a>
+						{%end%}
+						<a onclick="deletepost({%.Id%})"> <i class="glyphicon glyphicon-remove"></i>
+						</a>
+					</td>
+				</tr>
+				{%end%}
+			</table>
+		</div>
+
+		<div id="add" class="tab-pane">
+			<form action="" method="post" id="form">
+				<input class="form-control" name="title" placeholder="title" />
+				<br/>
+				<input class="form-control" name="subtitle" placeholder="subtitle" />
+				<br/>
+				<input class="form-control" name="picid" placeholder="picid" />
+				<br/>
+				<input class="form-control" name="url" placeholder="url" />
+				<br/>
+				<button class="btn btn-success" onclick="postform($('#form'))" type="button">添加</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<script>
+	function postform(form) {
+		$.ajax({
+			url: '/api/admin/carousel',
+			type: 'PUT',
+			data: form.serialize(),
+			success: function(re) {
+				if (!re.ok) {
+					$('#add').before('<div class="alert alert-danger" role="alert">'+re.errmsg+'</div>')
+				} else {
+					location.reload()
+				} 
+			}
+		})
+	}
+	function use(id,useornot) {
+		$.ajax({
+			url: '/api/admin/carouseluse',
+			type: 'POST',
+			data: {
+				id:id,
+				use:useornot,
+			},
+			success: function(re) {
+						if (!re.ok) {
+							$('#add').before('<div class="alert alert-danger" role="alert">'+re.errmsg+'</div>')
+						} else {
+							location.reload()
+						}
+					 }
+			})	
+	}
+	function deletepost(id) {
+		$.ajax({
+			url: '/api/admin/carousel?id=' + id,
+			type: 'DELETE',
+			success: function(r) {
+				location.reload()
+			}
+		})
+	}
+</script>
