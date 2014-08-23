@@ -345,7 +345,7 @@ is_index = true;
                 $scope.click = function(num){
                     if (!$scope.Learn[num].pic_news){
                         $log.log('load ' + $scope.Learn[num].name)
-                        var d = Api.hottutorials.get({type:$scope.Learn[num].name,num:8})
+                        var d = Api.hottutorial.get({type:$scope.Learn[num].name,num:8})
                         d.$promise.then(function(){
                             if (d.ok){
                                 $scope.Learn[num].pic_news = d.tutorials;
