@@ -252,12 +252,13 @@ is_index = true;
 
     }]).controller('ArticleCtrl', ['$http', '$routeParams','$scope', function($http, $routeParams,$scope){
         var articleId = $routeParams.articleId
+        var tg = new RegExp("(.*)T.*");
         $http.get('/api/common/tutorial/' + articleId).success(function(response, status, headers, config){
             if (response.ok) {
                 var tutorial = response.tutorial;
                 $scope.author = tutorial.Author;
                 $scope.source = tutorial.Source;
-                $scope.date = tutorial.Time;
+                $scope.date = tg.exec(tutorial.Time)[1];
                 $scope.click = tutorial.Click;
                 $scope.star = tutorial.Favor;
                 $scope.title = tutorial.Title;
@@ -267,7 +268,7 @@ is_index = true;
                         var ts = response.tutorials;
                         $scope.recommand = []
                         for (var i in ts) {
-                            $scope.recommand.push({title: ts[i].Title, date: ts[i].Time ,url: "#/article/" + ts[i].Id})
+                            $scope.recommand.push({title: ts[i].Title, date: tg.exec(ts[i].Time)[1] ,url: "#/article/" + ts[i].Id})
                         }
                         
                     }
@@ -319,8 +320,9 @@ is_index = true;
         })
     }]).controller('VideoCtrl', ['$http', '$scope','$resource','$routeParams','$timeout','$location', function($http, $scope,$resource,$routeParams,$timeout,$location){
         var videoId = $routeParams.videoId;
-        var video = $resource('api/common/video/:Id',{Id:'@id'})
-        var ret = video.get({type:$routeParams.videoType,id:$routeParams.videoId})
+        var video = $resource('/api/common/video/:Id')
+        var ret = video.get({Id: videoId})
+
         ret.$promise.then(function(){
             if (ret.ok){
                 $scope.video = ret.video;
