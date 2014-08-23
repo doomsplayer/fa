@@ -35,7 +35,7 @@ func (m *MainMenuApi) Menu() {
 	me.Title = `视频库`
 	me.Url = `#/videoLib`
 	me.AddSub(`国际大赛`, `#/videoAlbum/国际大赛`)
-	me.AddSub(`经典对战`, `#/videoAlbum/经典大赛`)
+	me.AddSub(`经典对战`, `#/videoAlbum/经典对战`)
 	me.AddSub(`玩转羽球`, `#/videoAlbum/玩转羽球`)
 	menu = append(menu, me)
 
