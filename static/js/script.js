@@ -260,8 +260,8 @@ is_index = true;
                 $scope.date = tutorial.Time;
                 $scope.click = tutorial.Click;
                 $scope.star = tutorial.Favor;
-                $scope.title = tutorial.Title
-                $scope.content = tutorial.Content
+                $scope.title = tutorial.Title;
+                $scope.content = tutorial.Content.replace(/\s+/g, '');
                 $http.get('/api/common/hottutorial?type=' + tutorial.Type).success(function(response, status, headers, config){
                     if (response.ok) {
                         var ts = response.tutorials;

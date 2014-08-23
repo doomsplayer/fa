@@ -40,13 +40,13 @@
 				<div class="row myrow">
 					<div class="col-md-11">
 						<div class="row sub-row" ng-repeat="video in recommand track by $index">
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<pic picid="{{video.PicId}}"></pic>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-8">
 								<div class="text">
 									<a ng-href="#/video/{{video.Id}}">
-										<h5 ng-bind="video.Title"></h5>
+										<h6 ng-bind="video.Title"></h6>
 										<p ng-bind="video.Description"></p>
 									</a>
 								</div>
