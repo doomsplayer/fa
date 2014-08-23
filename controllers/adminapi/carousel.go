@@ -23,6 +23,7 @@ type CarouselApi struct {
 // @Failure 500 Server Error errmsg
 // @router /carousel [put]
 func (c *CarouselApi) Add() {
+
 	carousel := new(models.Carousel)
 	err := c.ParseForm(carousel)
 	if err != nil {
@@ -49,6 +50,51 @@ func (c *CarouselApi) Add() {
 		return
 	}
 	err = carousel.Put()
+
+	c.Data["json"] = map[string]interface{}{"ok": true, "carousels": carousel}
+	c.ServeJson()
+}
+
+// @Title delete carousel
+// @Description 添加首页轮播图
+// @Param id form int true Id
+// @Success 200 {string} 结果json
+// @Failure 404 Not found errmsg
+// @Failure 401 Need Permmision errmsg
+// @Failure 500 Server Error errmsg
+// @router /carousel [delete]
+func (c *CarouselApi) Delete() {
+	var (
+		id, _ = c.GetInt("id")
+	)
+	carousel := new(models.Carousel)
+	carousel.Id = id
+	carousel.Delete()
+
+	c.Data["json"] = map[string]interface{}{"ok": true, "carousels": carousel}
+	c.ServeJson()
+}
+
+// @Title use carousel
+// @Description 首页轮播图使能
+// @Param id form int true carouselId
+// @Param use form bool true 使能与否
+// @Success 200 {string} 结果json
+// @Failure 404 Not found errmsg
+// @Failure 401 Need Permmision errmsg
+// @Failure 500 Server Error errmsg
+// @router /carouseluse [post]
+func (c *CarouselApi) SetUse() {
+	carousel := new(models.Carousel)
+	var (
+		id, _  = c.GetInt(`id`)
+		use, _ = c.GetBool(`use`)
+	)
+
+	carousel.Id = id
+	carousel.Get()
+	carousel.Use = use
+	carousel.Update()
 
 	c.Data["json"] = map[string]interface{}{"ok": true, "carousels": carousel}
 	c.ServeJson()

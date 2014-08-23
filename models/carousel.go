@@ -9,6 +9,7 @@ type Carousel struct {
 	Title    string `form:"title" valid:"Required"`
 	Subtitle string `form:"subtitle" valid:"Required"`
 	Url      string `form:"url" valid:"Required"`
+	Use      bool   `form:"-"`
 	PicId    int    `form:"picid" valid:"Required;Min(1)"`
 }
 
@@ -43,18 +44,38 @@ func (c *Carousel) Delete() (err error) {
 		}
 	}()
 
-	_, err = Engine.Delete(c)
+	_, err = Engine.Id(c.Id).Delete(c)
 	return
 }
 
-type CarouselSlice []Carousel
-
-func (c *CarouselSlice) Recent(n int) (err error) {
+func (c *Carousel) Update() (err error) {
 	defer func() {
 		if e := recover(); e != nil {
 			err = e.(error)
 		}
 	}()
-	err = Engine.Desc("id").Limit(n).Find(c)
+	_, err = Engine.Id(c.Id).Cols("title", "subtitle", "url", "use", "pic_id").Update(c)
+	return
+}
+
+type CarouselSlice []Carousel
+
+func (c *CarouselSlice) GetUse(n int) (err error) {
+	defer func() {
+		if e := recover(); e != nil {
+			err = e.(error)
+		}
+	}()
+	err = Engine.Where("use=?", true).Desc("id").Limit(n).Find(c)
+	return
+}
+
+func (c *CarouselSlice) All() (err error) {
+	defer func() {
+		if e := recover(); e != nil {
+			err = e.(error)
+		}
+	}()
+	err = Engine.Desc("id").Find(c)
 	return
 }

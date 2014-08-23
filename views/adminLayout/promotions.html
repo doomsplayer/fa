@@ -47,7 +47,7 @@
 				<br/>
 				<input class="form-control" name="promotetime" placeholder="promotetime" id="promotetime"/>
 				<br/>
-				<input class="form-control" name="type" placeholder="type" />
+				<select class="form-control" name="type" placeholder="type" id="type"></select>
 				<br/>
 				<input class="form-control" name="picid" placeholder="picid" />
 				<br/>
@@ -78,6 +78,16 @@
 <script type="text/javascript">var ue = UE.getEditor('content');</script>
 
 <script>
+	(function(){
+		$.get('/api/common/promotiontypes', function(r) {
+			if (r.ok) {
+				for (var i in r.promotiontypes) {
+					var element = '<option value="' + r.promotiontypes[i].Name + '">' + r.promotiontypes[i].Name + '</option>';
+					$('select#type').append(element);
+				}
+			}
+		})
+	})()
 	function postform(form) {
 		$.ajax({
 			url: '/api/admin/promotion',
