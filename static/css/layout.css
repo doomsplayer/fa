@@ -942,9 +942,11 @@ div.pagination {
 }
 
 div.item {
-	margin-bottom: 10px;
+	margin-top: 20px;
 }
-
+.tab-content .item {
+	margin-bottom: 15px;
+}
 div.pagination>div {
 	display: inline-block;
 }
@@ -993,7 +995,7 @@ kbd {
     -webkit-box-shadow: inset 0 -1px 0 #1ebcb9;
     box-shadow: inset 0 -1px 0 #1ebcb9;
 	margin-right: 6px;
-	vertical-align: top;
+	vertical-align: middle;
 }
 
 a {
@@ -1128,8 +1130,8 @@ textarea {
 }
 
 hr {
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-top: 30px;
+	margin-bottom: 15px;
 	border-color: #BDBDBD;
 }
 .comment-area {
