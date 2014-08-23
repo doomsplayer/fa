@@ -419,18 +419,20 @@ is_index = true;
             replace: true,
             restrict: 'E',
             controller:['$scope','$element','Api',function($scope,$element,Api){
-                ret = Api.file.get({id:$scope.Id})
+                var ret = Api.file.get({id:$scope.Id});
                 ret.$promise.then(function(data){
                     if(ret.ok){
                        $scope.url = data.filepath;
+                       // $element.attr('src',data.filepath);
                    }
                 })
                 $scope.$watch('Id',function(newValue,oldValue){
                     if (newValue != oldValue){
-                        ret = Api.file.get({id:newValue});
+                        var ret = Api.file.get({id:newValue});
                         ret.$promise.then(function(data){
                             if (ret.ok){
                                 $scope.url = data.filepath;
+                                // $element.attr('src',data.filepath);
                             }
                         })
                     }
