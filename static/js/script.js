@@ -317,13 +317,22 @@ is_index = true;
                 }
             }
         })
-    }]).controller('VideoCtrl', ['$http', '$scope','$resource','$routeParams', function($http, $scope,$resource,$routeParams){
+    }]).controller('VideoCtrl', ['$http', '$scope','$resource','$routeParams','$timeout','$location', function($http, $scope,$resource,$routeParams,$timeout,$location){
         var videoId = $routeParams.videoId;
-        var video = $resource('api/common/video')
-        var ret = video.get({type:$routeParams.videoType,from:$routeParams.videoId})
+        var video = $resource('api/common/video/:Id',{Id:'@id'})
+        var ret = video.get({type:$routeParams.videoType,id:$routeParams.videoId})
         ret.$promise.then(function(){
-            $scope.video = ret.videos[0]
-            $('.youku-video')[0].innerHTML = $scope.video.Content.replace(/(width|height)=\d+/gi,'');
+            if (ret.ok){
+                $scope.video = ret.video;
+                $('.youku-video')[0].innerHTML = $scope.video.Content.replace(/(width|height)=\d+/gi,'');
+            }else{
+                if (ret.errmsg == 'empty'){
+                    $('.youku-video')[0].innerHTML = '<h1><center>视频未找到，将跳转到首页</center></h1>'
+                    $timeout(function(){
+                        $location.path('/')
+                    },3000)
+                }
+            }
         })
     }]).directive('badmintonLearn', function() {
         return {
@@ -410,6 +419,18 @@ is_index = true;
             restrict: 'E',
             templateUrl: 'static/tpl/mainBar.html',
             replace: true,
+        };
+    });
+    app.directive('preventDefault', function(){
+        // Runs during compile
+        return {
+            priority: 0, // Make this directive init later then default a directive
+            link: function($scope, iElm, iAttrs, controller) {
+                iElm.on('click',function(e){
+                    window.open(iElm.attr('href'),'_blank');
+                    return false;
+                })
+            }
         };
     });
     app.directive('pic',function(){
