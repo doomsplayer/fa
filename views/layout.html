@@ -18,13 +18,16 @@
 		<script type="text/javascript" src="static/js/angular-resource.min.js"></script>
 		<script type="text/javascript" src="static/js/angular-sanitize.min.js"></script>
 		<script type="text/javascript" src="static/js/ui-bootstrap-tpls.min.js"></script>
-		<script type="text/javascript" src="static/js/bundle.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.mnmenu.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.eislideshow.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.easing.min.js"></script>
+		<script type="text/javascript" src="static/js/ng-infinite-scroll.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.backstretch.min.js"></script>
+		<script type="text/javascript" src="static/js/isotope.pkgd.min.js"></script>
 		<!-- Custom logic -->
 		<script type="text/javascript" src="static/js/script.js"></script>
 		<script type="text/javascript" src='static/js/directive/slide.js'></script>
 		<script type="text/javascript" src='static/js/directive/portfolio.js'></script>
-		<script type="text/javascript" src="static/js/jquery.backstretch.min.js"></script>
-		<script type="text/javascript" src="static/js/isotope.pkgd.min.js"></script>
 		<script type="text/javascript">
 			$(window).scroll(function() {
 				var _nav = $('#container');
@@ -61,7 +64,7 @@
 		<div class="container {{index_css()}}" id="container">
 			<div class="x-container container">
 				<div class="row">
-					<div class="col-md-2 col-md-offset-1" ng-click="index()">
+					<div class="col-md-2 col-md-offset-1">
 						<a href="#"><img src="static/img/logo.png" id="logo" ng-if="is_index" alt="logo" /></a>
 						<a href="#"><img src="static/img/logo_sm.png" id="logo" ng-if="!is_index" alt="logo" /></a>
 					</div>
