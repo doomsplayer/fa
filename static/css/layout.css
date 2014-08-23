@@ -106,7 +106,7 @@ ul>li.x-tab.last {
 }
 .tab-content {
 	overflow: hidden;
-	margin-top: 20px;
+	/*margin-top: 20px;*/
 }
 .news_wrapper {
 	/*margin-top: 20px;*/
@@ -242,7 +242,9 @@ p.pic_intro {
 .isotope {
 	overflow: hidden;
 }
-
+#isotope {
+	margin-bottom: 30px;
+}
 .element-item {
 	position: relative;
 	float: left;
@@ -527,7 +529,7 @@ button.close:hover {
 .video-list-inner {
 	/*padding-right: 25px;*/
 	width: 100%;
-	/*height: 380px;*/
+	height: 350px;
 }
 .video-list-inner img {
 	width: 100%;
