@@ -65,6 +65,61 @@ func (t *TutorialApi) Put() {
 }
 
 // @Title tutorial
+// @Description 添加教程
+// @Param id form int true id
+// @Param title form string true 标题
+// @Param type form string true 教程类型
+// @Param picid form int true 大图片id
+// @Param content form string true 教程内容
+// @Param description form string true 教程描述
+// @Param author form string false 教程作者
+// @Param source form string false 教程来源
+// @Success 200 {string} 列表的json
+// @Failure 404 Not found
+// @router /tutorial [post]
+func (t *TutorialApi) Update() {
+	var (
+		id, _ = t.GetInt("id")
+	)
+	tut := new(models.Tutorial)
+	err := t.ParseForm(tut)
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+
+	valid := validation.Validation{}
+	b, err := valid.Valid(tut)
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+	if !b {
+		errmsg := ``
+		for _, err := range valid.Errors {
+			errmsg += fmt.Sprint(err.Key, " ", err.Message)
+		}
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": "form valid not pass: " + errmsg}
+		t.ServeJson()
+		return
+	}
+	tut.Id = id
+	err = tut.Update()
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+
+	t.Data["json"] = map[string]interface{}{"ok": true, "tutorial": tut}
+	t.ServeJson()
+	return
+
+}
+
+// @Title tutorial
 // @Description 删除教程
 // @Param id query int true 要删除的id
 // @Success 200 {string} 列表的json

@@ -38,6 +38,15 @@ func (t *Tutorial) Get() (err error) {
 	}
 	return
 }
+func (t *Tutorial) Update() (err error) {
+	defer func() {
+		if e := recover(); e != nil {
+			err = e.(error)
+		}
+	}()
+	_, err = Engine.Id(t.Id).Cols("title", "content", "type", "description", "pic_id", "author", "source").Update(t)
+	return
+}
 
 func (t *Tutorial) Delete() (err error) {
 	_, err = Engine.Id(t.Id).Delete(t)

@@ -65,6 +65,63 @@ func (t *VideoApi) Put() {
 }
 
 // @Title video
+// @Description 修改视频
+// @Param id form int true id
+// @Param title form string true 标题
+// @Param type form string true 视频类型
+// @Param picid form int true 大图片id
+// @Param content form string true 视频内容（url）
+// @Param description form string true 视频描述
+// @Param author form string false 视频作者
+// @Param source form string false 视频来源
+// @Success 200 {string} 列表的json
+// @Failure 404 Not found
+// @router /video [post]
+func (t *VideoApi) Update() {
+	var (
+		id, _ = t.GetInt(`id`)
+	)
+	tut := new(models.Video)
+	err := t.ParseForm(tut)
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+
+	valid := validation.Validation{}
+	b, err := valid.Valid(tut)
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+	if !b {
+		errmsg := ``
+		for _, err := range valid.Errors {
+			errmsg += fmt.Sprint(err.Key, " ", err.Message)
+		}
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": "form valid not pass: " + errmsg}
+		t.ServeJson()
+		return
+	}
+
+	tut.Id = id
+	err = tut.Update()
+
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+
+	t.Data["json"] = map[string]interface{}{"ok": true, "video": tut}
+	t.ServeJson()
+	return
+
+}
+
+// @Title video
 // @Description 删除视频
 // @Param id query int true 要删除的id
 // @Success 200 {string} 列表的json

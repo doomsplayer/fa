@@ -40,6 +40,12 @@ func (t *Video) Delete() (err error) {
 	return err
 }
 
+func (t *Video) Update() (err error) {
+	_, err = Engine.Id(t.Id).Cols("title", `pic_id`, `content`,
+		`type`, `author`, `source`, `description`).Update(t)
+	return
+}
+
 func (t *VideoSlice) Hot(n, from int, tp string) (err error) {
 	if n == 0 {
 		n = 1

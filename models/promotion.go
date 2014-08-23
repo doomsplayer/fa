@@ -61,6 +61,21 @@ func (p *Promotion) Put() (err error) {
 	return
 }
 
+func (p *Promotion) Update() (err error) {
+	defer func() {
+		if e := recover(); e != nil {
+			err = e.(error)
+		}
+	}()
+	p.UpdateTime = time.Now()
+	_, err = Engine.Id(p.Id).Cols(
+		"title", "title2",
+		"description", "type", "link",
+		"description2", "pic_id",
+		"start_time", "end_time").Update(p)
+	return
+}
+
 type PromotionSlice []Promotion
 
 func (p *PromotionSlice) Recent(n int, from int, tp string) (err error) {

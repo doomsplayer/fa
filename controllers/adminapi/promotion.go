@@ -74,6 +74,72 @@ func (p *PromotionApi) Put() {
 }
 
 // @Title mainBar
+// @Description 更新促销商品
+// @Param id form int true id
+// @Param title form string true 标题
+// @Param title2 form string true 小标题
+// @Param description form string true 描述
+// @Param description2 form string true 小描述
+// @Param type form string true 商品类型
+// @Param link form string true 连接地址
+// @Param detail form string true 商品细节
+// @Param picid form string true 大图片id
+// @Param promotetime form string true 促销时间，用格式 2014-09-01~2015-01-01
+// @Success 200 {string} 列表的json
+// @Failure 404 Not found
+// @router /promotion [post]
+func (p *PromotionApi) Update() {
+	var (
+		id, _ = p.GetInt("id")
+	)
+
+	pro := new(models.Promotion)
+	err := p.ParseForm(pro)
+	if err != nil {
+		p.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		p.ServeJson()
+		return
+	}
+
+	valid := validation.Validation{}
+	b, err := valid.Valid(pro)
+	if err != nil {
+		p.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		p.ServeJson()
+		return
+	}
+	if !b {
+		errmsg := ``
+		for _, err := range valid.Errors {
+			errmsg += fmt.Sprint(err.Key, " ", err.Message)
+		}
+		p.Data["json"] = map[string]interface{}{"ok": false, "errmsg": "form valid not pass: " + errmsg}
+		p.ServeJson()
+		return
+	}
+	promotetimeS := p.GetString("promotetime")
+
+	s := strings.Split(promotetimeS, "~")
+	starttime, _ := time.Parse("2006-01-02", s[0])
+	endtime, _ := time.Parse("2006-01-02", s[1])
+	pro.StartTime = starttime
+	pro.EndTime = endtime
+
+	pro.Id = id
+	err = pro.Update()
+	if err != nil {
+		p.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		p.ServeJson()
+		return
+	}
+
+	p.Data["json"] = map[string]interface{}{"ok": true, "promotion": pro}
+	p.ServeJson()
+	return
+
+}
+
+// @Title mainBar
 // @Description 删除促销商品
 // @Param id query int true 要删除的id
 // @Success 200 {string} 列表的json

@@ -5,6 +5,7 @@ import (
 	"badmintonhome/models"
 	"fmt"
 	"github.com/astaxie/beego/validation"
+	"strconv"
 )
 
 type VideoApi struct {
@@ -68,6 +69,33 @@ func (t *VideoApi) Get() {
 		return
 	}
 	t.Data["json"] = map[string]interface{}{"ok": true, "videos": tl}
+	t.ServeJson()
+	return
+}
+
+// @Title video
+// @Description 获得单一视频
+// @Param id path id true id
+// @Success 200 {string} 列表的json
+// @Failure 404 Not found
+// @router /video/:id [get]
+func (t *VideoApi) Single() {
+	ids := t.Ctx.Input.Param(`:id`)
+	id, err := strconv.Atoi(ids)
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+	v := new(models.Video)
+	v.Id = int64(id)
+	err = v.Get()
+	if err != nil {
+		t.Data["json"] = map[string]interface{}{"ok": false, "errmsg": err.Error()}
+		t.ServeJson()
+		return
+	}
+	t.Data["json"] = map[string]interface{}{"ok": true, "video": v}
 	t.ServeJson()
 	return
 }

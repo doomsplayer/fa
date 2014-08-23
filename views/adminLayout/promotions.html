@@ -1,13 +1,17 @@
 {%.moreScripts.Add "datepicker.js"%}
 {%.moreScripts.Add "datepicker-zhcn.js"%}
 {%.moreStyles.Add "datepicker.css"%}
+{%.moreScripts.Add "backjs.js"%}
 <div class="container">
-	<ul class="nav nav-tabs" role="tablist">
+	<ul class="nav nav-tabs" role="tablist" id="infoelem">
 		<li role="presentation" class="active">
 			<a href="#list" tole="tab" data-toggle="tab">列表</a>
 		</li>
 		<li role="presentation">
 			<a href="#add" tole="tab" data-toggle="tab">添加</a>
+		</li>
+		<li role="presentation" style="display:none">
+			<a href="#modify" tole="tab" data-toggle="tab">修改</a>
 		</li>
 	</ul>
 	<br/>
@@ -30,9 +34,9 @@
 					<td>{%.Link%}</td>
 					<td>{%date .UpdateTime "y-m-d h:i"%}</td>
 					<td>
-						<a> <i class="glyphicon glyphicon-edit"></i>
+						<a onclick="modify({%.Id%})"> <i class="glyphicon glyphicon-edit"></i>
 						</a>
-						<a onclick="deletepost({%.Id%})"> <i class="glyphicon glyphicon-remove"></i>
+						<a onclick="deletePost('/api/admin/promotion?id={%.Id%}'')"> <i class="glyphicon glyphicon-remove"></i>
 						</a>
 					</td>
 				</tr>
@@ -40,7 +44,7 @@
 			</table>
 		</div>
 		<div id="add" class="tab-pane">
-			<form action="" method="post" id="form">
+			<form action="" method="post" id="addform">
 				<input class="form-control" name="title" placeholder="title" />
 				<br/>
 				<input class="form-control" name="title2" placeholder="title2" />
@@ -51,9 +55,30 @@
 				<br/>
 				<input class="form-control" name="picid" placeholder="picid" />
 				<br/>
-				<input class="form-control" name="author" placeholder="author" />
+				<input class="form-control" name="link" placeholder="link" />
 				<br/>
-				<input class="form-control" name="source" placeholder="source" />
+				<input class="form-control" name="description2" placeholder="description2" />
+				<br/>
+				<textarea class="form-control" name="description" placeholder="description"></textarea>
+				<br/>
+				<!-- 加载编辑器的容器 -->
+				<script id="content1" name="detail" type="text/plain">这里写你的初始化内容</script>
+				<br/>
+				<button class="btn btn-success" onclick="putPost('/api/admin/promotion', $('#addform'), $('#infoelem'))" type="button">添加</button>
+			</form>
+		</div>
+		<div id="modify" class="tab-pane">
+			<form action="" method="post" id="updateform">
+				<input class="form-control" name="id" placeholder="id" type="hidden"/>
+				<input class="form-control" name="title" placeholder="title" />
+				<br/>
+				<input class="form-control" name="title2" placeholder="title2" />
+				<br/>
+				<input class="form-control" name="promotetime" placeholder="promotetime" id="promotetime"/>
+				<br/>
+				<select class="form-control" name="type" placeholder="type" id="type"></select>
+				<br/>
+				<input class="form-control" name="picid" placeholder="picid" />
 				<br/>
 				<input class="form-control" name="link" placeholder="link" />
 				<br/>
@@ -62,11 +87,10 @@
 				<textarea class="form-control" name="description" placeholder="description"></textarea>
 				<br/>
 				<!-- 加载编辑器的容器 -->
-				<script id="content" name="detail" type="text/plain">这里写你的初始化内容</script>
+				<script id="content2" name="detail" type="text/plain">这里写你的初始化内容</script>
 				<br/>
-				<button class="btn btn-success" onclick="postform($('#form'))" type="button">添加</button>
+				<button class="btn btn-success" onclick="postPost('/api/admin/promotion', $('#updateform'), $('#infoelem'))" type="button">添加</button>
 			</form>
-
 		</div>
 	</div>
 </div>
@@ -75,7 +99,7 @@
 <!-- 编辑器源码文件 -->
 <script type="text/javascript" src="/static/ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
-<script type="text/javascript">var ue = UE.getEditor('content');</script>
+<script type="text/javascript">var ue = UE.getEditor('content1');var ue2 = UE.getEditor('content2');</script>
 
 <script>
 	(function(){
@@ -88,28 +112,27 @@
 			}
 		})
 	})()
-	function postform(form) {
-		$.ajax({
-			url: '/api/admin/promotion',
-			type: 'PUT',
-			data: $("form#form").serialize(),
-			success: function(re) {
-						if (!re.ok) {
-							$('#add').before('<div class="alert alert-danger" role="alert">'+re.errmsg+'</div>')
-						} else {
-							location.reload()
-						}
-					 }
-			})	
-	}
-	function deletepost(id) {
-		$.ajax({
-			url: '/api/admin/promotion?id=' + id,
-			type: 'DELETE',
-			success: function(r) {
-				location.reload()
+	function modify(id) {
+		$.get('/api/common/promotion/' + id, function(r) {
+			if (r.ok) {
+				r = r.promotion;
+				$('#modify input[name="title"]').val(r.Title)
+				$('#modify input[name="id"]').val(r.Id)
+				$('#modify input[name="picid"]').val(r.PicId)
+				$('#modify input[name="title2"]').val(r.Title2)
+				ue2.setContent(r.Detail)
+				$('#modify textarea[name="description"]').html(r.Description)
+				$('#modify input[name="description2"]').val(r.Description2)
+				$('#modify input[name="link"]').val(r.Link)
+				$('#modify select[name="type"]').val(r.Type)
+				var rs = new RegExp("(.*)T.*").exec(r.StartTime)[1]
+				var re = new RegExp("(.*)T.*").exec(r.EndTime)[1]
+
+				$('input#promotetime').datepicker("setDate", rs,re)
 			}
+			$('a[href="#modify"]').tab('show')
 		})
+		
 	}
 </script>
 <script>

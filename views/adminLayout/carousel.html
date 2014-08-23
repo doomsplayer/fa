@@ -6,6 +6,9 @@
 		<li role="presentation">
 			<a href="#add" tole="tab" data-toggle="tab">添加</a>
 		</li>
+		<li role="presentation" style="display:none">
+			<a href="#modify" tole="tab" data-toggle="tab">修改</a>
+		</li>
 	</ul>
 	<br/>
 	<div class="tab-content">
@@ -34,6 +37,8 @@
 						<a onclick="use({%.Id%},true)"> <i class="glyphicon glyphicon-play"></i>
 						</a>
 						{%end%}
+						<a onclick="modify({%.Id%})"> <i class="glyphicon glyphicon-edit"></i>
+						</a>
 						<a onclick="deletepost({%.Id%})"> <i class="glyphicon glyphicon-remove"></i>
 						</a>
 					</td>
@@ -43,7 +48,7 @@
 		</div>
 
 		<div id="add" class="tab-pane">
-			<form action="" method="post" id="form">
+			<form action="" method="post" id="formadd">
 				<input class="form-control" name="title" placeholder="title" />
 				<br/>
 				<input class="form-control" name="subtitle" placeholder="subtitle" />
@@ -52,7 +57,22 @@
 				<br/>
 				<input class="form-control" name="url" placeholder="url" />
 				<br/>
-				<button class="btn btn-success" onclick="postform($('#form'))" type="button">添加</button>
+				<button class="btn btn-success" onclick="postform($('#formadd'))" type="button">添加</button>
+			</form>
+
+		</div>
+		<div id="modify" class="tab-pane">
+			<form action="" method="post" id="formupdate">
+				<input class="form-control" name="id" placeholder="id" type="hidden"/>
+				<input class="form-control" name="title" placeholder="title" />
+				<br/>
+				<input class="form-control" name="subtitle" placeholder="subtitle" />
+				<br/>
+				<input class="form-control" name="picid" placeholder="picid" />
+				<br/>
+				<input class="form-control" name="url" placeholder="url" />
+				<br/>
+				<button class="btn btn-success" onclick="updateform($('#formupdate'))" type="button">修改</button>
 			</form>
 
 		</div>
@@ -60,6 +80,35 @@
 </div>
 
 <script>
+	function modify(id) {
+		$.get('/api/common/carouselsingle?id=' + id, function(r) {
+			if (r.ok) {
+				r = r.carousel;
+				$('input[name="title"]').val(r.Title)
+				$('input[name="subtitle"]').val(r.Subtitle)
+				$('input[name="id"]').val(r.Id)
+				$('input[name="picid"]').val(r.PicId)
+				$('input[name="url"]').val(r.Url)
+			}
+			$('a[href="#modify"]').tab('show')
+		})
+		
+	}
+	function updateform(form) {
+		console.log(form.serialize());
+		$.ajax({
+			url: '/api/admin/carousel',
+			type: 'POST',
+			data: form.serialize(),
+			success: function(re) {
+				if (!re.ok) {
+					$('#add').before('<div class="alert alert-danger" role="alert">'+re.errmsg+'</div>')
+				} else {
+					location.reload()
+				} 
+			}
+		})
+	}
 	function postform(form) {
 		$.ajax({
 			url: '/api/admin/carousel',
