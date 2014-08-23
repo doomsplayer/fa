@@ -338,6 +338,7 @@ is_index = true;
                         for (var i in types.tutorialtypes){
                             $scope.Learn.push({name:types.tutorialtypes[i].Name,pic_news:undefined,text_news:undefined})
                         }
+                        $scope.Learn[0].active = true;
                         $scope.click(0);
                     }
                 })
@@ -420,15 +421,17 @@ is_index = true;
             controller:['$scope','$element','Api',function($scope,$element,Api){
                 ret = Api.file.get({id:$scope.Id})
                 ret.$promise.then(function(data){
-                    $scope.url = data.filepath
-                    // $($element).attr('src',data.filepath)
+                    if(ret.ok){
+                       $scope.url = data.filepath;
+                   }
                 })
                 $scope.$watch('Id',function(newValue,oldValue){
                     if (newValue != oldValue){
-                        ret = Api.file.get({id:newValue})
+                        ret = Api.file.get({id:newValue});
                         ret.$promise.then(function(data){
-                            $scope.url = data.filepath
-                            // $($element).attr('src',data.filepath)
+                            if (ret.ok){
+                                $scope.url = data.filepath;
+                            }
                         })
                     }
                 })                
