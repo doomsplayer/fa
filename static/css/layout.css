@@ -113,9 +113,11 @@ ul>li.x-tab.last {
 }
 .pic_news{
 	margin-top: 20px;
+	overflow: hidden;
 }
 .pic_news img{
 	width: 100%;
+	height: 200px;
 }
 .pic_news_container {
 	position: relative;
@@ -127,6 +129,7 @@ p.pic_intro {
 	color: #fff;
 	margin-top: -20px;
 	text-align: center;
+	height: 20px;
 }
 .mask {
 	position: absolute;
