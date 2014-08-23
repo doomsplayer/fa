@@ -421,6 +421,18 @@ is_index = true;
             replace: true,
         };
     });
+    app.directive('preventDefault', function(){
+        // Runs during compile
+        return {
+            priority: 0, // Make this directive init later then default a directive
+            link: function($scope, iElm, iAttrs, controller) {
+                iElm.on('click',function(e){
+                    window.open(iElm.attr('href'),'_blank');
+                    return false;
+                })
+            }
+        };
+    });
     app.directive('pic',function(){
         return {
             scope:{Id:'@picid'},
