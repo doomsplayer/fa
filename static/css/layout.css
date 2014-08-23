@@ -531,6 +531,7 @@ button.close:hover {
 }
 .video-list-inner img {
 	width: 100%;
+	height: 200px;
 }
 .video-list-inner .img {
 	position: relative;
@@ -975,25 +976,6 @@ form.page-jump>input {
     margin: 0 5px 0 5px;
 }
 
-h5,h4 {
-	font-family: 微软雅黑;
-	font-size: 18px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-h5 {
-	text-indent:-40px;
-	margin-left:40px;
-	line-height: 19px;
-}
-
-h6 {
-	font-family: 微软雅黑;
-	font-size: 16px;
-	color: #1ebcb9;
-}
-
 span.subtitle {
 	color: #1ebcb9;
 }
@@ -1175,4 +1157,8 @@ hr {
 .pic {
     height: auto;
     width: 100%;
+}
+.col-md-6-wrapper {
+	height: 700px;
+	overflow: hidden;
 }
