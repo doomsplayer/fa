@@ -6,6 +6,31 @@
 				$scope.items = [];
 				$scope.category = {};
 
+				$scope.getColumnNumber = function() { 
+					var winWidth = $(window).width()				
+					if (winWidth > 1200) {
+						columnNumber = 5;
+					} else if (winWidth > 950) {
+						columnNumber = 4;
+					} else if (winWidth > 600) {
+						columnNumber = 3;
+					} else if (winWidth > 400) {
+						columnNumber = 2;
+					} else {
+						columnNumber = 1;
+					}
+					return columnNumber;
+				}
+				$scope.$watch(function(){
+					return $(window).width()
+				},function(newValue,oldValue){
+					if (newValue != oldValue){
+						var itemWidth = Math.floor(newValue / $scope.getColumnNumber());
+						$('#isotope').find('.element-item').each(function(){
+							$(this).css({width:itemWidth + 'px'})
+						})
+					}
+				})
 				$http.get('/api/common/promotiontypes').success(
 					function(response) {
 						if (response.ok) {
@@ -44,6 +69,7 @@
 					                    	option.filter = filter.filter;
 					                    	elm2.isotope(option)
 					                    })
+
 
 							},500)
 						}
