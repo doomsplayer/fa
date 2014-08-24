@@ -29,9 +29,9 @@
 						$(this).css({width:itemWidth + 'px'})
 					})
 				}
-				$(window).on('resize','portfolio',Resize)
+				$(window).on('resize',Resize);
 				$scope.$on('$destroy',function(){
-					$(window).off('resize','portfolio');
+					$(window).off('resize');
 				})
 				$http.get('/api/common/promotiontypes').success(
 					function(response) {
