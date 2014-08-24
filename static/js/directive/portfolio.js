@@ -22,12 +22,11 @@
 					return columnNumber;
 				}
 				function Resize(){
-					var width = $(window).width()
-					console.log(width)
+					var width = $(window).width();
 					var itemWidth = Math.floor(width / $scope.getColumnNumber());
 					$('#isotope').find('.element-item').each(function(){
-						$(this).css({width:itemWidth + 'px'})
-					})
+						$(this).css({width:itemWidth + 'px'});
+					});
 				}
 				$(window).on('resize',Resize);
 				$scope.$on('$destroy',function(){
