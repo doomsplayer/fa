@@ -483,7 +483,7 @@ button.close:hover {
 .carousel-inner>.item>img, .carousel-inner>.item>a>img {
 	float: left;
 	width: 35%;
-	height: 300px;
+	height: 230px;
 }
 .carousel-intro {
 	float: left;
@@ -492,8 +492,8 @@ button.close:hover {
 	text-align: left;
 }
 .carousel-intro h3 {
-	font-size: 30px;
-	margin-bottom: 30px;
+	font-size: 24px;
+	margin-bottom: 20px;
 	/*font-weight: bold;*/
 	font-family: "Microsoft Yahei", Heiti, verdana, sans-serif;
 }
@@ -533,7 +533,10 @@ button.close:hover {
 }
 .video-list-inner img {
 	width: 100%;
-	height: 170px;
+	height: 140px;
+}
+.video-list-inner.video-page img {
+	height: 200px;
 }
 .video-list-inner .img {
 	position: relative;
@@ -663,7 +666,7 @@ button.close:hover {
 	border-radius: 0;
 }
 .xx-breadcrumb span {
-	margin-left: 11em;
+	margin-left: 3em;
 }
 .article-lead p {
 	width: 70%;
@@ -678,7 +681,7 @@ button.close:hover {
 .article-content img {
 	max-width: 90%;
 }
-.article-content p {
+.article-content>p {
 	text-indent: 2em;
 	line-height: 1.6em;
 }
@@ -1126,6 +1129,7 @@ img.avatar {
 
 img.img-sidebar {
 	border:1px solid #BDBDBD;
+	width: 100px;
 }
 
 textarea {
