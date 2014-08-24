@@ -4,6 +4,7 @@
 	max-width: 1920px;
 	height: 500px;
 	margin: 0 auto;
+	padding-left: 15px;
 }
 .ei-slider-loading{
 	width: 100%;
