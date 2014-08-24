@@ -1,41 +1,45 @@
 <div class="container">
-	<ol class="breadcrumb x-breadcrumb">
-	  <li><a href="#">首页</a></li>
-	  <li class="active">文章</li>
-	</ol>
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<ol class="breadcrumb x-breadcrumb">
+			  <li><a href="#">首页</a></li>
+			  <li class="active">文章</li>
+			</ol>
 
-		<div class="col-md-8">
-			<div class="article-title">
-				<div class="col-md-1 label-article-p"><span class="label label-default label-type">文章</span></div>
-				<div class="col-md-11">
-					<h3 ng-bind="title"></h3>
+			<div class="col-md-8">
+				<div class="article-title">
+					<div class="col-md-1 label-article-p"><span class="label label-default label-type">文章</span></div>
+					<div class="col-md-11">
+						<h3 ng-bind="title"></h3>
+					</div>
+				</div>
+				<ol class="breadcrumb xx-breadcrumb">
+				  <li>作者：{{author}}</li>
+				  <li>来源：{{source}}</li>
+				  <li>时间：{{date}}<span>点击量：{{click}}</span></li>
+				  <li>收藏量：{{star}}</li>
+				</ol>
+	<!-- 			<div class="article-lead">
+					<p ng-bind="lead"></p>
+				</div> -->
+				<div class="article-content" ng-bind-html="content">
+					
+				</div>
+				<div class="article-bar">
+					<ul>
+						<li><a href="#"><span class="icon icon-favorite"></span>收藏</a></li>
+						<li><span class="icon icon-share"></span>分享到<a href="#"><span class="icon icon-weibo"></span></a><a href="#"><span class="icon icon-qzone active"></span></a><a href="#"><span class="icon icon-wechat"></span></a></li>
+					</ul>
 				</div>
 			</div>
-			<ol class="breadcrumb xx-breadcrumb">
-			  <li>作者：{{author}}</li>
-			  <li>来源：{{source}}</li>
-			  <li>时间：{{date}}<span>点击量：{{click}}</span></li>
-			  <li>收藏量：{{star}}</li>
-			</ol>
-<!-- 			<div class="article-lead">
-				<p ng-bind="lead"></p>
-			</div> -->
-			<div class="article-content" ng-bind-html="content">
-				
-			</div>
-			<div class="article-bar">
-				<ul>
-					<li><a href="#"><span class="icon icon-favorite"></span>收藏</a></li>
-					<li><span class="icon icon-share"></span>分享到<a href="#"><span class="icon icon-weibo"></span></a><a href="#"><span class="icon icon-qzone active"></span></a><a href="#"><span class="icon icon-wechat"></span></a></li>
+			<div class="col-md-4 x-col-md-4">
+				<h4 class="title title-6">其他文章推荐</h4>
+				<ul class="article-list">
+					<li ng-repeat="passage in recommand track by $index">
+					<a ng-href="{{passage.url}}">{{passage.title}}<span ng-bind="passage.date"></span></a>
+					</li>
 				</ul>
 			</div>
 		</div>
-		<div class="col-md-4 x-col-md-4">
-			<h4 class="title title-6">其他文章推荐</h4>
-			<ul class="article-list">
-				<li ng-repeat="passage in recommand track by $index">
-				<a ng-href="{{passage.url}}">{{passage.title}}<span ng-bind="passage.date"></span></a>
-				</li>
-			</ul>
-		</div>
+	</div>
 </div>

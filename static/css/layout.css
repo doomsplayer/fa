@@ -117,7 +117,7 @@ ul>li.x-tab.last {
 }
 .pic_news img{
 	width: 100%;
-	height: 200px;
+	height: 130px;
 }
 .pic_news_container {
 	position: relative;
@@ -306,7 +306,7 @@ p.pic_intro {
 }
 .text_wrapper {
 	float: left;
-	width: 79%;
+	width: 74%;
 	margin-top: 10px;
 }
 .text_wrapper a {
@@ -476,7 +476,7 @@ button.close:hover {
 
 /*///////////////////////////video lib///////////////////////////////////*/
 .carousel {
-	width: 90%;
+	width: 100%;
 	margin: 20px auto 40px;
 	border: 1px solid #ccc;
 }
@@ -519,7 +519,7 @@ button.close:hover {
 	float: right;
 }
 .video-list {
-	width: 90%;
+	width: 100%;
 	margin: 20px auto;
 }
 .myrow {
@@ -529,11 +529,11 @@ button.close:hover {
 .video-list-inner {
 	/*padding-right: 25px;*/
 	width: 100%;
-	height: 350px;
+	height: 300px;
 }
 .video-list-inner img {
 	width: 100%;
-	height: 200px;
+	height: 170px;
 }
 .video-list-inner .img {
 	position: relative;
@@ -585,10 +585,10 @@ button.close:hover {
 }
 .topic h3 {
 	font-weight: bold;
-	text-align: center;
+	text-align: left;
 }
 .topic h2 {
-	margin: 35px 15px 25px;
+	margin: 35px 15px 25px 0;
 	font-weight: bold;
 }
 .topic h2 span {
@@ -663,7 +663,7 @@ button.close:hover {
 	border-radius: 0;
 }
 .xx-breadcrumb span {
-	margin-left: 80px;
+	margin-left: 11em;
 }
 .article-lead p {
 	width: 70%;
@@ -932,6 +932,7 @@ span.coupon-code {
 div.container {
 	font-family: 微软雅黑;
 	font-size: 15px;
+	
 }
 
 div.enwided {
@@ -1163,6 +1164,6 @@ hr {
     width: 100%;
 }
 .col-md-6-wrapper {
-	height: 700px;
+	height: 650px;
 	overflow: hidden;
 }
