@@ -48,6 +48,48 @@
 					$(window).scrollTop(0)
 				})
 			},0)
+			$(function() {
+				//init Isotope
+				var $container = $('#isotope')
+					
+					function getColumnNumber() { 
+						var winWidth = $(window).width(), 
+						columnNumber = 1;
+					
+						if (winWidth > 1200) {
+							columnNumber = 5;
+						} else if (winWidth > 950) {
+							columnNumber = 4;
+						} else if (winWidth > 600) {
+							columnNumber = 3;
+						} else if (winWidth > 400) {
+							columnNumber = 2;
+						} else if (winWidth > 250) {
+							columnNumber = 1;
+						}
+							return columnNumber;
+						}       
+						
+						function setColumns() {
+							var winWidth = $(window).width(), 
+							columnNumber = getColumnNumber(), 
+							itemWidth = Math.floor(winWidth / columnNumber);
+							
+							$container.find('.element-item').each(function() { 
+								$(this).css( { 
+								width : itemWidth + 'px' 
+							});
+						});
+					}
+					
+					function setPortfolio() { 
+						setColumns();
+					}
+					
+					$(window).on('resize', function () { 
+					setPortfolio();          
+				});
+        	});
 		</script>
 		<!-- Support for HTML5 -->
 		<!--[if lt IE 9]>
@@ -65,8 +107,10 @@
 			<div class="x-container container">
 				<div class="row">
 					<div class="col-md-2 col-md-offset-1">
-						<a href="#"><img src="static/img/logo2.png" id="logo" ng-if="is_index" alt="logo" /></a>
-						<a href="#"><img src="static/img/logo_sm1.png" id="logo" ng-if="!is_index" alt="logo" /></a>
+						<div class="row">
+							<a href="#"><img src="static/img/logo2.png" id="logo" ng-if="is_index" alt="logo" /></a>
+							<a href="#"><img src="static/img/logo_sm1.png" id="logo" ng-if="!is_index" alt="logo" /></a>
+						</div>
 					</div>
 					<div class="col-md-5 col-md-offset-3">
 						<main-bar></main-bar>
