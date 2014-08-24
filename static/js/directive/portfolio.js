@@ -7,7 +7,7 @@
 				$scope.category = {};
 
 				$scope.getColumnNumber = function() { 
-					var winWidth = $(window).width()				
+					var winWidth = $(window).width()
 					if (winWidth > 1200) {
 						columnNumber = 5;
 					} else if (winWidth > 950) {
@@ -21,15 +21,15 @@
 					}
 					return columnNumber;
 				}
-				$scope.$watch(function(){
-					return $(window).width()
-				},function(newValue,oldValue){
-					if (newValue != oldValue){
-						var itemWidth = Math.floor(newValue / $scope.getColumnNumber());
-						$('#isotope').find('.element-item').each(function(){
+				$(window).on('resize',function(){
+					var width = $(window).width()
+					var itemWidth = Math.floor(width / $scope.getColumnNumber());
+					$('#isotope').find('.element-item').each(function(){
 							$(this).css({width:itemWidth + 'px'})
-						})
-					}
+					})
+				})
+				$scope.$on('$destroy',function(){
+					$(window).off('resize');
 				})
 				$http.get('/api/common/promotiontypes').success(
 					function(response) {
@@ -69,14 +69,10 @@
 					                    	option.filter = filter.filter;
 					                    	elm2.isotope(option)
 					                    })
-
-
+					                    $(window).resize();
 							},500)
 						}
 				});
-
-				
-
 			}],
 			templateUrl: 'static/tpl/portfolio_tpl.html',
 			replace: true,
