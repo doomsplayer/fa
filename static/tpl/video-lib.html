@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <carousel>
+            <carousel interval='5000'>
                 <slide ng-repeat="slide in slides track by $index">
                 <a ng-href="#/video/{{slide.Id}}"><pic picid="{{slide.PicId}}"></pic></a>
                     <div class="carousel-intro">
