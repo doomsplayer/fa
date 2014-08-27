@@ -1209,3 +1209,6 @@ hr {
 .glyphicon-chevron-left, .glyphicon-chevron-right {
 	top: 45%;
 }
+.btn:active, .btn.active {
+	box-shadow: none;
+}
