@@ -1,7 +1,9 @@
 body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Microsoft Yahei", Heiti, verdana, sans-serif;
 }
-
+a:hover {
+	cursor: pointer;
+}
 .x-container {
 	margin: 40px auto;
 }
@@ -142,7 +144,7 @@ p.pic_intro {
 	cursor: pointer;
 }
 .mask.x-mask {
-	padding-top: 100px;
+	padding-top: 50px;
 }
 .mask.more::before {
 	content: 'MORE';
@@ -211,6 +213,30 @@ p.pic_intro {
 	width: 100%;
 	height: 200px;
 }
+.pic_bg h3 {
+	font-weight: 600;
+	letter-spacing: -0.65px;
+	font-size: 31px;
+	padding: 20px 0 0;
+	text-transform: uppercase;
+}
+.pic_bg p {
+	color: #696E74;
+	font-family: 'Droid Serif', Georgia, "Times New Roman", serif !important;
+	font-size: 18px;
+	font-style: italic;
+	font-weight: 300;
+	line-height: 1;
+	padding: 10px 0;
+	margin-bottom: 12px;
+	margin-top: 10px;
+}
+.pic_bg hr {
+	height: 1px;
+	margin: 10px auto;
+	width: 120px;
+	background: #2B2E31;
+}
 .item_classify {
 	background-color: #f7f7f7;
 	border-top: 2px solid #ccc;
@@ -249,7 +275,7 @@ p.pic_intro {
 	position: relative;
 	float: left;
 	width: 269px;
-	height: 269px;
+	height: 180px;
 }
 .element-item img {
 	width: 100%;
