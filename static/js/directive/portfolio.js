@@ -71,6 +71,7 @@
 									option.filter = filter.filter;
 									elm2.isotope(option)
 								});
+								$(window).resize();
 							},500)
 						}
 				});
