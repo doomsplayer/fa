@@ -1206,3 +1206,6 @@ hr {
 	height: 650px;
 	overflow: hidden;
 }
+.glyphicon-chevron-left, .glyphicon-chevron-right {
+	top: 45%;
+}
