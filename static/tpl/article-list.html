@@ -20,12 +20,12 @@
 							<div class="news_row col-md-12" ng-repeat="item in tab.items track by $index">
 								<div class="img_wrapper">
 									<pic picid="{{item.PicId}}"></pic>
-									<a ng-href="#/article/{{item.Id}}">
+									<a ng-href="#/article/{{item.Id}}" prevent-default>
 										<div class="video-mask"></div>
 									</a>
 								</div>
 								<div class="text_wrapper">
-									<a ng-href="#/article/{{item.Id}}">
+									<a ng-href="#/article/{{item.Id}}" prevent-default>
 										<h4 ng-bind="item.Title"></h4>
 										<p ng-bind="item.Description"></p>
 									</a>

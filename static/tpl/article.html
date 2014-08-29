@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1" style="padding-right:30px;">
 			<ol class="breadcrumb x-breadcrumb">
-			  <li><a href="#">首页</a></li>
+			  <li><a href="#" prevent-default>首页</a></li>
 			  <li class="active">文章</li>
 			</ol> 
 
@@ -27,7 +27,7 @@
 				</div>
 				<div class="article-bar">
 					<ul>
-						<li style="padding-top:5px;"><a href="#"><span class="icon icon-favorite"></span>收藏</a></li>
+						<li style="padding-top:5px;"><a href="#" prevent-default><span class="icon icon-favorite"></span>收藏</a></li>
 						<li>
 							<share-to></share-to>
 						</li>
@@ -38,7 +38,7 @@
 				<h4 class="title title-6">其他文章推荐</h4>
 				<ul class="article-list">
 					<li ng-repeat="passage in recommand track by $index">
-					<a ng-href="{{passage.url}}">{{passage.title}}<span ng-bind="passage.date"></span></a>
+					<a ng-href="{{passage.url}}" prevent-default>{{passage.title}}<span ng-bind="passage.date"></span></a>
 					</li>
 				</ul>
 			</div>

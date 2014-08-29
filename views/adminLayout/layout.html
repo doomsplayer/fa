@@ -15,7 +15,7 @@
   <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="/static/js/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="/static/admin/js/bootstrap.min.js"></script>
@@ -69,11 +69,22 @@
               </li>
             </ul>
           </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              类别
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="{%urlfor "AdminController.VideoType"%}">视频类型</a>
+              </li>
+            </ul>
+          </li>
         </ul>
+
       </div>
       <!-- /.navbar-collapse --> </div>
     <!-- /.container-fluid --> </nav>
   {%.LayoutContent%}
-
 </body>
 </html>
