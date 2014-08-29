@@ -394,6 +394,11 @@ h4.title span a:hover {
 	color: #12d4d0;
 	text-decoration: none;
 }
+h4.title + span {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+}
 .login_box {
 	margin-top: 150px;
 }
@@ -698,7 +703,7 @@ ul.style_menu {
 	border-radius: 0;
 }
 .xx-breadcrumb span {
-	margin-left: 3em;
+	margin-left: 2em;
 }
 .article-lead p {
 	width: 70%;
