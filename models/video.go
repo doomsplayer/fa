@@ -55,7 +55,6 @@ func (t *VideoSlice) Hot(n, from int, tp string) (err error) {
 		q = q.Where("type=?", tp)
 	}
 	err = q.Find(t)
-	fmt.Println(t)
 	return
 }
 

@@ -3,7 +3,9 @@
         <div class="col-md-10 col-md-offset-1" style="padding-right:30px;">
             <carousel interval='5000'>
                 <slide ng-repeat="slide in slides track by $index">
-                <a ng-href="#/video/{{slide.Id}}"><pic picid="{{slide.PicId}}"></pic></a>
+                    <a ng-href="#/video/{{slide.Id}}">
+                        <pic picid="{{slide.PicId}}"></pic>
+                    </a>
                     <div class="carousel-intro">
                         <h3 ng-bind="slide.Title"></h3>
                         <p ng-bind="slide.Description"></p>
@@ -13,19 +15,20 @@
             <div class="video-list">
                 <div id="vd_0" ng-repeat="album in albums">
                     <div class="title-wrapper">
-                    
-                        <h4 class="title" ng-bind="album.name">
-                            <span>
-                                <a ng-href="#/videoAlbum/{{album.name}}">MORE></a>
-                            </span>
-                        </h4>
+
+                        <h4 class="title" ng-bind="album.name"></h4>
+                        <span>
+                            <a ng-href="#/videoAlbum/{{album.name}}">MORE></a>
+                        </span>
                     </div>
                     <div class="row myrow">
                         <div class="col-md-4" ng-repeat="video in album.videos track by $index">
                             <div class="video-list-inner video-page">
                                 <div class="img">
                                     <pic picid="{{video.PicId}}"></pic>
-                                    <a ng-href="#/video/{{video.Id}}"><div class="video-mask"></div></a>
+                                    <a ng-href="#/video/{{video.Id}}">
+                                        <div class="video-mask"></div>
+                                    </a>
                                 </div>
                                 <div class="text">
                                     <h5>
